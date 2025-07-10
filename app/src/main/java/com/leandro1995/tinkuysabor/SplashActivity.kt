@@ -1,9 +1,11 @@
 package com.leandro1995.tinkuysabor
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.leandro1995.tinkuysabor.activity.LoginActivity
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
 
@@ -18,7 +20,8 @@ class SplashActivity : AppCompatActivity() {
         installSplashScreen().setKeepOnScreenCondition { true }
 
         timeCoroutine.timeStart {
-
+            startActivity(Intent(this, LoginActivity::class.java))
+            finishAffinity()
         }
     }
 
