@@ -14,7 +14,6 @@ class TimerCoroutine(
 ) {
 
     fun timeStart(method: () -> Unit) {
-
         CoroutineScope(dispatcher).launch {
             timeType().sleep(time)
             method()
