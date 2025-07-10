@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.leandro1995.tinkuysabor" />
+                  <option name="mobileSdkAppId" value="1:207230856303:android:617a47e2967b8a8225b19a" />
+                  <option name="projectId" value="tinkuysabor" />
+                  <option name="projectNumber" value="207230856303" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
