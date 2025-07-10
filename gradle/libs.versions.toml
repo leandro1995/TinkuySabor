@@ -12,6 +12,7 @@ material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
 googleService = "4.4.3"
+crashLytics = "3.0.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,4 +34,5 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-google-service = {id = "com.google.gms.google-services", version.ref = "googleService"}
+google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }
+google-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashLytics" }
