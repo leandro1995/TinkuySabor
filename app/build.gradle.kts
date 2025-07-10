@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.ui.auth)
     implementation(libs.firebase.firestore)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.kotlinx.coroutines.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
