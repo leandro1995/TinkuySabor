@@ -5,5 +5,11 @@
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
     </style>
 
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue_700</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_icon_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.TinkuySabor</item>
+    </style>
+
     <style name="Theme.TinkuySabor" parent="Base.Theme.TinkuySabor" />
 </resources>
