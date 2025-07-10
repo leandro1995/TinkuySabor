@@ -1,6 +1,7 @@
 [versions]
 agp = "8.11.0"
 firebaseBom = "33.16.0"
+firebaseUiAuth = "9.0.0"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -19,6 +20,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 firebase-inappmessaging-display = { module = "com.google.firebase:firebase-inappmessaging-display" }
 firebase-perf = { module = "com.google.firebase:firebase-perf" }
+firebase-ui-auth = { module = "com.firebaseui:firebase-ui-auth", version.ref = "firebaseUiAuth" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
