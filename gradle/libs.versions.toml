@@ -1,5 +1,6 @@
 [versions]
 agp = "8.11.0"
+coreSplashscreen = "1.0.1"
 firebaseBom = "33.16.0"
 firebaseUiAuth = "9.0.0"
 kotlin = "2.0.21"
@@ -16,6 +17,7 @@ crashLytics = "3.0.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
