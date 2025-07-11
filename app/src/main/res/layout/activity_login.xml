@@ -61,7 +61,7 @@
             app:layout_constraintGuide_percent="0.90" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/titleText"
+            android:id="@+id/title_text"
             style="@style/Body_1"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="wrap_content"
@@ -111,7 +111,18 @@
             android:layout_height="@dimen/dimen_0"
             android:layout_marginBottom="@dimen/dimen_24"
             android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical"
+            tools:ignore="InefficientWeight">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/carousel_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dimen_5"
+                android:layout_marginTop="@dimen/dimen_30"
+                android:layout_marginEnd="@dimen/dimen_5" />
+
+        </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
             style="@style/Button"

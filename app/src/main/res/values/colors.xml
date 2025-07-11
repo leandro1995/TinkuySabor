@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Black -->
     <color name="black">#FF000000</color>
 
     <!-- White -->
@@ -10,4 +12,5 @@
 
     <!-- Cream -->
     <color name="cream_200">#EEEEEE</color>
+
 </resources>
