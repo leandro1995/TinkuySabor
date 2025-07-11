@@ -24,6 +24,7 @@ class CarouselAdapter(private val carouselArrayList: ArrayList<Carousel>) :
     ) {
         holder.titleText.text = carouselArrayList[position].title
         holder.descriptionText.text = carouselArrayList[position].description
+        holder.carouselImage.setImageResource(carouselArrayList[position].imageDrawable)
     }
 
     override fun getItemCount(): Int {

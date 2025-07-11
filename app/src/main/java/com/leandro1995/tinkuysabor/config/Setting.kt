@@ -10,19 +10,24 @@ class Setting {
         fun carouselArrayList(activity: Activity) = arrayListOf(
             Carousel(
                 title = activity.getString(R.string.carousel_item_1_title_view_pager),
-                description = activity.getString(R.string.carousel_item_1_description_view_pager)
+                description = activity.getString(R.string.carousel_item_1_description_view_pager),
+                imageDrawable = R.drawable.ic_compass
             ), Carousel(
                 title = activity.getString(R.string.carousel_item_2_title_view_pager),
-                description = activity.getString(R.string.carousel_item_2_description_view_pager)
+                description = activity.getString(R.string.carousel_item_2_description_view_pager),
+                imageDrawable = R.drawable.ic_camera
             ), Carousel(
                 title = activity.getString(R.string.carousel_item_3_title_view_pager),
-                description = activity.getString(R.string.carousel_item_3_description_view_pager)
+                description = activity.getString(R.string.carousel_item_3_description_view_pager),
+                imageDrawable = R.drawable.ic_market
             ), Carousel(
                 title = activity.getString(R.string.carousel_item_4_title_view_pager),
-                description = activity.getString(R.string.carousel_item_4_description_view_pager)
+                description = activity.getString(R.string.carousel_item_4_description_view_pager),
+                imageDrawable = R.drawable.ic_nature
             ), Carousel(
                 title = activity.getString(R.string.carousel_item_5_title_view_pager),
-                description = activity.getString(R.string.carousel_item_5_description_view_pager)
+                description = activity.getString(R.string.carousel_item_5_description_view_pager),
+                imageDrawable = R.drawable.ic_journey
             )
         )
     }

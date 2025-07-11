@@ -1,3 +1,5 @@
 package com.leandro1995.tinkuysabor.model.design
 
-class Carousel(val title: String, val description: String)
+import androidx.annotation.DrawableRes
+
+class Carousel(val title: String, val description: String, @DrawableRes val imageDrawable: Int)
