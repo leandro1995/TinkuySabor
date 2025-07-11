@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+
+    <!-- White -->
     <color name="white">#FFFFFFFF</color>
 
     <!-- Blue -->
     <color name="blue_700">#315C68</color>
+
+    <!-- Cream -->
+    <color name="cream_200">#EEEEEE</color>
 </resources>

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TinkuySabor</string>
+
+    <!-- Title -->
+    <string name="login_text_title">Hola bienvenido</string>
+
+    <!-- Button -->
+    <string name="google_text_button">GOOGLE</string>
 </resources>
