@@ -3,7 +3,6 @@ package com.leandro1995.tinkuysabor.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.adapter.CarouselAdapter
 import com.leandro1995.tinkuysabor.config.Setting
@@ -35,7 +34,13 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
     }
 
     override fun initView() {
-        findViewById<ViewPager2>(R.id.carousel_pager).adapter =
-            CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this))
+        viewPager2()
+    }
+
+    private fun viewPager2() {
+        activityLoginBinding.carouselPager.apply {
+            adapter =
+                CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
+        }
     }
 }
