@@ -18,6 +18,10 @@ class LoginIntentConfig(
             LoginIntentAction.InitView -> {
                 loginIntentCallBack?.initView()
             }
+
+            is LoginIntentAction.GoogleLogin -> {
+                loginIntentCallBack?.googleLogin(fcmGoogleLogin = loginIntentAction.fcmGoogleLogin)
+            }
         }
     }
 }

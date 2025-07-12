@@ -9,6 +9,7 @@ import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityLoginBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
+import com.leandro1995.tinkuysabor.fcm.login.FCMGoogleLogin
 import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
@@ -35,6 +36,10 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
 
     override fun initView() {
         viewPager2()
+    }
+
+    override fun googleLogin(fcmGoogleLogin: FCMGoogleLogin) {
+        fcmGoogleLogin.login { googleIdTokenCredential -> }
     }
 
     private fun viewPager2() {
