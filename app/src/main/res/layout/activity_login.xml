@@ -154,6 +154,7 @@
                 android:layout_marginEnd="@dimen/dimen_32"
                 android:layout_marginBottom="@dimen/dimen_32"
                 android:drawableLeft="@drawable/ic_google"
+                android:onClick="@{()-> loginViewModel.action.invoke(loginViewModel.GOOGLE_LOGIN)}"
                 android:paddingLeft="@dimen/dimen_20"
                 android:paddingEnd="@dimen/dimen_55"
                 android:text="@string/google_text_button"
