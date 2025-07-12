@@ -9,9 +9,12 @@ import com.leandro1995.tinkuysabor.adapter.CarouselAdapter
 import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityLoginBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
+import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
+import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
 
     private lateinit var activityLoginBinding: ActivityLoginBinding
     private val loginViewModel by viewModels<LoginViewModel>()
@@ -21,9 +24,17 @@ class LoginActivity : AppCompatActivity() {
 
         activityLoginBinding = bindingUtil(layoutId = R.layout.activity_login)
         activityLoginBinding.loginViewModel = loginViewModel
+
+        lifecycleScopeLaunch {
+            loginViewModel.loginIntentAction.collect { loginIntentAction ->
+                LoginIntentConfig(
+                    loginIntentAction = loginIntentAction, loginIntentCallBack = this
+                )
+            }
+        }
     }
 
-    private fun initView() {
+    override fun initView() {
         findViewById<ViewPager2>(R.id.carousel_pager).adapter =
             CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this))
     }
