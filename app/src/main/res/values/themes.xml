@@ -13,6 +13,10 @@
 
     <style name="Theme.TinkuySabor" parent="Base.Theme.TinkuySabor" />
 
+    <style name="Base.Theme.Login" parent="Base.Theme.TinkuySabor">
+        <item name="colorPrimary">@color/blue_600</item>
+    </style>
+
     <!-- Body -->
     <style name="Body_1">
         <item name="android:textColor">@color/white</item>
