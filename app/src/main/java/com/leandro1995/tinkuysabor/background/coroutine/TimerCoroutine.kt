@@ -1,9 +1,8 @@
 package com.leandro1995.tinkuysabor.background.coroutine
 
 import com.leandro1995.tinkuysabor.background.config.TimeType
-import kotlinx.coroutines.CoroutineScope
+import com.leandro1995.tinkuysabor.extension.coroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
@@ -14,7 +13,7 @@ class TimerCoroutine(
 ) {
 
     fun timeStart(method: () -> Unit) {
-        CoroutineScope(dispatcher).launch {
+        coroutineScope(context = dispatcher) {
             timeType().sleep(time)
             method()
         }
