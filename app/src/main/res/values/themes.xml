@@ -3,6 +3,7 @@
     <style name="Base.Theme.TinkuySabor" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/blue_700</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
