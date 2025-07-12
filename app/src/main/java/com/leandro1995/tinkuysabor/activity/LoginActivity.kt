@@ -41,6 +41,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         activityLoginBinding.carouselPager.apply {
             adapter =
                 CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
+            activityLoginBinding.carouselIndicator.attachTo(this)
         }
     }
 }

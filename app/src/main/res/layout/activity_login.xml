@@ -125,10 +125,25 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/carousel_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/dimen_0"
                     android:layout_marginStart="@dimen/dimen_5"
                     android:layout_marginTop="@dimen/dimen_30"
-                    android:layout_marginEnd="@dimen/dimen_5" />
+                    android:layout_marginEnd="@dimen/dimen_5"
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights" />
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/carousel_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:dotsColor="@color/blue_300"
+                    app:dotsCornerRadius="@dimen/dimen_8"
+                    app:dotsSize="@dimen/dimen_15"
+                    app:dotsSpacing="@dimen/dimen_4"
+                    app:dotsWidthFactor="2.5"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/blue_700" />
 
             </LinearLayout>
 
