@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/carousel_image"
-            android:layout_width="@dimen/dimen_150"
-            android:layout_height="@dimen/dimen_150"
+            android:layout_width="@dimen/dimen_120"
+            android:layout_height="@dimen/dimen_120"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/dimen_20"
             tools:ignore="ContentDescription" />

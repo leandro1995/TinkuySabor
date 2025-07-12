@@ -10,7 +10,8 @@
         android:theme="@style/Theme.TinkuySabor">
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Base.Theme.Login" />
         <activity
             android:name=".SplashActivity"
             android:exported="true"

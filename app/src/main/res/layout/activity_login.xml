@@ -1,141 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/banner_constraint"
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="@dimen/dimen_300"
-        android:layout_marginStart="@dimen/dimen_0"
-        android:layout_marginTop="@dimen/dimen_0"
-        android:layout_marginEnd="@dimen/dimen_0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <ImageView
-            android:id="@+id/login_circle_image"
+        <variable
+            name="loginViewModel"
+            type="com.leandro1995.tinkuysabor.viewmodel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/banner_constraint"
             android:layout_width="@dimen/dimen_0"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dimen_300"
             android:layout_marginStart="@dimen/dimen_0"
             android:layout_marginTop="@dimen/dimen_0"
             android:layout_marginEnd="@dimen/dimen_0"
-            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_login_circle"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/left_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.2" />
+            <ImageView
+                android:id="@+id/login_circle_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_0"
+                android:layout_marginEnd="@dimen/dimen_0"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_login_circle"
+                tools:ignore="ContentDescription" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/right_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.8" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/left_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/above_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.35" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/right_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/below_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.90" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/above_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.35" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/title_text"
-            style="@style/Body_1"
-            android:layout_width="@dimen/dimen_0"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dimen_24"
-            android:layout_marginTop="@dimen/dimen_32"
-            android:layout_marginEnd="@dimen/dimen_24"
-            android:layout_marginBottom="@dimen/dimen_32"
-            android:text="@string/login_text_title"
-            app:layout_constraintBottom_toTopOf="@+id/above_guide"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/below_guide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.90" />
 
-        <ImageView
-            android:id="@+id/tourist_image"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title_text"
+                style="@style/Body_1"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dimen_24"
+                android:layout_marginTop="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_24"
+                android:layout_marginBottom="@dimen/dimen_32"
+                android:text="@string/login_text_title"
+                app:layout_constraintBottom_toTopOf="@+id/above_guide"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/tourist_image"
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginStart="@dimen/dimen_0"
+                android:layout_marginTop="@dimen/dimen_0"
+                android:layout_marginEnd="@dimen/dimen_0"
+                android:layout_marginBottom="@dimen/dimen_0"
+                app:layout_constraintBottom_toTopOf="@+id/below_guide"
+                app:layout_constraintEnd_toStartOf="@+id/right_guide"
+                app:layout_constraintStart_toStartOf="@+id/left_guide"
+                app:layout_constraintTop_toTopOf="@+id/above_guide"
+                app:srcCompat="@drawable/img_tourist"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0"
             android:layout_marginStart="@dimen/dimen_0"
             android:layout_marginTop="@dimen/dimen_0"
             android:layout_marginEnd="@dimen/dimen_0"
             android:layout_marginBottom="@dimen/dimen_0"
-            app:layout_constraintBottom_toTopOf="@+id/below_guide"
-            app:layout_constraintEnd_toStartOf="@+id/right_guide"
-            app:layout_constraintStart_toStartOf="@+id/left_guide"
-            app:layout_constraintTop_toTopOf="@+id/above_guide"
-            app:srcCompat="@drawable/img_tourist"
-            tools:ignore="ContentDescription" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
-        android:layout_width="@dimen/dimen_0"
-        android:layout_height="@dimen/dimen_0"
-        android:layout_marginStart="@dimen/dimen_0"
-        android:layout_marginTop="@dimen/dimen_0"
-        android:layout_marginEnd="@dimen/dimen_0"
-        android:layout_marginBottom="@dimen/dimen_0"
-        android:background="@drawable/background_social_network_login"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/banner_constraint">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_0"
-            android:layout_marginBottom="@dimen/dimen_24"
-            android:layout_weight="1"
+            android:background="@drawable/background_social_network_login"
             android:orientation="vertical"
-            tools:ignore="InefficientWeight">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/banner_constraint">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/carousel_pager"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dimen_5"
-                android:layout_marginTop="@dimen/dimen_30"
-                android:layout_marginEnd="@dimen/dimen_5" />
+                android:layout_height="@dimen/dimen_0"
+                android:layout_marginBottom="@dimen/dimen_24"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                tools:ignore="InefficientWeight">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/carousel_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_0"
+                    android:layout_marginStart="@dimen/dimen_5"
+                    android:layout_marginTop="@dimen/dimen_30"
+                    android:layout_marginEnd="@dimen/dimen_5"
+                    android:layout_weight="1"
+                    tools:ignore="NestedWeights" />
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/carousel_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:dotsColor="@color/blue_300"
+                    app:dotsCornerRadius="@dimen/dimen_8"
+                    app:dotsSize="@dimen/dimen_15"
+                    app:dotsSpacing="@dimen/dimen_4"
+                    app:dotsWidthFactor="2.5"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/blue_700" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Button"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/dimen_32"
+                android:layout_marginEnd="@dimen/dimen_32"
+                android:layout_marginBottom="@dimen/dimen_32"
+                android:drawableLeft="@drawable/ic_google"
+                android:paddingLeft="@dimen/dimen_20"
+                android:paddingEnd="@dimen/dimen_55"
+                android:text="@string/google_text_button"
+                tools:ignore="RtlHardcoded,RtlSymmetry" />
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Button"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/dimen_32"
-            android:layout_marginEnd="@dimen/dimen_32"
-            android:layout_marginBottom="@dimen/dimen_32"
-            android:drawableLeft="@drawable/ic_google"
-            android:paddingLeft="@dimen/dimen_20"
-            android:paddingEnd="@dimen/dimen_55"
-            android:text="@string/google_text_button"
-            tools:ignore="RtlHardcoded,RtlSymmetry" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
