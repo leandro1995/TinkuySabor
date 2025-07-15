@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.leandro1995.tinkuysabor";
+option java_multiple_files = true;
+
+message UserProtoDataStore {
+  string give_name = 1;
+  string family_name = 2;
+  string email = 3;
+  string picture = 4;
+}
