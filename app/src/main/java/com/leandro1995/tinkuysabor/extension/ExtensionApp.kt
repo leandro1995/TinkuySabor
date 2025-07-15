@@ -1,13 +1,19 @@
 package com.leandro1995.tinkuysabor.extension
 
 import android.app.Activity
+import android.content.Context
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.datastore.core.DataStore
+import androidx.datastore.dataStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.leandro1995.tinkuysabor.UserProtoDataStore
+import com.leandro1995.tinkuysabor.config.Setting
+import com.leandro1995.tinkuysabor.protodatastore.serializer.UserProtoDataStoreSerializer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
@@ -28,3 +34,7 @@ fun coroutineScope(context: CoroutineContext, method: suspend () -> Unit) {
         method()
     }
 }
+
+val Context.userProtoDataStore: DataStore<UserProtoDataStore> by dataStore(
+    Setting.DATA_STORE_FILE_NAME, UserProtoDataStoreSerializer()
+)

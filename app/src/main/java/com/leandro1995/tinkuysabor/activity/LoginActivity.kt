@@ -41,13 +41,19 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
 
     override fun googleLogin(fcmGoogleLogin: FCMGoogleLogin) {
         fcmGoogleLogin.login { googleIdTokenCredential ->
-            loginViewModel.idToken = googleIdTokenCredential.idToken
-            loginViewModel.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
+            loginViewModel.let {
+                it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
+                it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
+            }
         }
     }
 
     override fun googleAuthentication(fcmGoogleAuthentication: FCMGoogleAuthentication) {
-        fcmGoogleAuthentication.registerUser(success = { currentUser -> }, error = {})
+        fcmGoogleAuthentication.registerUser(success = {
+            loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
+        }, error = {
+
+        })
     }
 
     private fun viewPager2() {
