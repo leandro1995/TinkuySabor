@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.service)
     alias(libs.plugins.google.crashlytics)
+    alias(libs.plugins.google.protobuf)
 }
 
 android {
@@ -50,10 +51,16 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.perf)
-    implementation(libs.firebase.inappmessaging.display)
+    implementation(libs.firebase.perf) {
+        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
+    }
+    implementation(libs.firebase.inappmessaging.display) {
+        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
+    }
     implementation(libs.firebase.ui.auth)
-    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.firestore) {
+        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
+    }
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.viewpager2)
@@ -64,7 +71,24 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.protobuf.javalite)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:4.31.1"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
