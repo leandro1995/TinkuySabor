@@ -22,6 +22,10 @@ class LoginIntentConfig(
             is LoginIntentAction.GoogleLogin -> {
                 loginIntentCallBack?.googleLogin(fcmGoogleLogin = loginIntentAction.fcmGoogleLogin)
             }
+
+            is LoginIntentAction.GoogleAuthentication -> {
+                loginIntentCallBack?.googleAuthentication(fcmGoogleAuthentication = loginIntentAction.fcmGoogleAuthentication)
+            }
         }
     }
 }
