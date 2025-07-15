@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.androidx.datastore.core)
     implementation(libs.protobuf.javalite)
+    implementation(libs.androidx.datastore.preferences)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
