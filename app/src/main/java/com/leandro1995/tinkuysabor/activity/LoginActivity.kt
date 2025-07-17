@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -60,6 +61,11 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
                 )
             )
         })
+    }
+
+    override fun startHomeActivity(homeActivity: HomeActivity) {
+        startActivity(Intent(this, homeActivity::class.java))
+        finishAffinity()
     }
 
     private fun viewPager2() {
