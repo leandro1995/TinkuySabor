@@ -13,6 +13,8 @@ import com.leandro1995.tinkuysabor.fcm.authentication.FCMGoogleAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.FCMGoogleLogin
 import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Message
+import com.leandro1995.tinkuysabor.util.MessageUtil
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
@@ -52,7 +54,11 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         fcmGoogleAuthentication.registerUser(success = {
             loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
         }, error = {
-
+            MessageUtil.message(
+                message = Message(
+                    context = this, descriptionStringRes = R.string.login_register_firebase_message
+                )
+            )
         })
     }
 

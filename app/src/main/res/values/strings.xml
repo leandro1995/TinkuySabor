@@ -6,6 +6,10 @@
 
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>
+    <string name="accept_button">Aceptar</string>
+
+    <!-- Message -->
+    <string name="login_register_firebase_message">Hubo problemas para registrar su usuario vuélvalo a intentar.</string>
 
     <!-- View Pager -->
     <string name="carousel_item_1_title_view_pager">🧭 Explora sin límites</string>
