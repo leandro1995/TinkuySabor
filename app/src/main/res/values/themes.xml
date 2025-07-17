@@ -4,6 +4,7 @@
         <item name="colorPrimary">@color/blue_700</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="android:windowBackground">@color/white</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
@@ -42,5 +43,19 @@
         <item name="backgroundTint">@color/blue_700</item>
         <item name="android:textSize">@dimen/text_20</item>
         <item name="cornerRadius">@dimen/dimen_15</item>
+    </style>
+
+    <!-- Dialog theme -->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorOnSurface">@color/blue_700</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
+    </style>
+
+    <style name="MaterialAlertDialog.App.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:fontFamily">@font/regular</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 </resources>
