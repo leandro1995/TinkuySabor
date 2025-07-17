@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TinkuySabor">
         <activity
+            android:name=".activity.HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.LoginActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.Login" />
