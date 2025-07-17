@@ -66,6 +66,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun saveProtoDatabaseStore() {
+        UserProtoDataStoreConfig.setIdToken(idToken = idToken)
         user.let {
             UserProtoDataStoreConfig.setGiveName(giveName = it.giveName)
             UserProtoDataStoreConfig.setFamilyName(familyName = it.familyName)

@@ -15,6 +15,12 @@ object UserProtoDataStoreConfig {
         userProtoDataStore = context.userProtoDataStore
     }
 
+    fun setIdToken(idToken: String) = runBlocking {
+        userProtoDataStore.updateData { userProtoDataStore ->
+            userProtoDataStore.toBuilder().setIdToken(idToken).build()
+        }
+    }
+
     fun setGiveName(giveName: String) = runBlocking {
         userProtoDataStore.updateData { userProtoDataStore ->
             userProtoDataStore.toBuilder().setGiveName(giveName).build()
@@ -38,6 +44,8 @@ object UserProtoDataStoreConfig {
             userProtoDataStore.toBuilder().setPicture(picture).build()
         }
     }
+
+    fun getIdToken(): String = runBlocking { userProtoDataStore.data.first().idToken }
 
     fun getGiveName(): String = runBlocking { userProtoDataStore.data.first().giveName }
 
