@@ -22,4 +22,6 @@
     <string name="carousel_item_3_description_view_pager">Conoce personas, tradiciones y sabores auténticos que te harán sentir parte del lugar.</string>
     <string name="carousel_item_4_description_view_pager">Rutas rurales y escapadas verdes para desconectarte del estrés y reconectar contigo mismo.</string>
     <string name="carousel_item_5_description_view_pager">Convierte cada recorrido en una historia digna de ser contada.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
