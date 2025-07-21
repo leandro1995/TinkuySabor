@@ -5,11 +5,29 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.databinding.ActivityHomeBinding
+import com.leandro1995.tinkuysabor.extension.bindingUtil
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var activityHomeBinding: ActivityHomeBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+
+        activityHomeBinding = bindingUtil(layoutId = R.layout.activity_home)
+
+        initView()
+    }
+
+    private fun initView() {
+        (supportFragmentManager.findFragmentById(R.id.homeContentView) as NavHostFragment).navController.apply {
+            activityHomeBinding.homeNavigation.setupWithNavController(this)
+        }
     }
 }
