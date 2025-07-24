@@ -7,6 +7,7 @@
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>
     <string name="accept_button">Aceptar</string>
+    <string name="log_out_button">Cerrar sección</string>
 
     <!-- Message -->
     <string name="login_register_firebase_message">Hubo problemas para registrar su usuario vuélvalo a intentar.</string>

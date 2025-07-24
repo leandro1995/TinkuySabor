@@ -44,6 +44,13 @@
         <item name="cornerRadius">@dimen/dimen_15</item>
     </style>
 
+    <style name="Button.LogOut">
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/red_300</item>
+        <item name="strokeWidth">@dimen/dimen_3</item>
+        <item name="android:textColor">@color/red_300</item>
+    </style>
+
     <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/blue_300</item>
     </style>
