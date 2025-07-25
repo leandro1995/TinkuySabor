@@ -1,15 +1,22 @@
 package com.leandro1995.tinkuysabor.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentProfileBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
+import com.leandro1995.tinkuysabor.intent.callback.ProfileIntentCallBack
+import com.leandro1995.tinkuysabor.intent.config.ProfileIntentConfig
+import com.leandro1995.tinkuysabor.viewmodel.ProfileViewModel
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ProfileIntentCallBack {
+
+    private val profileViewModel by viewModels<ProfileViewModel>()
 
     private lateinit var fragmentProfileBinding: FragmentProfileBinding
 
@@ -21,6 +28,18 @@ class ProfileFragment : Fragment() {
             layoutId = R.layout.fragment_profile, inflater = inflater, container = container
         )
 
+        viewLifecycleOwner {
+            profileViewModel.profileIntentAction.collect { profileIntentAction ->
+                ProfileIntentConfig(
+                    profileIntentAction = profileIntentAction, profileIntentCallBack = this
+                )
+            }
+        }
+
         return fragmentProfileBinding.root
+    }
+
+    override fun initView() {
+
     }
 }
