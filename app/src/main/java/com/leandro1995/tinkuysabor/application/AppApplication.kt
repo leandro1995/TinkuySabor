@@ -1,6 +1,7 @@
 package com.leandro1995.tinkuysabor.application
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 
 class AppApplication : Application() {
@@ -8,5 +9,6 @@ class AppApplication : Application() {
         super.onCreate()
 
         UserProtoDataStoreConfig.instance(context = this)
+        Fresco.initialize(this)
     }
 }
