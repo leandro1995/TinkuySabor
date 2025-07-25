@@ -8,17 +8,18 @@ import com.leandro1995.tinkuysabor.R
 class Toolbar(
     private val activity: Activity,
     private val materialToolbar: MaterialToolbar,
-    private var isBack: Boolean = false
+    private var isBack: Boolean = false,
+    @StringRes private val idTitle: Int
 ) {
 
-    fun config(@StringRes idTitle: Int, method: () -> Unit = {}) {
+    fun create(back: () -> Unit = {}) {
         materialToolbar.apply {
             title = activity.getString(idTitle)
             if (isBack) {
                 setNavigationIcon(R.drawable.ic_arrow)
             }
             setNavigationOnClickListener {
-                method()
+                back()
             }
         }
     }

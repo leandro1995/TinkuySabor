@@ -12,6 +12,7 @@ import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.ProfileIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ProfileIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment(), ProfileIntentCallBack {
@@ -40,6 +41,12 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
     }
 
     override fun initView() {
-
+        fragmentProfileBinding.apply {
+            Toolbar(
+                activity = requireActivity(),
+                materialToolbar = includeAppBar.toolbar,
+                idTitle = R.string.profile_text_title
+            ).create()
+        }
     }
 }

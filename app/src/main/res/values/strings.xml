@@ -3,6 +3,7 @@
 
     <!-- Title -->
     <string name="login_text_title">Hola bienvenido</string>
+    <string name="profile_text_title">Perfil</string>
 
     <!-- Text -->
     <string name="email_text">Correo:</string>
