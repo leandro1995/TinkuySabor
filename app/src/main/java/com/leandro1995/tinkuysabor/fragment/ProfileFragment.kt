@@ -29,6 +29,8 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
             layoutId = R.layout.fragment_profile, inflater = inflater, container = container
         )
 
+        fragmentProfileBinding.profileViewModel = profileViewModel
+
         viewLifecycleOwner {
             profileViewModel.profileIntentAction.collect { profileIntentAction ->
                 ProfileIntentConfig(

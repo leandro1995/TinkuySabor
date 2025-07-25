@@ -5,6 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment.ProfileFragment">
 
+    <data>
+
+        <variable
+            name="profileViewModel"
+            type="com.leandro1995.tinkuysabor.viewmodel.ProfileViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -67,12 +74,14 @@
                         style="@style/Body_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@{profileViewModel.user.giveName}"
                         android:textColor="@color/blue_700" />
 
                     <TextView
                         style="@style/Body_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@{profileViewModel.user.familyName}"
                         android:textColor="@color/blue_700" />
 
                 </LinearLayout>
@@ -95,6 +104,7 @@
                 android:background="@drawable/background_text_profile"
                 android:gravity="center|left"
                 android:padding="@dimen/dimen_10"
+                android:text="@{profileViewModel.user.email}"
                 android:textColor="@color/black"
                 tools:ignore="RtlHardcoded" />
 
