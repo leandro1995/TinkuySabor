@@ -48,7 +48,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             it.giveName = googleIdTokenCredential.givenName.orEmpty()
             it.familyName = googleIdTokenCredential.familyName.orEmpty()
             it.email = googleIdTokenCredential.id
-            it.picture = googleIdTokenCredential.profilePictureUri?.path.orEmpty()
+            it.picture = googleIdTokenCredential.profilePictureUri.toString()
         }
     }
 

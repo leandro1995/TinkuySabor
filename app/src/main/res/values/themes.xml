@@ -35,6 +35,11 @@
         <item name="android:fontFamily">@font/regular</item>
     </style>
 
+    <style name="Body_4">
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:fontFamily">@font/semi_bold</item>
+    </style>
+
     <!-- Component -->
     <style name="Button">
         <item name="android:layout_height">@dimen/dimen_60</item>
@@ -44,8 +49,21 @@
         <item name="cornerRadius">@dimen/dimen_15</item>
     </style>
 
+    <style name="Button.LogOut">
+        <item name="backgroundTint">@color/white</item>
+        <item name="strokeColor">@color/red_300</item>
+        <item name="strokeWidth">@dimen/dimen_3</item>
+        <item name="android:textColor">@color/red_300</item>
+    </style>
+
     <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@color/blue_300</item>
+    </style>
+
+    <style name="ToolBar">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:fontFamily">@font/semi_bold</item>
+        <item name="android:textColor">@color/blue_700</item>
     </style>
 
     <!-- Dialog theme -->
@@ -54,7 +72,8 @@
         <item name="colorOnSurface">@color/blue_700</item>
         <item name="colorSurface">@color/white</item>
         <item name="android:backgroundTint">@color/white</item>
-        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text
+        </item>
     </style>
 
     <style name="MaterialAlertDialog.App.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">

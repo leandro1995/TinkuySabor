@@ -15,4 +15,7 @@
     <!-- Cream -->
     <color name="cream_200">#EEEEEE</color>
 
+    <!-- Red -->
+    <color name="red_300">#F57366</color>
+
 </resources>

@@ -6,6 +6,7 @@ datastoreCore = "1.1.7"
 dotsindicator = "5.1.0"
 firebaseBom = "33.16.0"
 firebaseUiAuth = "9.0.0"
+fresco = "3.6.0"
 googleid = "1.1.1"
 kotlin = "2.0.21"
 coreKtx = "1.16.0"
@@ -26,6 +27,7 @@ viewpager2 = "1.1.0"
 protobuf = "0.9.5"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
+kotlinKapt = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,6 +57,7 @@ firebase-perf = { module = "com.google.firebase:firebase-perf" }
 firebase-ui-auth = { module = "com.firebaseui:firebase-ui-auth", version.ref = "firebaseUiAuth" }
 
 github-dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
+github-fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" }
 
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 
@@ -72,3 +75,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }
 google-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashLytics" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKapt" }

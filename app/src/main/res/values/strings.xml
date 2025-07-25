@@ -3,10 +3,15 @@
 
     <!-- Title -->
     <string name="login_text_title">Hola bienvenido</string>
+    <string name="profile_text_title">Perfil</string>
+
+    <!-- Text -->
+    <string name="email_text">Correo:</string>
 
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>
     <string name="accept_button">Aceptar</string>
+    <string name="log_out_button">Cerrar sección</string>
 
     <!-- Message -->
     <string name="login_register_firebase_message">Hubo problemas para registrar su usuario vuélvalo a intentar.</string>

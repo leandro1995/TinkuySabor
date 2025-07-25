@@ -2,11 +2,14 @@ package com.leandro1995.tinkuysabor.extension
 
 import android.app.Activity
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -21,8 +24,20 @@ import kotlin.coroutines.CoroutineContext
 fun <T : ViewBinding> Activity.bindingUtil(@LayoutRes layoutId: Int) =
     DataBindingUtil.setContentView(this, layoutId) as T
 
+fun <T : ViewBinding> bindingUtil(
+    @LayoutRes layoutId: Int, inflater: LayoutInflater, container: ViewGroup?
+) = DataBindingUtil.inflate(inflater, layoutId, container, false) as T
+
 fun Activity.lifecycleScopeLaunch(method: suspend () -> Unit) {
     (this as AppCompatActivity).lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.CREATED) {
+            method()
+        }
+    }
+}
+
+fun Fragment.viewLifecycleOwner(method: suspend () -> Unit) {
+    viewLifecycleOwner.lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.CREATED) {
             method()
         }
