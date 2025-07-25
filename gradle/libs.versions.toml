@@ -27,6 +27,7 @@ viewpager2 = "1.1.0"
 protobuf = "0.9.5"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
+kotlinKapt = "2.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -74,3 +75,4 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 google-service = { id = "com.google.gms.google-services", version.ref = "googleService" }
 google-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashLytics" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKapt" }

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.service)
     alias(libs.plugins.google.crashlytics)
     alias(libs.plugins.google.protobuf)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {

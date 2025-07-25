@@ -56,8 +56,10 @@
                     android:orientation="vertical">
 
                     <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/demo"
                         android:layout_width="@dimen/dimen_100"
                         android:layout_height="@dimen/dimen_100"
+                        fresco:image="@{profileViewModel.user.picture}"
                         fresco:placeholderImage="@drawable/ic_profile_place_holder" />
 
                 </LinearLayout>
