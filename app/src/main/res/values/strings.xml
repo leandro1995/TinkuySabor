@@ -4,6 +4,9 @@
     <!-- Title -->
     <string name="login_text_title">Hola bienvenido</string>
 
+    <!-- Text -->
+    <string name="email_text">Correo:</string>
+
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>
     <string name="accept_button">Aceptar</string>
