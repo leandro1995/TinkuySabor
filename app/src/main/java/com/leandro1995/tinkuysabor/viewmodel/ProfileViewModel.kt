@@ -14,7 +14,7 @@ class ProfileViewModel : ViewModel() {
 
     val user = User(
         giveName = UserProtoDataStoreConfig.getGiveName(),
-        familyName = UserProtoDataStoreConfig.getGiveName(),
+        familyName = UserProtoDataStoreConfig.getFamilyName(),
         email = UserProtoDataStoreConfig.getEmail(),
         picture = UserProtoDataStoreConfig.getPicture()
     )
