@@ -18,6 +18,10 @@ class ProfileIntentConfig(
             ProfileIntentAction.InitView -> {
                 profileIntentCallBack?.initView()
             }
+
+            is ProfileIntentAction.StartLoginActivity -> {
+                profileIntentCallBack?.startLoginActivity(loginActivity = profileIntentAction.loginActivity)
+            }
         }
     }
 }

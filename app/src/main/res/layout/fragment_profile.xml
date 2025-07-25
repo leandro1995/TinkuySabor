@@ -122,6 +122,7 @@
             android:layout_marginStart="@dimen/dimen_32"
             android:layout_marginEnd="@dimen/dimen_32"
             android:layout_marginBottom="@dimen/dimen_32"
+            android:onClick="@{()-> profileViewModel.action.invoke(profileViewModel.LOGIN_ACTIVITY)}"
             android:text="@string/log_out_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

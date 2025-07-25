@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.activity.LoginActivity
 import com.leandro1995.tinkuysabor.databinding.FragmentProfileBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
@@ -49,5 +51,10 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
                 idTitle = R.string.profile_text_title
             ).create()
         }
+    }
+
+    override fun startLoginActivity(loginActivity: LoginActivity) {
+        startActivity(Intent(requireActivity(), loginActivity::class.java))
+        requireActivity().finishAffinity()
     }
 }
