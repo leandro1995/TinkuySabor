@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.firebase.firestore) {
         exclude(group = "com.google.firebase", module = "protolite-well-known-types")
     }
+    implementation(libs.firebase.messaging)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.viewpager2)
