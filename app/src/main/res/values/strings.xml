@@ -33,6 +33,10 @@
     <string name="list_of_places_menu">Lista de lugares</string>
     <string name="profile_menu">Perfil</string>
 
+    <!-- Message Channel -->
+    <string name="channel_notification">tinkuy_sabor_app_channel</string>
+    <string name="name_notification">tinkuy_sabor_app</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
