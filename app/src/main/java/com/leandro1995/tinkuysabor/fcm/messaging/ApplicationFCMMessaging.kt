@@ -6,7 +6,7 @@ import com.google.firebase.messaging.RemoteMessage
 import com.leandro1995.tinkuysabor.model.design.Notification
 
 @SuppressLint("MissingFirebaseInstanceTokenRefresh")
-class FCMApplicationMessaging : FirebaseMessagingService() {
+class ApplicationFCMMessaging : FirebaseMessagingService() {
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)

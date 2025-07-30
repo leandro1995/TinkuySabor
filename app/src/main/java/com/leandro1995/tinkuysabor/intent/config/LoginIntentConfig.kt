@@ -20,11 +20,11 @@ class LoginIntentConfig(
             }
 
             is LoginIntentAction.GoogleLogin -> {
-                loginIntentCallBack?.googleLogin(fcmGoogleLogin = loginIntentAction.fcmGoogleLogin)
+                loginIntentCallBack?.googleLogin(googleFCMLogin = loginIntentAction.googleFCMLogin)
             }
 
             is LoginIntentAction.GoogleAuthentication -> {
-                loginIntentCallBack?.googleAuthentication(fcmGoogleAuthentication = loginIntentAction.fcmGoogleAuthentication)
+                loginIntentCallBack?.googleAuthentication(googleFCMAuthentication = loginIntentAction.googleFCMAuthentication)
             }
 
             is LoginIntentAction.StartHomeActivity -> {

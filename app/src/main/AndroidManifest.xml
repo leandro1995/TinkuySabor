@@ -31,7 +31,7 @@
         </activity>
 
         <service
-            android:name=".fcm.messaging.FCMApplicationMessaging"
+            android:name=".fcm.messaging.ApplicationFCMMessaging"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

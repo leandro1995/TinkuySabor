@@ -10,8 +10,8 @@ import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityLoginBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
-import com.leandro1995.tinkuysabor.fcm.authentication.FCMGoogleAuthentication
-import com.leandro1995.tinkuysabor.fcm.login.FCMGoogleLogin
+import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
+import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Message
@@ -43,9 +43,9 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         viewPager2()
     }
 
-    override fun googleLogin(fcmGoogleLogin: FCMGoogleLogin) {
+    override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
         PermissionUtil.messagingPermission(fragmentActivity = this, method = {
-            fcmGoogleLogin.login { googleIdTokenCredential ->
+            googleFCMLogin.login { googleIdTokenCredential ->
                 loginViewModel.let {
                     it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
                     it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
@@ -54,8 +54,8 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         })
     }
 
-    override fun googleAuthentication(fcmGoogleAuthentication: FCMGoogleAuthentication) {
-        fcmGoogleAuthentication.registerUser(success = {
+    override fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication) {
+        googleFCMAuthentication.registerUser(success = {
             loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
         }, error = {
             MessageUtil.message(
