@@ -16,6 +16,7 @@ import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.util.MessageUtil
+import com.leandro1995.tinkuysabor.util.PermissionUtil
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
@@ -43,12 +44,14 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
     }
 
     override fun googleLogin(fcmGoogleLogin: FCMGoogleLogin) {
-        fcmGoogleLogin.login { googleIdTokenCredential ->
-            loginViewModel.let {
-                it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
-                it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
+        PermissionUtil.messagingPermission(fragmentActivity = this, method = {
+            fcmGoogleLogin.login { googleIdTokenCredential ->
+                loginViewModel.let {
+                    it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
+                    it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
+                }
             }
-        }
+        })
     }
 
     override fun googleAuthentication(fcmGoogleAuthentication: FCMGoogleAuthentication) {
