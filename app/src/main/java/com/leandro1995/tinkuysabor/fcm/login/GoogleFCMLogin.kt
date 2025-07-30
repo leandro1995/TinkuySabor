@@ -12,7 +12,7 @@ import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.extension.coroutineScope
 import kotlinx.coroutines.Dispatchers
 
-class FCMGoogleLogin(private val application: Application) {
+class GoogleFCMLogin(private val application: Application) {
 
     fun login(method: (GoogleIdTokenCredential) -> Unit) {
         coroutineScope(context = Dispatchers.Main) {

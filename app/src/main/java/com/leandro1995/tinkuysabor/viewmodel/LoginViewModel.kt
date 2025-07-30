@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.application
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.leandro1995.tinkuysabor.activity.HomeActivity
-import com.leandro1995.tinkuysabor.fcm.authentication.FCMGoogleAuthentication
-import com.leandro1995.tinkuysabor.fcm.login.FCMGoogleLogin
+import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
+import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
@@ -54,12 +54,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun googleLogin() {
         loginIntentAction.value =
-            LoginIntentAction.GoogleLogin(fcmGoogleLogin = FCMGoogleLogin(application = application))
+            LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin(application = application))
     }
 
     private fun googleAuthentication() {
         loginIntentAction.value = LoginIntentAction.GoogleAuthentication(
-            fcmGoogleAuthentication = FCMGoogleAuthentication(
+            googleFCMAuthentication = GoogleFCMAuthentication(
                 googleToken = idToken
             )
         )

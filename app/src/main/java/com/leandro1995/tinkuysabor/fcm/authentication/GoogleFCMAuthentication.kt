@@ -4,7 +4,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 
-class FCMGoogleAuthentication(private val googleToken: String) {
+class GoogleFCMAuthentication(private val googleToken: String) {
 
     private val authentication = Firebase.auth
 

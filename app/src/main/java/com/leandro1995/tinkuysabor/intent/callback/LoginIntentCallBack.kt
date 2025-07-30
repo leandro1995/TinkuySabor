@@ -1,15 +1,15 @@
 package com.leandro1995.tinkuysabor.intent.callback
 
 import com.leandro1995.tinkuysabor.activity.HomeActivity
-import com.leandro1995.tinkuysabor.fcm.authentication.FCMGoogleAuthentication
-import com.leandro1995.tinkuysabor.fcm.login.FCMGoogleLogin
+import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
+import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 
 interface LoginIntentCallBack {
     fun initView()
 
-    fun googleLogin(fcmGoogleLogin: FCMGoogleLogin)
+    fun googleLogin(googleFCMLogin: GoogleFCMLogin)
 
-    fun googleAuthentication(fcmGoogleAuthentication: FCMGoogleAuthentication)
+    fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication)
 
     fun startHomeActivity(homeActivity: HomeActivity)
 }
