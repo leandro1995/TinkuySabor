@@ -68,16 +68,10 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.perf) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
-    implementation(libs.firebase.inappmessaging.display) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
+    implementation(libs.firebase.perf)
+    implementation(libs.firebase.inappmessaging.display)
     implementation(libs.firebase.ui.auth)
-    implementation(libs.firebase.firestore) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
+    implementation(libs.firebase.firestore)
     implementation(libs.firebase.messaging)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.github.dotsindicator)
@@ -92,7 +86,7 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:4.31.1"
+        artifact = "com.google.protobuf:protoc:4.26.0"
     }
     generateProtoTasks {
         all().forEach { task ->
