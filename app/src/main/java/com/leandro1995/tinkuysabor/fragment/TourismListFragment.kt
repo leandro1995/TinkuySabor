@@ -1,15 +1,22 @@
 package com.leandro1995.tinkuysabor.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
+import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
+import com.leandro1995.tinkuysabor.intent.config.TourismListIntentConfig
+import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
-class TourismListFragment : Fragment() {
+class TourismListFragment : Fragment(), TourismListIntentCallBack {
+
+    private val tourismListViewModel by activityViewModels<TourismListViewModel>()
 
     private lateinit var fragmentTourismListBinding: FragmentTourismListBinding
 
@@ -18,11 +25,24 @@ class TourismListFragment : Fragment() {
     ): View? {
 
         fragmentTourismListBinding = bindingUtil(
-            layoutId = R.layout.fragment_tourism_list,
-            inflater = inflater,
-            container = container
+            layoutId = R.layout.fragment_tourism_list, inflater = inflater, container = container
         )
 
+        fragmentTourismListBinding.tourismListViewModel = tourismListViewModel
+
+        viewLifecycleOwner {
+            tourismListViewModel.tourismListIntentAction.collect { tourismListIntentAction ->
+                TourismListIntentConfig(
+                    tourismListIntentAction = tourismListIntentAction,
+                    tourismListIntentCallBack = this
+                )
+            }
+        }
+
         return fragmentTourismListBinding.root
+    }
+
+    override fun initView() {
+
     }
 }
