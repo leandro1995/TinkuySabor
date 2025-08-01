@@ -12,6 +12,7 @@ import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.TourismListIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
@@ -43,6 +44,12 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
     }
 
     override fun initView() {
-
+        fragmentTourismListBinding.apply {
+            Toolbar(
+                activity = requireActivity(),
+                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
+                idTitle = R.string.list_tourist_places_text_title
+            ).create()
+        }
     }
 }
