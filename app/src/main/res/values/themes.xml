@@ -50,6 +50,11 @@
         <item name="android:fontFamily">@font/semi_bold</item>
     </style>
 
+    <style name="Body_7">
+        <item name="android:textSize">@dimen/text_30</item>
+        <item name="android:fontFamily">@font/semi_bold</item>
+    </style>
+
     <!-- Component -->
     <style name="Button">
         <item name="android:layout_height">@dimen/dimen_60</item>
