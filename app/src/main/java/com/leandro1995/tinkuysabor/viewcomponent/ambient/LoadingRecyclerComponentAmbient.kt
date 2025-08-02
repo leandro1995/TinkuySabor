@@ -8,7 +8,7 @@ import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBinding
 
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
-    ViewComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
+    LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
 
     init {
         initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading_recycler))
