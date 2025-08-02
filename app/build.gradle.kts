@@ -53,37 +53,33 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.analytics)
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.perf) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
-    implementation(libs.firebase.inappmessaging.display) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
-    implementation(libs.firebase.ui.auth)
-    implementation(libs.firebase.firestore) {
-        exclude(group = "com.google.firebase", module = "protolite-well-known-types")
-    }
-    implementation(libs.firebase.messaging)
     implementation(libs.androidx.core.splashscreen)
-    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.github.dotsindicator)
-    implementation(libs.github.fresco)
-    implementation(libs.github.permissionx)
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
     implementation(libs.androidx.datastore.core)
-    implementation(libs.protobuf.javalite)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.perf)
+    implementation(libs.firebase.inappmessaging.display)
+    implementation(libs.firebase.ui.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.messaging)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.github.dotsindicator)
+    implementation(libs.github.fresco)
+    implementation(libs.github.permissionx)
+    implementation(libs.github.lottie)
+    implementation(libs.googleid)
+    implementation(libs.protobuf.javalite)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,7 +87,7 @@ dependencies {
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:4.31.1"
+        artifact = "com.google.protobuf:protoc:4.26.0"
     }
     generateProtoTasks {
         all().forEach { task ->

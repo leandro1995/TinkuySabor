@@ -1,17 +1,68 @@
 package com.leandro1995.tinkuysabor.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.adapter.TourismAdapter
+import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
+import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
+import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
+import com.leandro1995.tinkuysabor.intent.config.TourismListIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Toolbar
+import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
-class TourismListFragment : Fragment() {
+class TourismListFragment : Fragment(), TourismListIntentCallBack {
+
+    private val tourismListViewModel by activityViewModels<TourismListViewModel>()
+
+    private lateinit var fragmentTourismListBinding: FragmentTourismListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_tourism_list, container, false)
+
+        fragmentTourismListBinding = bindingUtil(
+            layoutId = R.layout.fragment_tourism_list, inflater = inflater, container = container
+        )
+
+        fragmentTourismListBinding.tourismListViewModel = tourismListViewModel
+
+        viewLifecycleOwner {
+            tourismListViewModel.tourismListIntentAction.collect { tourismListIntentAction ->
+                TourismListIntentConfig(
+                    tourismListIntentAction = tourismListIntentAction,
+                    tourismListIntentCallBack = this
+                )
+            }
+        }
+
+        return fragmentTourismListBinding.root
+    }
+
+    override fun initView() {
+        fragmentTourismListBinding.apply {
+            Toolbar(
+                activity = requireActivity(),
+                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
+                idTitle = R.string.list_tourist_places_text_title
+            ).create()
+        }
+
+        recyclerViewConfig()
+    }
+
+    private fun recyclerViewConfig() {
+        fragmentTourismListBinding.touristRecycler.apply {
+            layoutManager = LinearLayoutManager(requireActivity()).apply {
+                orientation = LinearLayoutManager.VERTICAL
+            }
+            adapter = TourismAdapter()
+        }
     }
 }

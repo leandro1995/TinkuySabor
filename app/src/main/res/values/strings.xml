@@ -4,6 +4,7 @@
     <!-- Title -->
     <string name="login_text_title">Hola bienvenido</string>
     <string name="profile_text_title">Perfil</string>
+    <string name="list_tourist_places_text_title">Lista de lugares turísticos</string>
 
     <!-- Text -->
     <string name="email_text">Correo:</string>
