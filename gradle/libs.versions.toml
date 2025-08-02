@@ -17,6 +17,7 @@ appcompat = "1.7.1"
 kotlinxCoroutinesAndroid = "1.10.2"
 lifecycleViewmodelKtx = "2.9.1"
 lifecycleLivedataKtx = "2.9.1"
+lottie = "6.6.7"
 material = "1.12.0"
 activity = "1.10.1"
 constraintlayout = "2.2.1"
@@ -63,6 +64,7 @@ firebase-ui-auth = { module = "com.firebaseui:firebase-ui-auth", version.ref = "
 github-dotsindicator = { module = "com.tbuonomo:dotsindicator", version.ref = "dotsindicator" }
 github-fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" }
 github-permissionx = { module = "com.guolindev.permissionx:permissionx", version.ref = "permissionx" }
+github-lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 
