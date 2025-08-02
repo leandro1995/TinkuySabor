@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.leandro1995.tinkuysabor.R
-import com.leandro1995.tinkuysabor.adapter.TourismAdapter
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
@@ -52,17 +50,6 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
                 materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
                 idTitle = R.string.list_tourist_places_text_title
             ).create()
-        }
-
-        recyclerViewConfig()
-    }
-
-    private fun recyclerViewConfig() {
-        fragmentTourismListBinding.touristRecycler.apply {
-            layoutManager = LinearLayoutManager(requireActivity()).apply {
-                orientation = LinearLayoutManager.VERTICAL
-            }
-            adapter = TourismAdapter()
         }
     }
 }
