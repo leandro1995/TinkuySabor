@@ -10,8 +10,16 @@ import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBindi
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
 
+    private lateinit var viewComponentLoadingRecyclerBinding: ViewComponentLoadingRecyclerBinding
+
     init {
         initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading_recycler))
+    }
+
+    override fun initView(dataBinding: ViewComponentLoadingRecyclerBinding) {
+        viewComponentLoadingRecyclerBinding = dataBinding
+        initViewRecycler(recyclerView = viewComponentLoadingRecyclerBinding.recyclerView)
+        gone()
     }
 
     protected fun configRecycler(recyclerView: RecyclerView, isOrientation: Boolean) {
@@ -20,6 +28,18 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
                 orientation = orientation(isOrientation = isOrientation)
             }
         }
+    }
+
+    protected open fun initViewRecycler(recyclerView: RecyclerView) {}
+
+    override fun visible() {
+        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = VISIBLE
+        viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
+    }
+
+    override fun gone() {
+        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+        viewComponentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
     }
 
     private fun orientation(isOrientation: Boolean) = if (isOrientation) {
