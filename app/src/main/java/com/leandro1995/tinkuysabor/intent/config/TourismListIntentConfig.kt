@@ -25,6 +25,10 @@ class TourismListIntentConfig(
                     serviceIntentCallBackAmbient = tourismListIntentCallBack
                 )
             }
+
+            is TourismListIntentAction.TourismArrayList -> {
+                tourismListIntentCallBack?.tourismArrayList(tourismArrayList = tourismListIntentAction.tourismArrayList)
+            }
         }
     }
 }

@@ -31,6 +31,8 @@ class TourismListViewModel : ViewModel(), ServiceViewModel {
         when (idService) {
             TOURISM_LIST_SERVICE -> {
                 user.tourismList(tourArrayListSuccess = {
+                    tourismListIntentAction.value =
+                        TourismListIntentAction.TourismArrayList(tourismArrayList = it)
                     loading(loading = Loading(isVisible = false))
                 }, errorMessage = {})
             }

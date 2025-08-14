@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.adapter.holder.TourismHolder
 import com.leandro1995.tinkuysabor.databinding.ItemTourismBinding
+import com.leandro1995.tinkuysabor.viewcomponent.model.Tourism
 
-class TourismAdapter : RecyclerView.Adapter<TourismHolder>() {
+class TourismAdapter(private val tourismArrayList: ArrayList<Tourism>) :
+    RecyclerView.Adapter<TourismHolder>() {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): TourismHolder {
         return TourismHolder(
             itemTourismBinding = ItemTourismBinding.inflate(
@@ -22,13 +23,17 @@ class TourismAdapter : RecyclerView.Adapter<TourismHolder>() {
     }
 
     override fun onBindViewHolder(
-        holder: TourismHolder,
-        position: Int
+        holder: TourismHolder, position: Int
     ) {
-
+        holder.itemTourismBinding.apply {
+            tourSimpleDraweeView.setImageURI(tourismArrayList[position].tour.photo)
+            titleText.text = tourismArrayList[position].tour.title
+            descriptionText.text = tourismArrayList[position].tour.description
+            timetableText.text = tourismArrayList[position].tour.timetable
+        }
     }
 
     override fun getItemCount(): Int {
-        return 20
+        return tourismArrayList.size
     }
 }

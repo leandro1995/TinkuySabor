@@ -14,6 +14,7 @@ import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.TourismListIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.model.design.Toolbar
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
@@ -56,10 +57,13 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
         tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
     }
 
+    override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = tourismArrayList)
+    }
+
     override fun showLoading(loading: Loading) {
         fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.start(
             loading = loading,
-            method = { tourismListViewModel.startService(idService = loading.idService) }
-        )
+            method = { tourismListViewModel.startService(idService = loading.idService) })
     }
 }

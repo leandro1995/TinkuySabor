@@ -17,7 +17,7 @@ class DataBaseFCMCloudFirestore {
             result.forEach {
                 tourArrayList.add(
                     Tour(
-                        phone = dataString(key = PHOTO, data = it.data),
+                        photo = dataString(key = PHOTO, data = it.data),
                         title = dataString(key = TITLE, data = it.data),
                         description = dataString(key = DESCRIPTION, data = it.data),
                         timetable = dataString(key = TIMETABLE, data = it.data),
@@ -25,7 +25,7 @@ class DataBaseFCMCloudFirestore {
                         longitude = dataDouble(key = LONGITUDE, data = it.data),
                         address = dataString(key = ADDRESS, data = it.data),
                         email = dataString(key = EMAIL, data = it.data),
-                        photo = dataString(key = PHONE, data = it.data),
+                        phone = dataString(key = PHONE, data = it.data),
                         typeTour = TypeTour(id = dataInt(key = TYPE, data = it.data))
                     )
                 )

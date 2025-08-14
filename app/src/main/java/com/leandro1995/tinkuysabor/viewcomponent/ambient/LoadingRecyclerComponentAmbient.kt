@@ -32,6 +32,8 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
 
     protected open fun initViewRecycler(recyclerView: RecyclerView) {}
 
+    open fun <T> setAdapter(arrayList: ArrayList<T>) {}
+
     override fun visible() {
         viewComponentLoadingRecyclerBinding.loadingLinear.visibility = VISIBLE
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
