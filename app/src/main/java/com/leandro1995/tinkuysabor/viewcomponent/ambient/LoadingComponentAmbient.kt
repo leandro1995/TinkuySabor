@@ -4,17 +4,18 @@ import android.content.Context
 import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
-import kotlinx.coroutines.Dispatchers
+import com.leandro1995.tinkuysabor.model.design.Loading
 
 open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
     ViewComponentAmbient<VH>(context = context, attrs = attrs) {
 
-    fun start(method: () -> Unit) {
-        visible()
-        TimerCoroutine(
-            dispatcher = Dispatchers.Main, timeType = TimeType.SECOND, time = TIME_OUT
-        ).timeStart {
-            method()
+    fun start(loading: Loading, method: () -> Unit) {
+        if (loading.isVisible) {
+            visible()
+            TimerCoroutine(
+                timeType = TimeType.SECOND, time = TIME_OUT
+            ).timeStart(method = method)
+        } else {
             gone()
         }
     }

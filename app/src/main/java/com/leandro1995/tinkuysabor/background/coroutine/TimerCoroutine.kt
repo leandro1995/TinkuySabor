@@ -3,6 +3,7 @@ package com.leandro1995.tinkuysabor.background.coroutine
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.extension.coroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.CoroutineContext
 
@@ -14,14 +15,14 @@ class TimerCoroutine(
 
     fun timeStart(method: () -> Unit) {
         coroutineScope(context = dispatcher) {
-            timeType().sleep(time)
+            delay(timeType())
             method()
         }
     }
 
     private fun timeType() = when (timeType) {
-        TimeType.SECOND -> TimeUnit.SECONDS
-        TimeType.MINUTE -> TimeUnit.MINUTES
-        TimeType.HOUR -> TimeUnit.HOURS
+        TimeType.SECOND -> TimeUnit.SECONDS.toSeconds(time)
+        TimeType.MINUTE -> TimeUnit.MINUTES.toMinutes(time)
+        TimeType.HOUR -> TimeUnit.HOURS.toHours(time)
     }
 }

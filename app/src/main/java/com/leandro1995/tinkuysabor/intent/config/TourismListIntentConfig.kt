@@ -18,6 +18,13 @@ class TourismListIntentConfig(
             TourismListIntentAction.InitView -> {
                 tourismListIntentCallBack?.initView()
             }
+
+            is TourismListIntentAction.ShowLoading -> {
+                serviceIntentActionConfig(
+                    serviceIntentActionConfig = tourismListIntentAction.serviceIntentActionConfig,
+                    serviceIntentCallBackAmbient = tourismListIntentCallBack
+                )
+            }
         }
     }
 }
