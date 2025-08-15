@@ -1,4 +1,4 @@
-package com.leandro1995.tinkuysabor.config.callback
+package com.leandro1995.tinkuysabor.viewmodel.callback
 
 import com.leandro1995.tinkuysabor.model.design.Loading
 

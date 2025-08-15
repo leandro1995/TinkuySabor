@@ -1,7 +1,7 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.leandro1995.tinkuysabor.config.callback.ServiceViewModel
+import com.leandro1995.tinkuysabor.viewmodel.callback.ServiceViewModel
 import com.leandro1995.tinkuysabor.intent.action.TourismListIntentAction
 import com.leandro1995.tinkuysabor.intent.action.config.ServiceIntentActionConfig
 import com.leandro1995.tinkuysabor.model.design.Loading
