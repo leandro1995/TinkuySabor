@@ -42,10 +42,13 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             }
         }
 
+        toolbarConfig()
+        tourismListViewModel.initView()
+
         return fragmentTourismListBinding.root
     }
 
-    override fun initView() {
+    private fun toolbarConfig() {
         fragmentTourismListBinding.apply {
             Toolbar(
                 activity = requireActivity(),
@@ -53,8 +56,6 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
                 idTitle = R.string.list_tourist_places_text_title
             ).create()
         }
-
-        tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
     }
 
     override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {

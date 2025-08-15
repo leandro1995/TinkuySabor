@@ -15,9 +15,7 @@ class TourismListIntentConfig(
 
     override fun instance() {
         when (tourismListIntentAction) {
-            TourismListIntentAction.InitView -> {
-                tourismListIntentCallBack?.initView()
-            }
+            TourismListIntentAction.InitView -> {}
 
             is TourismListIntentAction.ShowLoading -> {
                 serviceIntentActionConfig(

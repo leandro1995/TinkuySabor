@@ -4,6 +4,5 @@ import com.leandro1995.tinkuysabor.intent.callback.ambient.ServiceIntentCallBack
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
 interface TourismListIntentCallBack : ServiceIntentCallBackAmbient {
-    fun initView()
     fun tourismArrayList(tourismArrayList: ArrayList<Tour>)
 }
