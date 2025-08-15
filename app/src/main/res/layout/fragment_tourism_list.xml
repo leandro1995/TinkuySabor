@@ -25,6 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.leandro1995.tinkuysabor.viewcomponent.loading.TourismListLoadingRecyclerViewComponent
+            android:id="@+id/tourism_list_loading_recycler_view_component"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0"
             app:layout_constraintBottom_toBottomOf="parent"

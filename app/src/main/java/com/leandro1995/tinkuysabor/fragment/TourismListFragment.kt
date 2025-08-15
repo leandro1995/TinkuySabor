@@ -12,7 +12,9 @@ import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.TourismListIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.model.design.Toolbar
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
@@ -40,10 +42,13 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             }
         }
 
+        toolbarConfig()
+        tourismListViewModel.initView()
+
         return fragmentTourismListBinding.root
     }
 
-    override fun initView() {
+    private fun toolbarConfig() {
         fragmentTourismListBinding.apply {
             Toolbar(
                 activity = requireActivity(),
@@ -51,5 +56,22 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
                 idTitle = R.string.list_tourist_places_text_title
             ).create()
         }
+    }
+
+    override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = tourismArrayList)
+    }
+
+    override fun showLoading(loading: Loading) {
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.start(
+            loading = loading,
+            method = { tourismListViewModel.startService(idService = loading.idService) })
+    }
+
+    override fun messageError(messageError: String) {
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(
+            messageError = messageError, buttonError = {
+                tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
+            })
     }
 }

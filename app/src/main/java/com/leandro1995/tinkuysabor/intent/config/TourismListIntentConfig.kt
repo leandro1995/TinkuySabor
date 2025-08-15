@@ -15,8 +15,17 @@ class TourismListIntentConfig(
 
     override fun instance() {
         when (tourismListIntentAction) {
-            TourismListIntentAction.InitView -> {
-                tourismListIntentCallBack?.initView()
+            TourismListIntentAction.InitView -> {}
+
+            is TourismListIntentAction.ServiceIntent -> {
+                serviceIntentActionConfig(
+                    serviceIntentActionConfig = tourismListIntentAction.serviceIntentActionConfig,
+                    serviceIntentCallBackAmbient = tourismListIntentCallBack
+                )
+            }
+
+            is TourismListIntentAction.TourismArrayList -> {
+                tourismListIntentCallBack?.tourismArrayList(tourismArrayList = tourismListIntentAction.tourismArrayList)
             }
         }
     }

@@ -14,11 +14,13 @@
     <string name="accept_button">Aceptar</string>
     <string name="log_out_button">Cerrar sección</string>
     <string name="cancel_button">Cancelar</string>
+    <string name="retry_button">Reintentar</string>
 
     <!-- Message -->
     <string name="login_register_firebase_message">Hubo problemas para registrar su usuario vuélvalo a intentar.</string>
     <string name="permission_message">Recuerda que estos permisos son importantes para la aplicación.</string>
     <string name="permission_config_message">Recuerda que estos permisos son importantes para la aplicación tiene que activarlos desde la configuración.</string>
+    <string name="error_message">Hubo problemas con el servicio.</string>
 
     <!-- View Pager -->
     <string name="carousel_item_1_title_view_pager">🧭 Explora sin límites</string>
