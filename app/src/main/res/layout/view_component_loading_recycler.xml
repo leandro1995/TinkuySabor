@@ -89,7 +89,7 @@
                 android:textColor="@color/blue_700" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/error_button"
                 style="@style/Button"
                 android:layout_width="match_parent"
                 android:layout_marginStart="@dimen/dimen_32"

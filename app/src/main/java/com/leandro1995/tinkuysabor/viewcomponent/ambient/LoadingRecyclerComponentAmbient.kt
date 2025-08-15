@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBinding
+import com.leandro1995.tinkuysabor.viewcomponent.ambient.config.callback.LoadingRecyclerComponentAmbientCallBack
 
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
 
     private lateinit var viewComponentLoadingRecyclerBinding: ViewComponentLoadingRecyclerBinding
+    private var loadingRecyclerComponentAmbientCallBack: LoadingRecyclerComponentAmbientCallBack? =
+        null
 
     init {
         initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading_recycler))
@@ -19,6 +22,7 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
     override fun initView(dataBinding: ViewComponentLoadingRecyclerBinding) {
         viewComponentLoadingRecyclerBinding = dataBinding
         initViewRecycler(recyclerView = viewComponentLoadingRecyclerBinding.recyclerView)
+        onClick()
         gone()
     }
 
@@ -46,16 +50,35 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
     }
 
-    override fun messageError(messageError: String) {
+    override fun messageError(messageError: String, buttonError: () -> Unit) {
         viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
         viewComponentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
         viewComponentLoadingRecyclerBinding.errorText.text = messageError
+
+        instanceLoadingRecyclerComponentAmbientCallBack(buttonError = buttonError)
     }
 
     private fun orientation(isOrientation: Boolean) = if (isOrientation) {
         LinearLayoutManager.VERTICAL
     } else {
         LinearLayoutManager.HORIZONTAL
+    }
+
+    private fun instanceLoadingRecyclerComponentAmbientCallBack(buttonError: () -> Unit) {
+        if (loadingRecyclerComponentAmbientCallBack == null) {
+            loadingRecyclerComponentAmbientCallBack =
+                object : LoadingRecyclerComponentAmbientCallBack {
+                    override fun errorButon() {
+                        buttonError()
+                    }
+                }
+        }
+    }
+
+    private fun onClick() {
+        viewComponentLoadingRecyclerBinding.errorButton.setOnClickListener {
+            loadingRecyclerComponentAmbientCallBack?.errorButon()
+        }
     }
 }

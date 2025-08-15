@@ -20,7 +20,7 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
         }
     }
 
-    open fun messageError(messageError: String) {}
+    open fun messageError(messageError: String, buttonError: () -> Unit) {}
 
     protected open fun visible() {}
 

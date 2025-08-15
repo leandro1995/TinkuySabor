@@ -69,6 +69,9 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
     }
 
     override fun messageError(messageError: String) {
-        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(messageError = messageError)
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(
+            messageError = messageError, buttonError = {
+                tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
+            })
     }
 }
