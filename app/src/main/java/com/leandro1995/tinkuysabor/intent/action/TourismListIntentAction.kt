@@ -4,10 +4,9 @@ import com.leandro1995.tinkuysabor.intent.action.config.ServiceIntentActionConfi
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
 sealed class TourismListIntentAction {
-    data class ShowLoading(val serviceIntentActionConfig: ServiceIntentActionConfig) :
+    data class ServiceIntent(val serviceIntentActionConfig: ServiceIntentActionConfig) :
         TourismListIntentAction()
 
     data class TourismArrayList(val tourismArrayList: ArrayList<Tour>) : TourismListIntentAction()
-
     object InitView : TourismListIntentAction()
 }

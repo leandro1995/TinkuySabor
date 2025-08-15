@@ -36,12 +36,21 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
 
     override fun visible() {
         viewComponentLoadingRecyclerBinding.loadingLinear.visibility = VISIBLE
+        viewComponentLoadingRecyclerBinding.errorLinear.visibility = GONE
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
     }
 
     override fun gone() {
         viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+        viewComponentLoadingRecyclerBinding.errorLinear.visibility = GONE
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
+    }
+
+    override fun messageError(messageError: String) {
+        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+        viewComponentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
+        viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
+        viewComponentLoadingRecyclerBinding.errorText.text = messageError
     }
 
     private fun orientation(isOrientation: Boolean) = if (isOrientation) {

@@ -5,4 +5,5 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 interface ServiceViewModel {
     fun startService(idService: Int)
     fun loading(loading: Loading)
+    fun messageError(messageError: String)
 }

@@ -4,4 +4,5 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 
 sealed class ServiceIntentActionConfig {
     data class LoadingShow(val loading: Loading) : ServiceIntentActionConfig()
+    data class MessageError(val messageError: String) : ServiceIntentActionConfig()
 }

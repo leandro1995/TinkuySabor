@@ -17,7 +17,7 @@ class TourismListIntentConfig(
         when (tourismListIntentAction) {
             TourismListIntentAction.InitView -> {}
 
-            is TourismListIntentAction.ShowLoading -> {
+            is TourismListIntentAction.ServiceIntent -> {
                 serviceIntentActionConfig(
                     serviceIntentActionConfig = tourismListIntentAction.serviceIntentActionConfig,
                     serviceIntentCallBackAmbient = tourismListIntentCallBack

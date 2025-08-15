@@ -67,4 +67,8 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             loading = loading,
             method = { tourismListViewModel.startService(idService = loading.idService) })
     }
+
+    override fun messageError(messageError: String) {
+        fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(messageError = messageError)
+    }
 }

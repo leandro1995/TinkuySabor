@@ -15,6 +15,10 @@ abstract class IntentConfigAmbient {
             is ServiceIntentActionConfig.LoadingShow -> {
                 serviceIntentCallBackAmbient?.showLoading(loading = serviceIntentActionConfig.loading)
             }
+
+            is ServiceIntentActionConfig.MessageError -> {
+                serviceIntentCallBackAmbient?.messageError(messageError = serviceIntentActionConfig.messageError)
+            }
         }
     }
 }
