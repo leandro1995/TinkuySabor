@@ -46,64 +46,80 @@
                     android:layout_height="@dimen/dimen_250" />
 
                 <TextView
+                    style="@style/Body_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_15"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="@string/tourism_description_text"
+                    android:textColor="@color/blue_700" />
 
                 <TextView
+                    style="@style/Body_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginTop="@dimen/dimen_15"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen_16"
-                    android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
-
-                <TextView
+                    style="@style/Body_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_15"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="@string/phone_text"
+                    android:textColor="@color/blue_700" />
 
                 <TextView
+                    style="@style/Body_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
                 <TextView
+                    style="@style/Body_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginTop="@dimen/dimen_15"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="@string/email_text"
+                    android:textColor="@color/blue_700" />
 
                 <TextView
+                    style="@style/Body_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    style="@style/Body_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:text="@string/opening_hours_text"
+                    android:textColor="@color/blue_700" />
+
+                <TextView
+                    style="@style/Body_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen_16"
+                    android:layout_marginEnd="@dimen/dimen_16"
+                    android:text="TextView"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
