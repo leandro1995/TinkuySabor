@@ -1,17 +1,18 @@
 package com.leandro1995.tinkuysabor.activity
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityTourismDetailBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
+import com.leandro1995.tinkuysabor.extension.putExtraParcelable
 import com.leandro1995.tinkuysabor.intent.callback.TourismDetailIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.TourismDetailIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Toolbar
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.viewmodel.TourismDetailViewModel
 
 class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack {
@@ -36,6 +37,15 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack {
     }
 
     override fun initView() {
+        tourismDetailViewModel.tour =
+            Setting.TOUR_PUT_EXTRA.putExtraParcelable<Tour>(activity = this)
 
+        Toolbar(
+            materialToolbar = activityTourismDetailBinding.includeAppbar.toolbar,
+            isBack = true,
+            title = tourismDetailViewModel.tour!!.title
+        ).create {
+            finish()
+        }
     }
 }

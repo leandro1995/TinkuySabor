@@ -1,5 +1,9 @@
 package com.leandro1995.tinkuysabor.model.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 class Tour(
     val photo: String = "",
     val title: String = "",
@@ -11,4 +15,4 @@ class Tour(
     val email: String = "",
     val phone: String = "",
     val typeTour: TypeTour = TypeTour()
-)
+) : Parcelable

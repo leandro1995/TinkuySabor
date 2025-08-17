@@ -2,6 +2,8 @@ package com.leandro1995.tinkuysabor.extension
 
 import android.app.Activity
 import android.content.Context
+import android.os.Build
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
@@ -49,6 +51,14 @@ fun coroutineScope(context: CoroutineContext, method: suspend () -> Unit) {
         method()
     }
 }
+
+@Suppress("DEPRECATION")
+inline fun <reified T : Parcelable> String.putExtraParcelable(activity: Activity) =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        activity.intent.extras?.getParcelable(this, T::class.java)
+    } else {
+        activity.intent.extras?.getParcelable<T>(this)
+    }
 
 val Context.userProtoDataStore: DataStore<UserProtoDataStore> by dataStore(
     Setting.DATA_STORE_FILE_NAME, UserProtoDataStoreSerializer()

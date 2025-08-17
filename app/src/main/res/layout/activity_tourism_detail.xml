@@ -42,6 +42,7 @@
                 android:orientation="vertical">
 
                 <com.facebook.drawee.view.SimpleDraweeView
+                    fresco:image="@{tourismDetailViewModel.tour.photo}"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_250" />
 
@@ -61,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView"
+                    android:text="@{tourismDetailViewModel.tour.description}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -80,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView"
+                    android:text="@{tourismDetailViewModel.tour.phone}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -99,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView"
+                    android:text="@{tourismDetailViewModel.tour.email}"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -118,7 +119,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/dimen_16"
                     android:layout_marginEnd="@dimen/dimen_16"
-                    android:text="TextView"
+                    android:layout_marginBottom="@dimen/dimen_32"
+                    android:text="@{tourismDetailViewModel.tour.timetable}"
                     android:textColor="@color/black" />
 
             </LinearLayout>

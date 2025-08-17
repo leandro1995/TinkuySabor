@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.activity.TourismDetailActivity
 import com.leandro1995.tinkuysabor.adapter.TourismAdapter
 import com.leandro1995.tinkuysabor.adapter.config.callback.TourismAdapterCallBack
+import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.viewcomponent.ambient.LoadingRecyclerComponentAmbient
 import com.leandro1995.tinkuysabor.viewcomponent.model.Tourism
@@ -23,7 +24,9 @@ class TourismListLoadingRecyclerViewComponent(context: Context, attrs: Attribute
 
         tourismAdapter.tourismAdapterCallBack = object : TourismAdapterCallBack {
             override fun tourism(tour: Tour) {
-                context.startActivity(Intent(context, TourismDetailActivity::class.java))
+                context.startActivity(Intent(context, TourismDetailActivity::class.java).apply {
+                    putExtra(Setting.TOUR_PUT_EXTRA, tour)
+                })
             }
         }
 

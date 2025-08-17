@@ -46,9 +46,8 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
     override fun initView() {
         fragmentProfileBinding.apply {
             Toolbar(
-                activity = requireActivity(),
                 materialToolbar = includeAppBar.toolbar,
-                idTitle = R.string.profile_text_title
+                title = getString(R.string.profile_text_title)
             ).create()
         }
     }

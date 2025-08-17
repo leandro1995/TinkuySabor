@@ -8,6 +8,7 @@ class Setting {
 
     companion object {
         const val DATA_STORE_FILE_NAME = "tinkuySabor.pb"
+        const val  TOUR_PUT_EXTRA = "tour_put_extra"
         fun carouselArrayList(activity: Activity) = arrayListOf(
             Carousel(
                 title = activity.getString(R.string.carousel_item_1_title_view_pager),
