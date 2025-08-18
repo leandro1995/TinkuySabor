@@ -51,9 +51,8 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
     private fun toolbarConfig() {
         fragmentTourismListBinding.apply {
             Toolbar(
-                activity = requireActivity(),
                 materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
-                idTitle = R.string.list_tourist_places_text_title
+                title = getString(R.string.list_tourist_places_text_title)
             ).create()
         }
     }

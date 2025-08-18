@@ -8,6 +8,9 @@
 
     <!-- Text -->
     <string name="email_text">Correo:</string>
+    <string name="tourism_description_text">Descripción:</string>
+    <string name="phone_text">Número telefónico:</string>
+    <string name="opening_hours_text">Horarios de atención:</string>
 
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>

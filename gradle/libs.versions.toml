@@ -31,6 +31,7 @@ navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
 kotlinKapt = "2.2.0"
 recyclerview = "1.4.0"
+kotlinParcelize = "2.2.10"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -83,3 +84,4 @@ google-service = { id = "com.google.gms.google-services", version.ref = "googleS
 google-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashLytics" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinKapt" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlinParcelize" }
