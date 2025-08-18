@@ -6,16 +6,20 @@ import android.os.Build
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
+import com.google.android.gms.maps.SupportMapFragment
+import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.UserProtoDataStore
 import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.protodatastore.serializer.UserProtoDataStoreSerializer
@@ -59,6 +63,9 @@ inline fun <reified T : Parcelable> String.putExtraParcelable(activity: Activity
     } else {
         activity.intent.extras?.getParcelable<T>(this)
     }
+
+fun mapAsync(fragmentManager: FragmentManager, @IdRes idMap: Int) =
+    fragmentManager.findFragmentById(idMap) as SupportMapFragment
 
 val Context.userProtoDataStore: DataStore<UserProtoDataStore> by dataStore(
     Setting.DATA_STORE_FILE_NAME, UserProtoDataStoreSerializer()

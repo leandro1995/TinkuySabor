@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.mapAsync
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.HomeIntentConfig
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment(), HomeIntentCallBack {
+class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
@@ -38,6 +41,10 @@ class HomeFragment : Fragment(), HomeIntentCallBack {
     }
 
     override fun initView() {
+        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
 
     }
 }
