@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.github.fresco)
     implementation(libs.github.permissionx)
     implementation(libs.github.lottie)
+    implementation(libs.play.services.maps)
     implementation(libs.googleid)
     implementation(libs.protobuf.javalite)
     testImplementation(libs.junit)
