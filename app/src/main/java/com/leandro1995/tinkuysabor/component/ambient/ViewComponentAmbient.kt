@@ -1,4 +1,4 @@
-package com.leandro1995.tinkuysabor.viewcomponent.ambient
+package com.leandro1995.tinkuysabor.component.ambient
 
 import android.content.Context
 import android.util.AttributeSet
