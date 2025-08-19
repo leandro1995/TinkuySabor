@@ -17,6 +17,10 @@ class GoogleMapUtil(private val googleMap: GoogleMap) {
         )
     }
 
+    fun isMapToolbarEnabled(isEnable: Boolean) {
+        googleMap.uiSettings.isMapToolbarEnabled = isEnable
+    }
+
     private fun marker(latLng: LatLng) {
         googleMap.addMarker(MarkerOptions().position(latLng))
     }

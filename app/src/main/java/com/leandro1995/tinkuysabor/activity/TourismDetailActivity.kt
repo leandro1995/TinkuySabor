@@ -57,6 +57,7 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
 
     override fun onMapReady(p0: GoogleMap) {
         GoogleMapUtil(googleMap = p0).apply {
+            isMapToolbarEnabled(isEnable = false)
             animateCamera(latLng = tourismDetailViewModel.tour?.latLng()!!, zoom = 15f)
         }
     }
