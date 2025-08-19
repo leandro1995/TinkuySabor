@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +20,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.google.android.gms.maps.SupportMapFragment
-import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.UserProtoDataStore
 import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.protodatastore.serializer.UserProtoDataStoreSerializer
@@ -66,6 +66,17 @@ inline fun <reified T : Parcelable> String.putExtraParcelable(activity: Activity
 
 fun mapAsync(fragmentManager: FragmentManager, @IdRes idMap: Int) =
     fragmentManager.findFragmentById(idMap) as SupportMapFragment
+
+fun Fragment.registerForActivityLocationResult(method: () -> Unit, methodError: () -> Unit = {}) =
+    this.registerForActivityResult(
+        ActivityResultContracts.StartIntentSenderForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            method()
+        } else {
+            methodError()
+        }
+    }
 
 val Context.userProtoDataStore: DataStore<UserProtoDataStore> by dataStore(
     Setting.DATA_STORE_FILE_NAME, UserProtoDataStoreSerializer()

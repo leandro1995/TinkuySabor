@@ -80,6 +80,7 @@ dependencies {
     implementation(libs.github.permissionx)
     implementation(libs.github.lottie)
     implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
     implementation(libs.googleid)
     implementation(libs.protobuf.javalite)
     testImplementation(libs.junit)

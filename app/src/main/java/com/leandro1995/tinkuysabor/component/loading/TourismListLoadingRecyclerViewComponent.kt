@@ -1,4 +1,4 @@
-package com.leandro1995.tinkuysabor.viewcomponent.loading
+package com.leandro1995.tinkuysabor.component.loading
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,8 +10,8 @@ import com.leandro1995.tinkuysabor.adapter.TourismAdapter
 import com.leandro1995.tinkuysabor.adapter.config.callback.TourismAdapterCallBack
 import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.model.entity.Tour
-import com.leandro1995.tinkuysabor.viewcomponent.ambient.LoadingRecyclerComponentAmbient
-import com.leandro1995.tinkuysabor.viewcomponent.model.Tourism
+import com.leandro1995.tinkuysabor.component.ambient.LoadingRecyclerComponentAmbient
+import com.leandro1995.tinkuysabor.component.model.Tourism
 
 class TourismListLoadingRecyclerViewComponent(context: Context, attrs: AttributeSet?) :
     LoadingRecyclerComponentAmbient(context = context, attrs = attrs) {

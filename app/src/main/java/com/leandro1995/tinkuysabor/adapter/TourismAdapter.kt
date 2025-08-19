@@ -7,7 +7,7 @@ import com.leandro1995.tinkuysabor.adapter.config.callback.TourismAdapterCallBac
 import com.leandro1995.tinkuysabor.adapter.holder.TourismHolder
 import com.leandro1995.tinkuysabor.adapter.holder.config.callback.PositionHolderCallBack
 import com.leandro1995.tinkuysabor.databinding.ItemTourismBinding
-import com.leandro1995.tinkuysabor.viewcomponent.model.Tourism
+import com.leandro1995.tinkuysabor.component.model.Tourism
 
 class TourismAdapter(private val tourismArrayList: ArrayList<Tourism>) :
     RecyclerView.Adapter<TourismHolder>(), PositionHolderCallBack {

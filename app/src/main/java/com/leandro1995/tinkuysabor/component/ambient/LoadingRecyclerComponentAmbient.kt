@@ -1,4 +1,4 @@
-package com.leandro1995.tinkuysabor.viewcomponent.ambient
+package com.leandro1995.tinkuysabor.component.ambient
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBinding
-import com.leandro1995.tinkuysabor.viewcomponent.ambient.config.callback.LoadingRecyclerComponentAmbientCallBack
+import com.leandro1995.tinkuysabor.component.ambient.config.callback.LoadingRecyclerComponentAmbientCallBack
 
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {

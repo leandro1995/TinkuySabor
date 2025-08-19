@@ -24,6 +24,7 @@ constraintlayout = "2.2.1"
 googleService = "4.4.3"
 crashLytics = "3.0.4"
 permissionx = "1.8.1"
+playServicesLocation = "21.3.0"
 protobufJavalite = "4.26.0"
 viewpager2 = "1.1.0"
 protobuf = "0.9.5"
@@ -68,6 +69,7 @@ github-fresco = { module = "com.facebook.fresco:fresco", version.ref = "fresco" 
 github-permissionx = { module = "com.guolindev.permissionx:permissionx", version.ref = "permissionx" }
 github-lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
