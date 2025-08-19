@@ -48,4 +48,5 @@
 
     <!-- View Component -->
     <string name="loading_view_component_text">Cargando…</string>
+    <string name="location_view_component_text">Buscando coordenadas…</string>
 </resources>

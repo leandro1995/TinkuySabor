@@ -29,6 +29,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.leandro1995.tinkuysabor.component.loading.LocationLoadingViewComponent
+            android:id="@+id/location_loading_view_component"
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_0"
+            android:layout_marginStart="@dimen/dimen_0"
+            android:layout_marginTop="@dimen/dimen_0"
+            android:layout_marginEnd="@dimen/dimen_0"
+            android:layout_marginBottom="@dimen/dimen_0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
