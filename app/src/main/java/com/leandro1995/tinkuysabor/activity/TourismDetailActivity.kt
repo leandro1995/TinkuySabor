@@ -16,6 +16,7 @@ import com.leandro1995.tinkuysabor.intent.callback.TourismDetailIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.TourismDetailIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.model.entity.Tour
+import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.viewmodel.TourismDetailViewModel
 
 class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, OnMapReadyCallback {
@@ -55,6 +56,8 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
     }
 
     override fun onMapReady(p0: GoogleMap) {
-        
+        GoogleMapUtil(googleMap = p0).apply {
+            animateCamera(latLng = tourismDetailViewModel.tour?.latLng()!!, zoom = 15f)
+        }
     }
 }

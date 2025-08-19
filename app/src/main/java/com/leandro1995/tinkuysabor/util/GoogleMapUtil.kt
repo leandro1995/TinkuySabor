@@ -9,6 +9,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 class GoogleMapUtil(private val googleMap: GoogleMap) {
 
     fun animateCamera(latLng: LatLng, zoom: Float = 18f) {
+        marker(latLng = latLng)
         googleMap.animateCamera(
             CameraUpdateFactory.newCameraPosition(
                 CameraPosition.Builder().target(latLng).zoom(zoom).build()
@@ -16,7 +17,7 @@ class GoogleMapUtil(private val googleMap: GoogleMap) {
         )
     }
 
-    fun marker(latLng: LatLng) {
+    private fun marker(latLng: LatLng) {
         googleMap.addMarker(MarkerOptions().position(latLng))
     }
 }
