@@ -21,6 +21,10 @@ class GoogleMapUtil(private val googleMap: GoogleMap) {
         googleMap.uiSettings.isMapToolbarEnabled = isEnable
     }
 
+    fun isScrollGesturesEnabled(isEnable: Boolean) {
+        googleMap.uiSettings.isScrollGesturesEnabled = isEnable
+    }
+
     private fun marker(latLng: LatLng) {
         googleMap.addMarker(MarkerOptions().position(latLng))
     }
