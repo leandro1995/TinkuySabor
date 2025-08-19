@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.leandro1995.tinkuysabor.extension.registerForActivityLocationResult
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.HomeIntentConfig
+import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
@@ -23,9 +25,13 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
+
+    @SuppressLint("MissingPermission")
     private val locationResult = registerForActivityLocationResult(method = {
 
     })
+    private lateinit var locationUtil: LocationUtil
+    private lateinit var googleMapUtil: GoogleMapUtil
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -47,11 +53,19 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun initView() {
         mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+        locationUtil = LocationUtil(activity = requireActivity())
     }
 
+    @SuppressLint("MissingPermission")
     override fun onMapReady(p0: GoogleMap) {
-        LocationUtil(activity = requireActivity()).verifyLocation {
-            locationResult.launch(it)
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
+
+        locationUtil.apply {
+            verifyLocation(method = {
+
+            }, messageError = {
+                locationResult.launch(it)
+            })
         }
     }
 }
