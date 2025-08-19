@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -25,10 +26,8 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by viewModels<HomeViewModel>()
-
-    @SuppressLint("MissingPermission")
     private val locationResult = registerForActivityLocationResult(method = {
-
+        animateCameraLocation()
     })
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
@@ -62,10 +61,17 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
         locationUtil.apply {
             verifyLocation(method = {
-
+                animateCameraLocation()
             }, messageError = {
                 locationResult.launch(it)
             })
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun animateCameraLocation() {
+        locationUtil.starLocation { latitude, longitude ->
+            googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
         }
     }
 }
