@@ -49,7 +49,6 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     override fun onMapReady(p0: GoogleMap) {
         GoogleMapUtil(googleMap = p0).apply {
             animateCamera(latLng = LatLng(-0.0, -0.0))
-            marker(latLng = LatLng(-0.0, -0.0))
         }
     }
 }
