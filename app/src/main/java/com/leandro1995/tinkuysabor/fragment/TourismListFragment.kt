@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -19,7 +19,7 @@ import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
 
-    private val tourismListViewModel by activityViewModels<TourismListViewModel>()
+    private val tourismListViewModel by viewModels<TourismListViewModel>()
 
     private lateinit var fragmentTourismListBinding: FragmentTourismListBinding
 
