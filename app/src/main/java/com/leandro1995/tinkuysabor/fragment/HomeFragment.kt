@@ -53,12 +53,14 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     override fun initView() {
         mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
         locationUtil = LocationUtil(activity = requireActivity())
+        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
     }
 
-    @SuppressLint("MissingPermission")
-    override fun onMapReady(p0: GoogleMap) {
-        googleMapUtil = GoogleMapUtil(googleMap = p0)
+    override fun loadingLocationGone() {
+        fragmentHomeBinding.locationLoadingViewComponent.gone()
+    }
 
+    override fun verifyLocation() {
         locationUtil.apply {
             verifyLocation(method = {
                 animateCameraLocation()
@@ -68,10 +70,15 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         }
     }
 
+    override fun onMapReady(p0: GoogleMap) {
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
+    }
+
     @SuppressLint("MissingPermission")
     private fun animateCameraLocation() {
         locationUtil.starLocation { latitude, longitude ->
             googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
+            homeViewModel.action.invoke(HomeViewModel.LOADING_LOCATION_GONE)
         }
     }
 }

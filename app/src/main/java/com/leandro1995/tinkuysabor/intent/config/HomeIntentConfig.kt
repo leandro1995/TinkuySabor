@@ -18,6 +18,14 @@ class HomeIntentConfig(
             HomeIntentAction.InitView -> {
                 homeIntentCallBack?.initView()
             }
+
+            HomeIntentAction.LoadingLocationGone -> {
+                homeIntentCallBack?.loadingLocationGone()
+            }
+
+            HomeIntentAction.VerifyLocation -> {
+                homeIntentCallBack?.verifyLocation()
+            }
         }
     }
 }
