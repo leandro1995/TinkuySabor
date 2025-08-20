@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -23,9 +23,8 @@ import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
-
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private val locationResult = registerForActivityLocationResult(method = {
         animateCameraLocation()
     })
