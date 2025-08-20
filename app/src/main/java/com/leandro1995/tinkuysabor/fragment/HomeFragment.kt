@@ -63,4 +63,12 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     override fun loadingLocation(loading: Loading) {
         fragmentHomeBinding.locationLoadingViewComponent.visibleLoading(isVisible = loading.isVisible)
     }
+
+    override fun verifyLocation() {
+        locationUtil.verifyLocation(method = {
+            
+        }, messageError = {
+            locationResult.launch(it)
+        })
+    }
 }

@@ -1,7 +1,6 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
 import com.leandro1995.tinkuysabor.intent.action.HomeIntentAction
-import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
 class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
@@ -10,11 +9,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
     }
 
     private fun verifyLocation() {
-        loading(isVisible = true)
-    }
-
-    private fun loading(isVisible: Boolean) {
-        value(action = HomeIntentAction.LoadingLocation(loading = Loading(isVisible = isVisible)))
+        value(action = HomeIntentAction.VerifyLocation)
     }
 
     override fun intentAction(action: Int) {

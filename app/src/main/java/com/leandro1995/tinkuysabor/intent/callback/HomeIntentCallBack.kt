@@ -5,4 +5,5 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 
 interface HomeIntentCallBack : IntentCallBackAmbient {
     fun loadingLocation(loading: Loading)
+    fun verifyLocation()
 }

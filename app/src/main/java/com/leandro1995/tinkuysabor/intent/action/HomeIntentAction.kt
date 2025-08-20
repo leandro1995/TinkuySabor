@@ -4,5 +4,6 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 
 sealed class HomeIntentAction {
     data object InitView : HomeIntentAction()
+    data object VerifyLocation : HomeIntentAction()
     data class LoadingLocation(val loading: Loading) : HomeIntentAction()
 }
