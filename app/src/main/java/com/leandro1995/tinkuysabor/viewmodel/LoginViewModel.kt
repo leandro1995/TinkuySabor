@@ -56,7 +56,7 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
     }
 
     private fun initView() {
-        value(action = LoginIntentAction.InitView, isDefaultValue = false)
+        value(action = LoginIntentAction.InitView)
     }
 
     override fun intentAction(action: Int) {

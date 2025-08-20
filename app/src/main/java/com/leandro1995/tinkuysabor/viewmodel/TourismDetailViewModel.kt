@@ -17,7 +17,7 @@ class TourismDetailViewModel : ViewModelAmbient<TourismDetailIntentAction>() {
     }
 
     private fun initView() {
-        value(action = TourismDetailIntentAction.InitView, isDefaultValue = false)
+        value(action = TourismDetailIntentAction.InitView)
     }
 
     companion object {

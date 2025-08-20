@@ -13,11 +13,8 @@ open class ViewModelAmbient<T> : ViewModel() {
         intentAction(action = action)
     }
 
-    fun value(action: T, isDefaultValue: Boolean = true) {
+    fun value(action: T) {
         intentActionMutableStateFlow.value = action
-        if (isDefaultValue) {
-            intentActionMutableStateFlow.value = null
-        }
     }
 
     protected open fun intentAction(action: Int) {}
