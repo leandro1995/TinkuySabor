@@ -16,6 +16,7 @@ import com.leandro1995.tinkuysabor.extension.registerForActivityLocationResult
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.HomeIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
@@ -51,9 +52,15 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun initView() {
         mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+        locationUtil = LocationUtil(activity = requireActivity())
+        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
     }
 
     override fun onMapReady(p0: GoogleMap) {
 
+    }
+
+    override fun loadingLocation(loading: Loading) {
+        fragmentHomeBinding.locationLoadingViewComponent.visibleLoading(isVisible = loading.isVisible)
     }
 }

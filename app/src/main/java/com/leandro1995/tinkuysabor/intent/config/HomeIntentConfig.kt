@@ -19,6 +19,10 @@ class HomeIntentConfig(
                 homeIntentCallBack?.initView()
             }
 
+            is HomeIntentAction.LoadingLocation -> {
+                homeIntentCallBack?.loadingLocation(loading = homeIntentAction.loading)
+            }
+
             null -> {}
         }
     }
