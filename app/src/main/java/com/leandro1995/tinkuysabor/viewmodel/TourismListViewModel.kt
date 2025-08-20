@@ -13,20 +13,16 @@ class TourismListViewModel : ViewModelAmbient<TourismListIntentAction>(), Servic
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()
 
-    /*fun initView() {
-        if (tourismArrayList.isEmpty()) {
-            action.invoke(TOURISM_LIST)
-        } else {
-            tourismArrayList(tourismArrayList = tourismArrayList)
-        }
-    }*/
-
     private fun initView() {
         value(action = TourismListIntentAction.InitView)
     }
 
     private fun tourismList() {
-        loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
+        if (tourismArrayList.isEmpty()) {
+            loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
+        } else {
+            tourismArrayList(tourismArrayList = tourismArrayList)
+        }
     }
 
     private fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
@@ -80,6 +76,6 @@ class TourismListViewModel : ViewModelAmbient<TourismListIntentAction>(), Servic
     companion object {
         const val INIT_VIEW = 0
         const val TOURISM_LIST = 1
-        const val TOURISM_LIST_SERVICE = 2
+        private const val TOURISM_LIST_SERVICE = 2
     }
 }

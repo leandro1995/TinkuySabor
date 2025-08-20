@@ -49,6 +49,7 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
 
     override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
         fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = tourismArrayList)
+        tourismListViewModel.resetValue()
     }
 
     override fun showLoading(loading: Loading) {
@@ -62,6 +63,7 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             messageError = getString(idMessageError), buttonError = {
                 tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
             })
+        tourismListViewModel.resetValue()
     }
 
     override fun initView() {
@@ -71,5 +73,7 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
                 title = getString(R.string.list_tourist_places_text_title)
             ).create()
         }
+
+        tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
     }
 }
