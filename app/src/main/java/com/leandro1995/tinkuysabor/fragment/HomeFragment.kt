@@ -63,6 +63,8 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun verifyLocation() {
+        fragmentHomeBinding.locationLoadingViewComponent.visible()
+
         locationUtil.apply {
             verifyLocation(method = {
                 animateCameraLocation()
