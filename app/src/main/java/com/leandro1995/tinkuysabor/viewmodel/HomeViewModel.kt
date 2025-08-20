@@ -14,6 +14,10 @@ class HomeViewModel : ViewModel() {
             LOADING_LOCATION_GONE -> {
                 loadingLocationGone()
             }
+
+            VERIFY_LOCATION -> {
+                verifyLocation()
+            }
         }
     }
 
@@ -21,7 +25,12 @@ class HomeViewModel : ViewModel() {
         homeIntentAction.value = HomeIntentAction.LoadingLocationGone
     }
 
+    private fun verifyLocation() {
+        homeIntentAction.value = HomeIntentAction.VerifyLocation
+    }
+
     companion object {
         const val LOADING_LOCATION_GONE = 0
+        const val VERIFY_LOCATION = 1
     }
 }

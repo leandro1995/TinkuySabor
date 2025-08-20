@@ -22,6 +22,10 @@ class HomeIntentConfig(
             HomeIntentAction.LoadingLocationGone -> {
                 homeIntentCallBack?.loadingLocationGone()
             }
+
+            HomeIntentAction.VerifyLocation -> {
+                homeIntentCallBack?.verifyLocation()
+            }
         }
     }
 }
