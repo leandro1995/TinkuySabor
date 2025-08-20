@@ -61,8 +61,8 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
             loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
         }, error = {
             MessageUtil.message(
-                message = Message(
-                    context = this, descriptionStringRes = R.string.login_register_firebase_message
+                context = this, message = Message(
+                    descriptionStringRes = R.string.login_register_firebase_message
                 )
             )
         })
