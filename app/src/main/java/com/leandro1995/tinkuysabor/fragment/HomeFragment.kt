@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -26,7 +25,7 @@ import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
-    private val homeViewModel by activityViewModels<HomeViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
     private val locationResult = registerForActivityLocationResult(method = {
         animateCameraLocation()
     })
@@ -56,6 +55,10 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         locationUtil = LocationUtil(activity = requireActivity())
     }
 
+    override fun loadingLocationGone() {
+        fragmentHomeBinding.locationLoadingViewComponent.gone()
+    }
+
     @SuppressLint("MissingPermission")
     override fun onMapReady(p0: GoogleMap) {
         googleMapUtil = GoogleMapUtil(googleMap = p0)
@@ -73,6 +76,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     private fun animateCameraLocation() {
         locationUtil.starLocation { latitude, longitude ->
             googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
+            homeViewModel.action.invoke(HomeViewModel.LOADING_LOCATION_GONE)
         }
     }
 }
