@@ -17,9 +17,5 @@ open class ViewModelAmbient<T> : ViewModel() {
         intentActionMutableStateFlow.value = action
     }
 
-    fun resetValue() {
-        intentActionMutableStateFlow.value = null
-    }
-
     protected open fun intentAction(action: Int) {}
 }

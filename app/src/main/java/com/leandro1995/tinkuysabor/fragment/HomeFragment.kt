@@ -83,7 +83,6 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         locationUtil.starLocation { latitude, longitude ->
             googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
             homeViewModel.action.invoke(HomeViewModel.LOADING_LOCATION_GONE)
-            homeViewModel.resetValue()
         }
     }
 }
