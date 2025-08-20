@@ -31,13 +31,15 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
         activityTourismDetailBinding.tourismDetailViewModel = tourismDetailViewModel
 
         lifecycleScopeLaunch {
-            tourismDetailViewModel.tourismDetailIntentAction.collect { tourismDetailIntentAction ->
+            tourismDetailViewModel.intentActionMutableStateFlow.collect { tourismDetailIntentAction ->
                 TourismDetailIntentConfig(
                     tourismDetailIntentAction = tourismDetailIntentAction,
                     tourismDetailIntentCallBack = this
                 )
             }
         }
+
+        tourismDetailViewModel.action.invoke(TourismDetailViewModel.INIT_VIEW)
     }
 
     override fun initView() {

@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.intent.callback.TourismDetailIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class TourismDetailIntentConfig(
-    private val tourismDetailIntentAction: TourismDetailIntentAction,
+    private val tourismDetailIntentAction: TourismDetailIntentAction?,
     private val tourismDetailIntentCallBack: TourismDetailIntentCallBack?
 ) : IntentConfigAmbient() {
 
@@ -18,6 +18,8 @@ class TourismDetailIntentConfig(
             TourismDetailIntentAction.InitView -> {
                 tourismDetailIntentCallBack?.initView()
             }
+
+            null -> {}
         }
     }
 }
