@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.intent.callback.ProfileIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class ProfileIntentConfig(
-    private val profileIntentAction: ProfileIntentAction,
+    private val profileIntentAction: ProfileIntentAction?,
     private val profileIntentCallBack: ProfileIntentCallBack?
 ) : IntentConfigAmbient() {
 
@@ -22,6 +22,8 @@ class ProfileIntentConfig(
             is ProfileIntentAction.StartLoginActivity -> {
                 profileIntentCallBack?.startLoginActivity(loginActivity = profileIntentAction.loginActivity)
             }
+
+            null -> {}
         }
     }
 }
