@@ -34,7 +34,7 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
         fragmentTourismListBinding.tourismListViewModel = tourismListViewModel
 
         viewLifecycleOwner {
-            tourismListViewModel.tourismListIntentAction.collect { tourismListIntentAction ->
+            tourismListViewModel.intentActionMutableStateFlow.collect { tourismListIntentAction ->
                 TourismListIntentConfig(
                     tourismListIntentAction = tourismListIntentAction,
                     tourismListIntentCallBack = this
@@ -42,19 +42,9 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             }
         }
 
-        toolbarConfig()
-        tourismListViewModel.initView()
+        tourismListViewModel.action.invoke(TourismListViewModel.INIT_VIEW)
 
         return fragmentTourismListBinding.root
-    }
-
-    private fun toolbarConfig() {
-        fragmentTourismListBinding.apply {
-            Toolbar(
-                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
-                title = getString(R.string.list_tourist_places_text_title)
-            ).create()
-        }
     }
 
     override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
@@ -67,10 +57,19 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             method = { tourismListViewModel.startService(idService = loading.idService) })
     }
 
-    override fun messageError(messageError: String) {
+    override fun messageError(idMessageError: Int) {
         fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(
-            messageError = messageError, buttonError = {
+            messageError = getString(idMessageError), buttonError = {
                 tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
             })
+    }
+
+    override fun initView() {
+        fragmentTourismListBinding.apply {
+            Toolbar(
+                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
+                title = getString(R.string.list_tourist_places_text_title)
+            ).create()
+        }
     }
 }

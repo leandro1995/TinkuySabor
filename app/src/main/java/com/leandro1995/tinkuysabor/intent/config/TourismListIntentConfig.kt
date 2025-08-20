@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.intent.callback.TourismListIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class TourismListIntentConfig(
-    private val tourismListIntentAction: TourismListIntentAction,
+    private val tourismListIntentAction: TourismListIntentAction?,
     private val tourismListIntentCallBack: TourismListIntentCallBack?
 ) : IntentConfigAmbient() {
 
@@ -15,7 +15,9 @@ class TourismListIntentConfig(
 
     override fun instance() {
         when (tourismListIntentAction) {
-            TourismListIntentAction.InitView -> {}
+            TourismListIntentAction.InitView -> {
+                tourismListIntentCallBack?.initView()
+            }
 
             is TourismListIntentAction.ServiceIntent -> {
                 serviceIntentActionConfig(
@@ -27,6 +29,8 @@ class TourismListIntentConfig(
             is TourismListIntentAction.TourismArrayList -> {
                 tourismListIntentCallBack?.tourismArrayList(tourismArrayList = tourismListIntentAction.tourismArrayList)
             }
+
+            null -> {}
         }
     }
 }
