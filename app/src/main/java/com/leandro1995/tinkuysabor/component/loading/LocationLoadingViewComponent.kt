@@ -17,7 +17,7 @@ class LocationLoadingViewComponent(context: Context, attrs: AttributeSet?) :
 
     override fun initView(dataBinding: ViewComponentLoadingLocationBinding) {
         viewComponentLoadingLocationBinding = dataBinding
-
+        gone()
     }
 
     override fun gone() {
