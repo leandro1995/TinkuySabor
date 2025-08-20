@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -23,9 +23,8 @@ import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
-
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private val locationResult = registerForActivityLocationResult(method = {
         animateCameraLocation()
     })
@@ -42,10 +41,12 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         fragmentHomeBinding.homeViewModel = homeViewModel
 
         viewLifecycleOwner {
-            homeViewModel.homeIntentAction.collect { homeIntentAction ->
+            homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
                 HomeIntentConfig(homeIntentAction = homeIntentAction, homeIntentCallBack = this)
             }
         }
+
+        homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
 
         return fragmentHomeBinding.root
     }
@@ -61,6 +62,8 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun verifyLocation() {
+        fragmentHomeBinding.locationLoadingViewComponent.visible()
+
         locationUtil.apply {
             verifyLocation(method = {
                 animateCameraLocation()
@@ -72,6 +75,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         googleMapUtil = GoogleMapUtil(googleMap = p0)
+        googleMapUtil.resetMap()
     }
 
     @SuppressLint("MissingPermission")

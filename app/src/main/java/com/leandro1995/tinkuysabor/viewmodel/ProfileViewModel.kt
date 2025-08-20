@@ -1,17 +1,12 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
-import androidx.lifecycle.ViewModel
 import com.leandro1995.tinkuysabor.activity.LoginActivity
 import com.leandro1995.tinkuysabor.intent.action.ProfileIntentAction
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class ProfileViewModel : ViewModel() {
-
-    val profileIntentAction: MutableStateFlow<ProfileIntentAction> by lazy {
-        MutableStateFlow(ProfileIntentAction.InitView)
-    }
+class ProfileViewModel : ViewModelAmbient<ProfileIntentAction>() {
 
     val user = User(
         giveName = UserProtoDataStoreConfig.getGiveName(),
@@ -20,18 +15,9 @@ class ProfileViewModel : ViewModel() {
         picture = UserProtoDataStoreConfig.getPicture()
     )
 
-    val action = fun(action: Int) {
-        when (action) {
-            LOGIN_ACTIVITY -> {
-                loginActivity()
-            }
-        }
-    }
-
     private fun loginActivity() {
         resetUserProtoDataStore()
-        profileIntentAction.value =
-            ProfileIntentAction.StartLoginActivity(loginActivity = LoginActivity())
+        value(action = ProfileIntentAction.StartLoginActivity(loginActivity = LoginActivity()))
     }
 
     private fun resetUserProtoDataStore() {
@@ -44,7 +30,24 @@ class ProfileViewModel : ViewModel() {
         }
     }
 
+    private fun initView() {
+        value(action = ProfileIntentAction.InitView)
+    }
+
+    override fun intentAction(action: Int) {
+        when (action) {
+            INIT_VIEW -> {
+                initView()
+            }
+
+            LOGIN_ACTIVITY -> {
+                loginActivity()
+            }
+        }
+    }
+
     companion object {
-        const val LOGIN_ACTIVITY = 0
+        const val INIT_VIEW = 0
+        const val LOGIN_ACTIVITY = 1
     }
 }

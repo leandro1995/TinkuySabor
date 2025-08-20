@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.navigation.navGraphViewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -19,7 +19,7 @@ import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
 
-    private val tourismListViewModel by activityViewModels<TourismListViewModel>()
+    private val tourismListViewModel by navGraphViewModels<TourismListViewModel>(R.id.home_navigation)
 
     private lateinit var fragmentTourismListBinding: FragmentTourismListBinding
 
@@ -34,7 +34,7 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
         fragmentTourismListBinding.tourismListViewModel = tourismListViewModel
 
         viewLifecycleOwner {
-            tourismListViewModel.tourismListIntentAction.collect { tourismListIntentAction ->
+            tourismListViewModel.intentActionMutableStateFlow.collect { tourismListIntentAction ->
                 TourismListIntentConfig(
                     tourismListIntentAction = tourismListIntentAction,
                     tourismListIntentCallBack = this
@@ -42,19 +42,9 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             }
         }
 
-        toolbarConfig()
-        tourismListViewModel.initView()
+        tourismListViewModel.action.invoke(TourismListViewModel.INIT_VIEW)
 
         return fragmentTourismListBinding.root
-    }
-
-    private fun toolbarConfig() {
-        fragmentTourismListBinding.apply {
-            Toolbar(
-                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
-                title = getString(R.string.list_tourist_places_text_title)
-            ).create()
-        }
     }
 
     override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
@@ -67,10 +57,21 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             method = { tourismListViewModel.startService(idService = loading.idService) })
     }
 
-    override fun messageError(messageError: String) {
+    override fun messageError(idMessageError: Int) {
         fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.messageError(
-            messageError = messageError, buttonError = {
+            messageError = getString(idMessageError), buttonError = {
                 tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
             })
+    }
+
+    override fun initView() {
+        fragmentTourismListBinding.apply {
+            Toolbar(
+                materialToolbar = fragmentTourismListBinding.includeAppBar.toolbar,
+                title = getString(R.string.list_tourist_places_text_title)
+            ).create()
+        }
+
+        tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
     }
 }

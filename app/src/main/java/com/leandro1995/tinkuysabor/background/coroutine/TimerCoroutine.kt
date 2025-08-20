@@ -21,8 +21,8 @@ class TimerCoroutine(
     }
 
     private fun timeType() = when (timeType) {
-        TimeType.SECOND -> TimeUnit.SECONDS.toSeconds(time)
-        TimeType.MINUTE -> TimeUnit.MINUTES.toMinutes(time)
-        TimeType.HOUR -> TimeUnit.HOURS.toHours(time)
+        TimeType.SECOND -> TimeUnit.SECONDS.toMillis(time)
+        TimeType.MINUTE -> TimeUnit.MINUTES.toMillis(time)
+        TimeType.HOUR -> TimeUnit.HOURS.toMillis(time)
     }
 }

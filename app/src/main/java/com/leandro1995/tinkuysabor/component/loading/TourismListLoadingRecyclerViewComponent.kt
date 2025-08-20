@@ -38,6 +38,8 @@ class TourismListLoadingRecyclerViewComponent(context: Context, attrs: Attribute
 
     @SuppressLint("NotifyDataSetChanged")
     override fun <T> setAdapter(arrayList: ArrayList<T>) {
+        tourismArrayList.clear()
+
         arrayList.forEach {
             tourismArrayList.add(Tourism(tour = it as Tour))
         }

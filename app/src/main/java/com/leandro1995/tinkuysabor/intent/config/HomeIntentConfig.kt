@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class HomeIntentConfig(
-    private val homeIntentAction: HomeIntentAction,
+    private val homeIntentAction: HomeIntentAction?,
     private val homeIntentCallBack: HomeIntentCallBack?
 ) : IntentConfigAmbient() {
 
@@ -26,6 +26,8 @@ class HomeIntentConfig(
             HomeIntentAction.VerifyLocation -> {
                 homeIntentCallBack?.verifyLocation()
             }
+
+            null -> {}
         }
     }
 }

@@ -33,12 +33,14 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
         fragmentProfileBinding.profileViewModel = profileViewModel
 
         viewLifecycleOwner {
-            profileViewModel.profileIntentAction.collect { profileIntentAction ->
+            profileViewModel.intentActionMutableStateFlow.collect { profileIntentAction ->
                 ProfileIntentConfig(
                     profileIntentAction = profileIntentAction, profileIntentCallBack = this
                 )
             }
         }
+
+        profileViewModel.action.invoke(ProfileViewModel.INIT_VIEW)
 
         return fragmentProfileBinding.root
     }

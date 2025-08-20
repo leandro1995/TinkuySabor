@@ -17,7 +17,7 @@ abstract class IntentConfigAmbient {
             }
 
             is ServiceIntentActionConfig.MessageError -> {
-                serviceIntentCallBackAmbient?.messageError(messageError = serviceIntentActionConfig.messageError)
+                serviceIntentCallBackAmbient?.messageError(idMessageError = serviceIntentActionConfig.idMessageError)
             }
         }
     }

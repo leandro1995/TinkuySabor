@@ -1,8 +1,5 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.application
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.leandro1995.tinkuysabor.activity.HomeActivity
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
@@ -10,19 +7,64 @@ import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
-
-    val loginIntentAction: MutableStateFlow<LoginIntentAction> by lazy {
-        MutableStateFlow(LoginIntentAction.InitView)
-    }
+class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
 
     private var idToken = ""
     private val user = User()
 
-    val action = fun(action: Int) {
+    fun saveUserProtoDataStore(googleIdTokenCredential: GoogleIdTokenCredential) {
+        idToken = googleIdTokenCredential.idToken
+
+        user.let {
+            it.giveName = googleIdTokenCredential.givenName.orEmpty()
+            it.familyName = googleIdTokenCredential.familyName.orEmpty()
+            it.email = googleIdTokenCredential.id
+            it.picture = googleIdTokenCredential.profilePictureUri.toString()
+        }
+    }
+
+    private fun googleLogin() {
+        value(action = LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin()))
+    }
+
+    private fun googleAuthentication() {
+        value(
+            action = LoginIntentAction.GoogleAuthentication(
+                googleFCMAuthentication = GoogleFCMAuthentication(
+                    googleToken = idToken
+                )
+            )
+        )
+    }
+
+    private fun saveProtoDatabaseStore() {
+        UserProtoDataStoreConfig.setIdToken(idToken = idToken)
+        user.let {
+            UserProtoDataStoreConfig.setGiveName(giveName = it.giveName)
+            UserProtoDataStoreConfig.setFamilyName(familyName = it.familyName)
+            UserProtoDataStoreConfig.setEmail(email = it.email)
+            UserProtoDataStoreConfig.setPicture(picture = it.picture)
+        }
+
+        action.invoke(START_HOME_ACTIVITY)
+    }
+
+    private fun startHomeActivity() {
+        value(action = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity()))
+    }
+
+    private fun initView() {
+        value(action = LoginIntentAction.InitView)
+    }
+
+    override fun intentAction(action: Int) {
         when (action) {
+            INIT_VIEW -> {
+                initView()
+            }
+
             GOOGLE_LOGIN -> {
                 googleLogin()
             }
@@ -41,51 +83,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun saveUserProtoDataStore(googleIdTokenCredential: GoogleIdTokenCredential) {
-        idToken = googleIdTokenCredential.idToken
-
-        user.let {
-            it.giveName = googleIdTokenCredential.givenName.orEmpty()
-            it.familyName = googleIdTokenCredential.familyName.orEmpty()
-            it.email = googleIdTokenCredential.id
-            it.picture = googleIdTokenCredential.profilePictureUri.toString()
-        }
-    }
-
-    private fun googleLogin() {
-        loginIntentAction.value =
-            LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin(application = application))
-    }
-
-    private fun googleAuthentication() {
-        loginIntentAction.value = LoginIntentAction.GoogleAuthentication(
-            googleFCMAuthentication = GoogleFCMAuthentication(
-                googleToken = idToken
-            )
-        )
-    }
-
-    private fun saveProtoDatabaseStore() {
-        UserProtoDataStoreConfig.setIdToken(idToken = idToken)
-        user.let {
-            UserProtoDataStoreConfig.setGiveName(giveName = it.giveName)
-            UserProtoDataStoreConfig.setFamilyName(familyName = it.familyName)
-            UserProtoDataStoreConfig.setEmail(email = it.email)
-            UserProtoDataStoreConfig.setPicture(picture = it.picture)
-        }
-
-        action.invoke(START_HOME_ACTIVITY)
-    }
-
-    private fun startHomeActivity() {
-        loginIntentAction.value = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity())
-    }
-
     companion object {
-        const val GOOGLE_LOGIN = 0
-        const val GOOGLE_AUTHENTICATION = 1
-        const val SAVE_PROTO_DATA_STORE = 2
+        const val INIT_VIEW = 0
+        const val GOOGLE_LOGIN = 1
+        const val GOOGLE_AUTHENTICATION = 2
+        const val SAVE_PROTO_DATA_STORE = 3
 
-        private const val START_HOME_ACTIVITY = 3
+        private const val START_HOME_ACTIVITY = 4
     }
 }
