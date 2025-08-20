@@ -31,12 +31,14 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         activityLoginBinding.loginViewModel = loginViewModel
 
         lifecycleScopeLaunch {
-            loginViewModel.loginIntentAction.collect { loginIntentAction ->
+            loginViewModel.intentActionMutableStateFlow.collect { loginIntentAction ->
                 LoginIntentConfig(
                     loginIntentAction = loginIntentAction, loginIntentCallBack = this
                 )
             }
         }
+
+        loginViewModel.action.invoke(LoginViewModel.INIT_VIEW)
     }
 
     override fun initView() {
@@ -45,7 +47,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
 
     override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
         PermissionUtil.messagingPermission(fragmentActivity = this, method = {
-            googleFCMLogin.login { googleIdTokenCredential ->
+            googleFCMLogin.login(application = application) { googleIdTokenCredential ->
                 loginViewModel.let {
                     it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
                     it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)

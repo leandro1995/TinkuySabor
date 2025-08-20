@@ -12,12 +12,12 @@ import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.extension.coroutineScope
 import kotlinx.coroutines.Dispatchers
 
-class GoogleFCMLogin(private val application: Application) {
+class GoogleFCMLogin {
 
-    fun login(method: (GoogleIdTokenCredential) -> Unit) {
+    fun login(application: Application, method: (GoogleIdTokenCredential) -> Unit) {
         coroutineScope(context = Dispatchers.Main) {
             try {
-                credential(getCredentialResponse = credentialManager()) { googleIdTokenCredential ->
+                credential(getCredentialResponse = credentialManager(application = application)) { googleIdTokenCredential ->
                     method(googleIdTokenCredential)
                 }
             } catch (_: Exception) {
@@ -25,14 +25,17 @@ class GoogleFCMLogin(private val application: Application) {
         }
     }
 
-    private fun googleIdOption() = GetGoogleIdOption.Builder().setFilterByAuthorizedAccounts(false)
-        .setServerClientId(application.getString(R.string.google_id_client)).build()
+    private fun googleIdOption(application: Application) =
+        GetGoogleIdOption.Builder().setFilterByAuthorizedAccounts(false)
+            .setServerClientId(application.getString(R.string.google_id_client)).build()
 
-    private fun request(): GetCredentialRequest =
-        GetCredentialRequest.Builder().addCredentialOption(googleIdOption()).build()
+    private fun request(application: Application): GetCredentialRequest =
+        GetCredentialRequest.Builder()
+            .addCredentialOption(googleIdOption(application = application)).build()
 
-    private suspend fun credentialManager() =
-        CredentialManager.create(application).getCredential(context = application, request())
+    private suspend fun credentialManager(application: Application) =
+        CredentialManager.create(application)
+            .getCredential(context = application, request(application = application))
 
     private fun credential(
         getCredentialResponse: GetCredentialResponse,

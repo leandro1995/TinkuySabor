@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class LoginIntentConfig(
-    private val loginIntentAction: LoginIntentAction,
+    private val loginIntentAction: LoginIntentAction?,
     private val loginIntentCallBack: LoginIntentCallBack?
 ) : IntentConfigAmbient() {
 
@@ -30,6 +30,8 @@ class LoginIntentConfig(
             is LoginIntentAction.StartHomeActivity -> {
                 loginIntentCallBack?.startHomeActivity(homeActivity = loginIntentAction.homeActivity)
             }
+
+            null -> {}
         }
     }
 }
