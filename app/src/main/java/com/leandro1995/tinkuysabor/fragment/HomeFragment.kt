@@ -42,10 +42,12 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         fragmentHomeBinding.homeViewModel = homeViewModel
 
         viewLifecycleOwner {
-            homeViewModel.homeIntentAction.collect { homeIntentAction ->
+            homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
                 HomeIntentConfig(homeIntentAction = homeIntentAction, homeIntentCallBack = this)
             }
         }
+
+        homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
 
         return fragmentHomeBinding.root
     }
@@ -72,6 +74,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         googleMapUtil = GoogleMapUtil(googleMap = p0)
+        googleMapUtil.resetMap()
     }
 
     @SuppressLint("MissingPermission")
@@ -79,6 +82,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         locationUtil.starLocation { latitude, longitude ->
             googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
             homeViewModel.action.invoke(HomeViewModel.LOADING_LOCATION_GONE)
+            homeViewModel.resetValue()
         }
     }
 }
