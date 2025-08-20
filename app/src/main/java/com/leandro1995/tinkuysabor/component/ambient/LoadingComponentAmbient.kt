@@ -22,9 +22,9 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
 
     open fun messageError(messageError: String, buttonError: () -> Unit) {}
 
-    open fun visible() {}
+    protected open fun visible() {}
 
-    open fun gone() {}
+    protected open fun gone() {}
 
     companion object {
         private const val TIME_OUT = 5L
