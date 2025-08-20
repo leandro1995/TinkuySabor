@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.navigation.navGraphViewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -19,7 +19,7 @@ import com.leandro1995.tinkuysabor.viewmodel.TourismListViewModel
 
 class TourismListFragment : Fragment(), TourismListIntentCallBack {
 
-    private val tourismListViewModel by viewModels<TourismListViewModel>()
+    private val tourismListViewModel by navGraphViewModels<TourismListViewModel>(R.id.home_navigation)
 
     private lateinit var fragmentTourismListBinding: FragmentTourismListBinding
 
@@ -49,7 +49,6 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
 
     override fun tourismArrayList(tourismArrayList: ArrayList<Tour>) {
         fragmentTourismListBinding.tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = tourismArrayList)
-        tourismListViewModel.resetValue()
     }
 
     override fun showLoading(loading: Loading) {
@@ -63,7 +62,6 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
             messageError = getString(idMessageError), buttonError = {
                 tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST)
             })
-        tourismListViewModel.resetValue()
     }
 
     override fun initView() {
