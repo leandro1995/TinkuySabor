@@ -20,6 +20,14 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
         }
     }
 
+    fun visibleLoading(isVisible: Boolean) {
+        if (isVisible) {
+            visible()
+        } else {
+            gone()
+        }
+    }
+
     open fun messageError(messageError: String, buttonError: () -> Unit) {}
 
     protected open fun visible() {}
