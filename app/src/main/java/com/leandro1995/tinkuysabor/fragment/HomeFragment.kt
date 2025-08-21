@@ -78,6 +78,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     override fun startLocation() {
         locationUtil.starLocation { latitude, longitude ->
             homeViewModel.latLng = LatLng(latitude, longitude)
+            homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
         }
     }
 }

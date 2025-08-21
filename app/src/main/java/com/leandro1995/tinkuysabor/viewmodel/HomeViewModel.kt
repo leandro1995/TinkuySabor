@@ -29,6 +29,10 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
         }
     }
 
+    private fun tourismList() {
+        loading(isVisible = false)
+    }
+
     private fun loading(isVisible: Boolean) {
         value(action = HomeIntentAction.LoadingLocation(loading = Loading(isVisible = isVisible)))
     }
@@ -46,6 +50,10 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
             START_LOCATION -> {
                 startLocation()
             }
+
+            TOURISM_LIST -> {
+                tourismList()
+            }
         }
     }
 
@@ -53,6 +61,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
         const val INIT_VIEW = 0
         const val VERIFY_LOCATION = 1
         const val START_LOCATION = 2
+        const val TOURISM_LIST = 3
 
         private const val START_LOCATION_TIME = 1L
     }
