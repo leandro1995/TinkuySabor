@@ -83,7 +83,9 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun showLoading(loading: Loading) {
-
+        fragmentHomeBinding.loadingViewComponent.start(loading = loading, method = {
+            homeViewModel.startService(idService = loading.idService)
+        })
     }
 
     override fun messageError(idMessageError: Int) {

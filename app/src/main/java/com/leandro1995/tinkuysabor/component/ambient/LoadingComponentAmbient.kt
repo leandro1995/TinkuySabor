@@ -35,6 +35,6 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
     protected open fun gone() {}
 
     companion object {
-        private const val TIME_OUT = 5L
+        private const val TIME_OUT = 2L
     }
 }
