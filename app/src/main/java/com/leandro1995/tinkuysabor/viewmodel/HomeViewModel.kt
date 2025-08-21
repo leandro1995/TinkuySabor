@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 
 class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
 
-    val latLng = LatLng(0.0, 0.0)
+    lateinit var latLng: LatLng
 
     private fun initView() {
         value(action = HomeIntentAction.InitView)

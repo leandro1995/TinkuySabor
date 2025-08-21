@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -76,10 +77,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     override fun startLocation() {
         locationUtil.starLocation { latitude, longitude ->
-            homeViewModel.latLng.apply {
-                this.latitude = latitude
-                this.longitude = longitude
-            }
+            homeViewModel.latLng = LatLng(latitude, longitude)
         }
     }
 }
