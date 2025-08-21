@@ -34,6 +34,10 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
 
     protected open fun gone() {}
 
+    protected open fun onClick() {}
+
+    protected open fun instanceAmbientCallBack(buttonError: () -> Unit) {}
+
     companion object {
         private const val TIME_OUT = 2L
     }

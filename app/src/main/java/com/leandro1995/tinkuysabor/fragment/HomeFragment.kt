@@ -92,6 +92,8 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         fragmentHomeBinding.loadingViewComponent.messageError(
             messageError = getString(
                 idMessageError
-            ), buttonError = {})
+            ), buttonError = {
+                homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
+            })
     }
 }

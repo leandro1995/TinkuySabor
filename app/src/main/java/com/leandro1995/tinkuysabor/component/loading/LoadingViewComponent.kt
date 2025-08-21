@@ -4,12 +4,14 @@ import android.content.Context
 import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.component.ambient.LoadingComponentAmbient
+import com.leandro1995.tinkuysabor.component.loading.config.callback.LoadingViewComponentCallBack
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingBinding
 
 class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingBinding>(context = context, attrs = attrs) {
 
     private lateinit var viewComponentLoadingBinding: ViewComponentLoadingBinding
+    private var loadingViewComponentCallBack: LoadingViewComponentCallBack? = null
 
     init {
         initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading))
@@ -17,6 +19,7 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
 
     override fun initView(dataBinding: ViewComponentLoadingBinding) {
         viewComponentLoadingBinding = dataBinding
+        onClick()
         gone()
     }
 
@@ -34,5 +37,23 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
         viewComponentLoadingBinding.loadingLinear.visibility = GONE
         viewComponentLoadingBinding.errorLinear.visibility = VISIBLE
         viewComponentLoadingBinding.errorText.text = messageError
+
+        instanceAmbientCallBack(buttonError = buttonError)
+    }
+
+    override fun instanceAmbientCallBack(buttonError: () -> Unit) {
+        if (loadingViewComponentCallBack == null) {
+            loadingViewComponentCallBack = object : LoadingViewComponentCallBack {
+                override fun errorButon() {
+                    buttonError()
+                }
+            }
+        }
+    }
+
+    override fun onClick() {
+        viewComponentLoadingBinding.errorButton.setOnClickListener {
+            loadingViewComponentCallBack?.errorButon()
+        }
     }
 }
