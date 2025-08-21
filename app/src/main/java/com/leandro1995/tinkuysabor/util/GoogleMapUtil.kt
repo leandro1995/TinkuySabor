@@ -17,6 +17,14 @@ class GoogleMapUtil(private val googleMap: GoogleMap) {
         )
     }
 
+    fun marker(latLngList: List<LatLng>) {
+        if (latLngList.isNotEmpty()) {
+            latLngList.forEach {
+                marker(latLng = it)
+            }
+        }
+    }
+
     fun isMapToolbarEnabled(isEnable: Boolean) {
         googleMap.uiSettings.isMapToolbarEnabled = isEnable
     }

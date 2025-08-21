@@ -88,10 +88,12 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun addMarkerPersonnelTourism(
-        personalLatLng: LatLng,
-        tourismArrayList: ArrayList<Tour>
+        personalLatLng: LatLng, tourismArrayList: ArrayList<Tour>
     ) {
-        googleMapUtil.animateCamera(latLng = personalLatLng)
+        googleMapUtil.apply {
+            animateCamera(latLng = personalLatLng)
+            marker(latLngList = tourismArrayList.map { it.latLng() })
+        }
     }
 
     override fun showLoading(loading: Loading) {
