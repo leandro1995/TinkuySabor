@@ -32,6 +32,11 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        locationUtil = LocationUtil(activity = requireActivity())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -54,7 +59,6 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun initView() {
         mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
-        locationUtil = LocationUtil(activity = requireActivity())
         homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
     }
 
@@ -95,5 +99,10 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
             ), buttonError = {
                 homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
             })
+    }
+
+    override fun onDestroyView() {
+        locationUtil.stopLocation()
+        super.onDestroyView()
     }
 }

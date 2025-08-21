@@ -46,8 +46,10 @@ class LocationUtil(private val activity: Activity) {
         )
     }
 
-    private fun stopLocation() {
-        instanceFusedLocationProviderClient()?.removeLocationUpdates(locationCallback!!)
+    fun stopLocation() {
+        if (locationCallback != null) {
+            instanceFusedLocationProviderClient()?.removeLocationUpdates(locationCallback!!)
+        }
     }
 
     private fun instanceLocationCallback(method: (latitude: Double, longitude: Double) -> Unit) {
