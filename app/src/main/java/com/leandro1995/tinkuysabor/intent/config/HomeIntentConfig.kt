@@ -31,6 +31,13 @@ class HomeIntentConfig(
                 homeIntentCallBack?.startLocation()
             }
 
+            is HomeIntentAction.ServiceIntent -> {
+                serviceIntentActionConfig(
+                    serviceIntentActionConfig = homeIntentAction.serviceIntentActionConfig,
+                    serviceIntentCallBackAmbient = homeIntentCallBack
+                )
+            }
+
             null -> {}
         }
     }

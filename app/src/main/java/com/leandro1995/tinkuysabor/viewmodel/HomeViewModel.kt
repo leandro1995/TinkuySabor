@@ -6,9 +6,10 @@ import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
 import com.leandro1995.tinkuysabor.intent.action.HomeIntentAction
 import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
+import com.leandro1995.tinkuysabor.viewmodel.callback.ServiceViewModel
 import kotlinx.coroutines.Dispatchers
 
-class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
+class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
 
     lateinit var latLng: LatLng
 
@@ -55,6 +56,18 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>() {
                 tourismList()
             }
         }
+    }
+
+    override fun startService(idService: Int) {
+
+    }
+
+    override fun loading(loading: Loading) {
+
+    }
+
+    override fun messageError(idMessageError: Int) {
+
     }
 
     companion object {

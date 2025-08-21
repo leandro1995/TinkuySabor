@@ -81,4 +81,12 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
             homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
         }
     }
+
+    override fun showLoading(loading: Loading) {
+
+    }
+
+    override fun messageError(idMessageError: Int) {
+
+    }
 }
