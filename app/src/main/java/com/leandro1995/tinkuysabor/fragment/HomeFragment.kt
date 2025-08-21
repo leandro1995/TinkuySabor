@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -66,9 +67,19 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
 
     override fun verifyLocation() {
         locationUtil.verifyLocation(method = {
-            
+            homeViewModel.action.invoke(HomeViewModel.START_LOCATION)
         }, messageError = {
             locationResult.launch(it)
         })
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun startLocation() {
+        locationUtil.starLocation { latitude, longitude ->
+            homeViewModel.latLng.apply {
+                this.latitude = latitude
+                this.longitude = longitude
+            }
+        }
     }
 }

@@ -27,6 +27,10 @@ class HomeIntentConfig(
                 homeIntentCallBack?.verifyLocation()
             }
 
+            HomeIntentAction.StartLocation -> {
+                homeIntentCallBack?.startLocation()
+            }
+
             null -> {}
         }
     }
