@@ -19,6 +19,7 @@ import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.HomeIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
@@ -63,7 +64,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun onMapReady(p0: GoogleMap) {
-
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
     }
 
     override fun loadingLocation(loading: Loading) {
@@ -81,9 +82,16 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     override fun startLocation() {
         locationUtil.starLocation { latitude, longitude ->
-            homeViewModel.latLng = LatLng(latitude, longitude)
+            homeViewModel.personalLatLng = LatLng(latitude, longitude)
             homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
         }
+    }
+
+    override fun addMarkerPersonnelTourism(
+        personalLatLng: LatLng,
+        tourismArrayList: ArrayList<Tour>
+    ) {
+        googleMapUtil.animateCamera(latLng = personalLatLng)
     }
 
     override fun showLoading(loading: Loading) {

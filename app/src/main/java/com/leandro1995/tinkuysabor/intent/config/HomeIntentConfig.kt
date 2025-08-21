@@ -31,6 +31,13 @@ class HomeIntentConfig(
                 homeIntentCallBack?.startLocation()
             }
 
+            is HomeIntentAction.AddMarkerPersonnelTourism -> {
+                homeIntentCallBack?.addMarkerPersonnelTourism(
+                    personalLatLng = homeIntentAction.personalLatLng,
+                    tourismArrayList = homeIntentAction.tourismArrayList
+                )
+            }
+
             is HomeIntentAction.ServiceIntent -> {
                 serviceIntentActionConfig(
                     serviceIntentActionConfig = homeIntentAction.serviceIntentActionConfig,

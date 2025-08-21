@@ -18,7 +18,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()
 
-    lateinit var latLng: LatLng
+    lateinit var personalLatLng: LatLng
 
     private fun initView() {
         value(action = HomeIntentAction.InitView)
@@ -72,6 +72,11 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
                 user.tourismList(tourArrayListSuccess = {
                     tourismArrayList.clear()
                     tourismArrayList.addAll(it)
+                    value(
+                        action = HomeIntentAction.AddMarkerPersonnelTourism(
+                            personalLatLng = personalLatLng, tourismArrayList = tourismArrayList
+                        )
+                    )
                     loading(loading = Loading(isVisible = false))
                 }, errorMessage = {
                     messageError(idMessageError = R.string.error_message)
