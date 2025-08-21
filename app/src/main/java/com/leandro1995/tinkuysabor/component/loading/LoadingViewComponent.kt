@@ -29,4 +29,10 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
         viewComponentLoadingBinding.loadingLinear.visibility = GONE
         viewComponentLoadingBinding.errorLinear.visibility = GONE
     }
+
+    override fun messageError(messageError: String, buttonError: () -> Unit) {
+        viewComponentLoadingBinding.loadingLinear.visibility = GONE
+        viewComponentLoadingBinding.errorLinear.visibility = VISIBLE
+        viewComponentLoadingBinding.errorText.text = messageError
+    }
 }
