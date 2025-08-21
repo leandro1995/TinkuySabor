@@ -1,6 +1,7 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
 import com.google.android.gms.maps.model.LatLng
+import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
 import com.leandro1995.tinkuysabor.intent.action.HomeIntentAction
@@ -73,7 +74,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
                     tourismArrayList.addAll(it)
                     loading(loading = Loading(isVisible = false))
                 }, errorMessage = {
-
+                    messageError(idMessageError = R.string.error_message)
                 })
             }
         }
@@ -90,7 +91,13 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
     }
 
     override fun messageError(idMessageError: Int) {
-
+        value(
+            action = HomeIntentAction.ServiceIntent(
+                serviceIntentActionConfig = ServiceIntentActionConfig.MessageError(
+                    idMessageError = idMessageError
+                )
+            )
+        )
     }
 
     companion object {

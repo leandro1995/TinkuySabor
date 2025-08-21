@@ -89,6 +89,9 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     }
 
     override fun messageError(idMessageError: Int) {
-
+        fragmentHomeBinding.loadingViewComponent.messageError(
+            messageError = getString(
+                idMessageError
+            ), buttonError = {})
     }
 }
