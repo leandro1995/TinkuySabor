@@ -1,4 +1,4 @@
-package com.leandro1995.tinkuysabor.intent.event.config.callback
+package com.leandro1995.tinkuysabor.intent.callback.event
 
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 

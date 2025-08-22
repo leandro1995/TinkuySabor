@@ -1,6 +1,6 @@
 package com.leandro1995.tinkuysabor.intent.config.event
 
-import com.leandro1995.tinkuysabor.intent.event.config.callback.LoginIntentEventCallBack
+import com.leandro1995.tinkuysabor.intent.callback.event.LoginIntentEventCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 

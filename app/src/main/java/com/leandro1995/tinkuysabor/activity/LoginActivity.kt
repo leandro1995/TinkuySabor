@@ -12,7 +12,7 @@ import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
-import com.leandro1995.tinkuysabor.intent.event.config.callback.LoginIntentEventCallBack
+import com.leandro1995.tinkuysabor.intent.callback.event.LoginIntentEventCallBack
 import com.leandro1995.tinkuysabor.intent.config.event.LoginIntentEventConfig
 import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.util.MessageUtil
