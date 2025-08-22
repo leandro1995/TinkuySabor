@@ -33,5 +33,5 @@ open class ViewModelAmbient<A : Any, E : Any>() : ViewModel() {
 
     protected open fun intentAction(action: Int) {}
 
-    protected open suspend fun startService(idService: Int) {}
+    open suspend fun startService(idService: Int) {}
 }

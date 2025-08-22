@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.navGraphViewModels
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentTourismListBinding
@@ -57,8 +56,10 @@ class TourismListFragment : Fragment(), TourismListIntentActionCallBack {
     override fun view(view: TourismListIntentAction) {
         fragmentTourismListBinding.apply {
             tourismListLoadingRecyclerViewComponent.start(loading = view.loading, method = {
-
+                this@TourismListFragment.tourismListViewModel.startService(idService = view.loading.idService)
             })
+
+            tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = view.tourArrayList)
         }
     }
 

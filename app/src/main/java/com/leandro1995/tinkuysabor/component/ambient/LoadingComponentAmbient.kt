@@ -9,7 +9,7 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
     ViewComponentAmbient<VH>(context = context, attrs = attrs) {
 
-    fun start(loading: Loading, method: () -> Unit) {
+    fun start(loading: Loading, method: suspend () -> Unit) {
         if (loading.isStartService()) {
             if (loading.isVisible) {
                 visible()

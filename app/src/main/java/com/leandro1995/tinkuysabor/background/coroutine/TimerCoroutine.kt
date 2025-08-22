@@ -13,7 +13,7 @@ class TimerCoroutine(
     private val time: Long
 ) {
 
-    fun timeStart(method: () -> Unit) {
+    fun timeStart(method: suspend () -> Unit) {
         coroutineScope(context = dispatcher) {
             delay(timeType())
             method()
