@@ -47,6 +47,18 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         )
         fragmentHomeBinding.homeViewModel = homeViewModel
 
+        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+
+        return fragmentHomeBinding.root
+    }
+
+    override fun initView() {
+        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
+
         viewLifecycleOwner {
             homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
                 HomeIntentConfig(homeIntentAction = homeIntentAction, homeIntentCallBack = this)
@@ -54,17 +66,6 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         }
 
         homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
-
-        return fragmentHomeBinding.root
-    }
-
-    override fun initView() {
-        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
-        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
-    }
-
-    override fun onMapReady(p0: GoogleMap) {
-        googleMapUtil = GoogleMapUtil(googleMap = p0)
     }
 
     override fun loadingLocation(loading: Loading) {

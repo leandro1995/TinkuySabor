@@ -17,15 +17,20 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
 
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()
+    private var isTourism = false
 
-    lateinit var personalLatLng: LatLng
+    var personalLatLng: LatLng? = null
 
     private fun initView() {
         value(action = HomeIntentAction.InitView)
     }
 
     private fun verifyLocation() {
-        value(action = HomeIntentAction.VerifyLocation)
+        if (personalLatLng == null) {
+            value(action = HomeIntentAction.VerifyLocation)
+        } else {
+            action.invoke(TOURISM_LIST)
+        }
     }
 
     private fun startLocation() {
@@ -38,8 +43,16 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
     }
 
     private fun tourismList() {
-        loadingVisible(isVisible = false)
-        loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
+        if (isTourism) {
+            value(
+                action = HomeIntentAction.AddMarkerPersonnelTourism(
+                    personalLatLng = personalLatLng!!, tourismArrayList = tourismArrayList
+                )
+            )
+        } else {
+            loadingVisible(isVisible = false)
+            loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
+        }
     }
 
     private fun loadingVisible(isVisible: Boolean) {
@@ -74,9 +87,10 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
                     tourismArrayList.addAll(it)
                     value(
                         action = HomeIntentAction.AddMarkerPersonnelTourism(
-                            personalLatLng = personalLatLng, tourismArrayList = tourismArrayList
+                            personalLatLng = personalLatLng!!, tourismArrayList = tourismArrayList
                         )
                     )
+                    isTourism = true
                     loading(loading = Loading(isVisible = false))
                 }, errorMessage = {
                     messageError(idMessageError = R.string.error_message)
