@@ -13,7 +13,6 @@ import com.leandro1995.tinkuysabor.databinding.FragmentProfileBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.config.event.ProfileIntentEventConfig
-import com.leandro1995.tinkuysabor.intent.event.ProfileIntentEvent
 import com.leandro1995.tinkuysabor.intent.event.config.callback.ProfileIntentEventCallBack
 import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.viewmodel.ProfileViewModel
