@@ -13,7 +13,7 @@ import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
-import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
+import com.leandro1995.tinkuysabor.intent.config.event.LoginIntentEventConfig
 import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.util.MessageUtil
 import com.leandro1995.tinkuysabor.util.PermissionUtil
@@ -30,19 +30,23 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         activityLoginBinding = bindingUtil(layoutId = R.layout.activity_login)
         activityLoginBinding.loginViewModel = loginViewModel
 
+        viewPager2()
+
         lifecycleScopeLaunch {
-            loginViewModel.intentActionStateFlow.collect { loginIntentAction ->
-                LoginIntentConfig(
-                    loginIntentAction = loginIntentAction, loginIntentCallBack = this
+            loginViewModel.intentEventSharedFlow.collect { loginIntentEvent ->
+                LoginIntentEventConfig(
+                    loginIntentEvent = loginIntentEvent, loginIntentCallBack = this
                 )
             }
         }
-
-        loginViewModel.action.invoke(LoginViewModel.INIT_VIEW)
     }
 
-    override fun initView() {
-        viewPager2()
+    private fun viewPager2() {
+        activityLoginBinding.carouselPager.apply {
+            adapter =
+                CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
+            activityLoginBinding.carouselIndicator.attachTo(this)
+        }
     }
 
     override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
@@ -71,13 +75,5 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
     override fun startHomeActivity(homeActivity: HomeActivity) {
         startActivity(Intent(this, homeActivity::class.java))
         finishAffinity()
-    }
-
-    private fun viewPager2() {
-        activityLoginBinding.carouselPager.apply {
-            adapter =
-                CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
-            activityLoginBinding.carouselIndicator.attachTo(this)
-        }
     }
 }

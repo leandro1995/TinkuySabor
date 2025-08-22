@@ -5,11 +5,12 @@ import com.leandro1995.tinkuysabor.activity.HomeActivity
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
+import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class LoginViewModel : ViewModelAmbient<LoginIntentAction, Any>() {
+class LoginViewModel : ViewModelAmbient<LoginIntentAction, LoginIntentEvent>() {
 
     private var idToken = ""
     private val user = User()
@@ -26,17 +27,17 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction, Any>() {
     }
 
     private fun googleLogin() {
-        value(action = LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin()))
+        //value(action = LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin()))
     }
 
-    private fun googleAuthentication() {
-        value(
+    private fun googleAuthentication() {/*value(
             action = LoginIntentAction.GoogleAuthentication(
                 googleFCMAuthentication = GoogleFCMAuthentication(
                     googleToken = idToken
                 )
             )
         )
+        */
     }
 
     private fun saveProtoDatabaseStore() {
@@ -52,11 +53,11 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction, Any>() {
     }
 
     private fun startHomeActivity() {
-        value(action = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity()))
+        //value(action = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity()))
     }
 
     private fun initView() {
-        value(action = LoginIntentAction.InitView)
+        //value(action = LoginIntentAction.InitView)
     }
 
     override fun intentAction(action: Int) {

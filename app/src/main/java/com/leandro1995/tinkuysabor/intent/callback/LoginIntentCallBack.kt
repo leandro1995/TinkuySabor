@@ -5,7 +5,7 @@ import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.callback.ambient.IntentCallBackAmbient
 
-interface LoginIntentCallBack : IntentCallBackAmbient {
+interface LoginIntentCallBack {
     fun googleLogin(googleFCMLogin: GoogleFCMLogin)
 
     fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication)
