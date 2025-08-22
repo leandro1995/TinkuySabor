@@ -1,6 +1,5 @@
 package com.leandro1995.tinkuysabor.intent.event
 
-import com.leandro1995.tinkuysabor.activity.HomeActivity
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 
 sealed class LoginIntentEvent {
