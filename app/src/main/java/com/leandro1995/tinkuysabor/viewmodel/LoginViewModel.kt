@@ -53,16 +53,8 @@ class LoginViewModel : ViewModelAmbient<Any, LoginIntentEvent>() {
         emit(event = LoginIntentEvent.StartHomeActivity)
     }
 
-    private fun initView() {
-        //value(action = LoginIntentAction.InitView)
-    }
-
     override fun intentAction(action: Int) {
         when (action) {
-            INIT_VIEW -> {
-                initView()
-            }
-
             GOOGLE_LOGIN -> {
                 googleLogin()
             }
@@ -82,7 +74,6 @@ class LoginViewModel : ViewModelAmbient<Any, LoginIntentEvent>() {
     }
 
     companion object {
-        const val INIT_VIEW = 0
         const val GOOGLE_LOGIN = 1
         const val GOOGLE_AUTHENTICATION = 2
         const val SAVE_PROTO_DATA_STORE = 3
