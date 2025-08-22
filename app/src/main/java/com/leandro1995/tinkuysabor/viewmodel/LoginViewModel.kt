@@ -1,9 +1,6 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
-import com.leandro1995.tinkuysabor.activity.HomeActivity
-import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
-import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
 import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
 import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 import com.leandro1995.tinkuysabor.model.entity.User
@@ -27,7 +24,7 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction, LoginIntentEvent>() {
     }
 
     private fun googleLogin() {
-        //value(action = LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin()))
+        emit(event = LoginIntentEvent.GoogleLogin)
     }
 
     private fun googleAuthentication() {/*value(

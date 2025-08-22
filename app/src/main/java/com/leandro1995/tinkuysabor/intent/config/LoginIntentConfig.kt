@@ -1,12 +1,12 @@
 package com.leandro1995.tinkuysabor.intent.config
 
 import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
-import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
+import com.leandro1995.tinkuysabor.intent.event.config.callback.LoginIntentEventCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 
 class LoginIntentConfig(
     private val loginIntentAction: LoginIntentAction?,
-    private val loginIntentCallBack: LoginIntentCallBack?
+    private val loginIntentEventCallBack: LoginIntentEventCallBack?
 ) : IntentConfigAmbient() {
 
     init {
@@ -14,24 +14,24 @@ class LoginIntentConfig(
     }
 
     override fun instance() {
-        when (loginIntentAction) {
+        /*when (loginIntentAction) {
             LoginIntentAction.InitView -> {
-                loginIntentCallBack?.initView()
+                loginIntentEventCallBack?.initView()
             }
 
             is LoginIntentAction.GoogleLogin -> {
-                loginIntentCallBack?.googleLogin(googleFCMLogin = loginIntentAction.googleFCMLogin)
+                loginIntentEventCallBack?.googleLogin(googleFCMLogin = loginIntentAction.googleFCMLogin)
             }
 
             is LoginIntentAction.GoogleAuthentication -> {
-                loginIntentCallBack?.googleAuthentication(googleFCMAuthentication = loginIntentAction.googleFCMAuthentication)
+                loginIntentEventCallBack?.googleAuthentication(googleFCMAuthentication = loginIntentAction.googleFCMAuthentication)
             }
 
             is LoginIntentAction.StartHomeActivity -> {
-                loginIntentCallBack?.startHomeActivity(homeActivity = loginIntentAction.homeActivity)
+                loginIntentEventCallBack?.startHomeActivity(homeActivity = loginIntentAction.homeActivity)
             }
 
             null -> {}
-        }
+        }*/
     }
 }

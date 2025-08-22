@@ -6,7 +6,7 @@ import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class ProfileViewModel : ViewModelAmbient<ProfileIntentAction>() {
+class ProfileViewModel : ViewModelAmbient<ProfileIntentAction, Any>() {
 
     val user = User(
         giveName = UserProtoDataStoreConfig.getGiveName(),

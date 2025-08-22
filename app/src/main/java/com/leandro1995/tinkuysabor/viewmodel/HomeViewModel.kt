@@ -13,7 +13,7 @@ import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 import com.leandro1995.tinkuysabor.viewmodel.callback.ServiceViewModel
 import kotlinx.coroutines.Dispatchers
 
-class HomeViewModel : ViewModelAmbient<HomeIntentAction>(), ServiceViewModel {
+class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewModel {
 
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()

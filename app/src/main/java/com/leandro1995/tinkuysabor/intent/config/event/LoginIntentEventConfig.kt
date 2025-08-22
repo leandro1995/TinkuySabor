@@ -1,12 +1,12 @@
 package com.leandro1995.tinkuysabor.intent.config.event
 
-import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
+import com.leandro1995.tinkuysabor.intent.event.config.callback.LoginIntentEventCallBack
 import com.leandro1995.tinkuysabor.intent.config.ambient.IntentConfigAmbient
 import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 
 class LoginIntentEventConfig(
     private val loginIntentEvent: LoginIntentEvent,
-    private val loginIntentCallBack: LoginIntentCallBack
+    private val loginIntentEventCallBack: LoginIntentEventCallBack?
 ) : IntentConfigAmbient() {
 
     init {
@@ -15,7 +15,9 @@ class LoginIntentEventConfig(
 
     override fun instance() {
         when (loginIntentEvent) {
-
+            LoginIntentEvent.GoogleLogin -> {
+                loginIntentEventCallBack?.googleLogin()
+            }
         }
     }
 }

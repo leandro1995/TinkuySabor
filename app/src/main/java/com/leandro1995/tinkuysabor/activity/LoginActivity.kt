@@ -1,6 +1,5 @@
 package com.leandro1995.tinkuysabor.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,19 +9,17 @@ import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityLoginBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
-import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
-import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
+import com.leandro1995.tinkuysabor.intent.event.config.callback.LoginIntentEventCallBack
 import com.leandro1995.tinkuysabor.intent.config.event.LoginIntentEventConfig
-import com.leandro1995.tinkuysabor.model.design.Message
-import com.leandro1995.tinkuysabor.util.MessageUtil
 import com.leandro1995.tinkuysabor.util.PermissionUtil
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
 
-class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
+class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
 
     private lateinit var activityLoginBinding: ActivityLoginBinding
     private val loginViewModel by viewModels<LoginViewModel>()
+    private val googleFCMLogin = GoogleFCMLogin()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         lifecycleScopeLaunch {
             loginViewModel.intentEventSharedFlow.collect { loginIntentEvent ->
                 LoginIntentEventConfig(
-                    loginIntentEvent = loginIntentEvent, loginIntentCallBack = this
+                    loginIntentEvent = loginIntentEvent, loginIntentEventCallBack = this
                 )
             }
         }
@@ -49,7 +46,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         }
     }
 
-    override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
+    override fun googleLogin() {
         PermissionUtil.messagingPermission(fragmentActivity = this, method = {
             googleFCMLogin.login(application = application) { googleIdTokenCredential ->
                 loginViewModel.let {
@@ -60,7 +57,18 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         })
     }
 
-    override fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication) {
+    /*override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
+        PermissionUtil.messagingPermission(fragmentActivity = this, method = {
+            googleFCMLogin.login(application = application) { googleIdTokenCredential ->
+                loginViewModel.let {
+                    it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
+                    it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
+                }
+            }
+        })
+    }*/
+
+    /*override fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication) {
         googleFCMAuthentication.registerUser(success = {
             loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
         }, error = {
@@ -70,10 +78,10 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
                 )
             )
         })
-    }
+    }*/
 
-    override fun startHomeActivity(homeActivity: HomeActivity) {
+    /*override fun startHomeActivity(homeActivity: HomeActivity) {
         startActivity(Intent(this, homeActivity::class.java))
         finishAffinity()
-    }
+    }*/
 }

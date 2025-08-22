@@ -9,7 +9,7 @@ import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 import com.leandro1995.tinkuysabor.viewmodel.callback.ServiceViewModel
 
-class TourismListViewModel : ViewModelAmbient<TourismListIntentAction>(), ServiceViewModel {
+class TourismListViewModel : ViewModelAmbient<TourismListIntentAction, Any>(), ServiceViewModel {
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()
 
