@@ -1,12 +1,11 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
-import com.leandro1995.tinkuysabor.activity.LoginActivity
-import com.leandro1995.tinkuysabor.intent.action.ProfileIntentAction
+import com.leandro1995.tinkuysabor.intent.event.ProfileIntentEvent
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class ProfileViewModel : ViewModelAmbient<ProfileIntentAction, Any>() {
+class ProfileViewModel : ViewModelAmbient<Any, ProfileIntentEvent>() {
 
     val user = User(
         giveName = UserProtoDataStoreConfig.getGiveName(),
@@ -17,7 +16,7 @@ class ProfileViewModel : ViewModelAmbient<ProfileIntentAction, Any>() {
 
     private fun loginActivity() {
         resetUserProtoDataStore()
-        value(action = ProfileIntentAction.StartLoginActivity(loginActivity = LoginActivity()))
+        emit(event = ProfileIntentEvent.StartLoginActivity)
     }
 
     private fun resetUserProtoDataStore() {
@@ -30,16 +29,8 @@ class ProfileViewModel : ViewModelAmbient<ProfileIntentAction, Any>() {
         }
     }
 
-    private fun initView() {
-        value(action = ProfileIntentAction.InitView)
-    }
-
     override fun intentAction(action: Int) {
         when (action) {
-            INIT_VIEW -> {
-                initView()
-            }
-
             LOGIN_ACTIVITY -> {
                 loginActivity()
             }
@@ -47,7 +38,6 @@ class ProfileViewModel : ViewModelAmbient<ProfileIntentAction, Any>() {
     }
 
     companion object {
-        const val INIT_VIEW = 0
-        const val LOGIN_ACTIVITY = 1
+        const val LOGIN_ACTIVITY = 0
     }
 }
