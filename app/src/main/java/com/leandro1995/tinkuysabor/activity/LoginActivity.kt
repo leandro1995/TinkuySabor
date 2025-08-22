@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         activityLoginBinding.loginViewModel = loginViewModel
 
         lifecycleScopeLaunch {
-            loginViewModel.intentActionMutableStateFlow.collect { loginIntentAction ->
+            loginViewModel.intentActionStateFlow.collect { loginIntentAction ->
                 LoginIntentConfig(
                     loginIntentAction = loginIntentAction, loginIntentCallBack = this
                 )

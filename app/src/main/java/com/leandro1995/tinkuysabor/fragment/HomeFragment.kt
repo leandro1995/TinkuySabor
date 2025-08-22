@@ -60,9 +60,9 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         googleMapUtil = GoogleMapUtil(googleMap = p0)
 
         viewLifecycleOwner {
-            homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
+            /*homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
                 HomeIntentConfig(homeIntentAction = homeIntentAction, homeIntentCallBack = this)
-            }
+            }*/
         }
 
         homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)

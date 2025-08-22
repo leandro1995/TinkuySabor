@@ -34,12 +34,12 @@ class TourismListFragment : Fragment(), TourismListIntentCallBack {
         fragmentTourismListBinding.tourismListViewModel = tourismListViewModel
 
         viewLifecycleOwner {
-            tourismListViewModel.intentActionMutableStateFlow.collect { tourismListIntentAction ->
+            /*tourismListViewModel.intentActionMutableStateFlow.collect { tourismListIntentAction ->
                 TourismListIntentConfig(
                     tourismListIntentAction = tourismListIntentAction,
                     tourismListIntentCallBack = this
                 )
-            }
+            }*/
         }
 
         tourismListViewModel.action.invoke(TourismListViewModel.INIT_VIEW)
