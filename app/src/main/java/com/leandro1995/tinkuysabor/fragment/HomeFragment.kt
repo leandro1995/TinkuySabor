@@ -28,7 +28,7 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private val locationResult = registerForActivityLocationResult(method = {
-
+        homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
     })
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
