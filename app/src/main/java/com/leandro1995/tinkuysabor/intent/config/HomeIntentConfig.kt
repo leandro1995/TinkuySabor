@@ -19,12 +19,30 @@ class HomeIntentConfig(
                 homeIntentCallBack?.initView()
             }
 
-            HomeIntentAction.LoadingLocationGone -> {
-                homeIntentCallBack?.loadingLocationGone()
+            is HomeIntentAction.LoadingLocation -> {
+                homeIntentCallBack?.loadingLocation(loading = homeIntentAction.loading)
             }
 
             HomeIntentAction.VerifyLocation -> {
                 homeIntentCallBack?.verifyLocation()
+            }
+
+            HomeIntentAction.StartLocation -> {
+                homeIntentCallBack?.startLocation()
+            }
+
+            is HomeIntentAction.AddMarkerPersonnelTourism -> {
+                homeIntentCallBack?.addMarkerPersonnelTourism(
+                    personalLatLng = homeIntentAction.personalLatLng,
+                    tourismArrayList = homeIntentAction.tourismArrayList
+                )
+            }
+
+            is HomeIntentAction.ServiceIntent -> {
+                serviceIntentActionConfig(
+                    serviceIntentActionConfig = homeIntentAction.serviceIntentActionConfig,
+                    serviceIntentCallBackAmbient = homeIntentCallBack
+                )
             }
 
             null -> {}

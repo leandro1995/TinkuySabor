@@ -56,16 +56,16 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
         viewComponentLoadingRecyclerBinding.errorText.text = messageError
 
-        instanceLoadingRecyclerComponentAmbientCallBack(buttonError = buttonError)
+        instanceAmbientCallBack(buttonError = buttonError)
     }
 
-    private fun orientation(isOrientation: Boolean) = if (isOrientation) {
-        LinearLayoutManager.VERTICAL
-    } else {
-        LinearLayoutManager.HORIZONTAL
+    override fun onClick() {
+        viewComponentLoadingRecyclerBinding.errorButton.setOnClickListener {
+            loadingRecyclerComponentAmbientCallBack?.errorButon()
+        }
     }
 
-    private fun instanceLoadingRecyclerComponentAmbientCallBack(buttonError: () -> Unit) {
+    override fun instanceAmbientCallBack(buttonError: () -> Unit) {
         if (loadingRecyclerComponentAmbientCallBack == null) {
             loadingRecyclerComponentAmbientCallBack =
                 object : LoadingRecyclerComponentAmbientCallBack {
@@ -76,9 +76,9 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
         }
     }
 
-    private fun onClick() {
-        viewComponentLoadingRecyclerBinding.errorButton.setOnClickListener {
-            loadingRecyclerComponentAmbientCallBack?.errorButon()
-        }
+    private fun orientation(isOrientation: Boolean) = if (isOrientation) {
+        LinearLayoutManager.VERTICAL
+    } else {
+        LinearLayoutManager.HORIZONTAL
     }
 }

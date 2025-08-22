@@ -20,13 +20,25 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
         }
     }
 
+    fun visibleLoading(isVisible: Boolean) {
+        if (isVisible) {
+            visible()
+        } else {
+            gone()
+        }
+    }
+
     open fun messageError(messageError: String, buttonError: () -> Unit) {}
 
-    open fun visible() {}
+    protected open fun visible() {}
 
-    open fun gone() {}
+    protected open fun gone() {}
+
+    protected open fun onClick() {}
+
+    protected open fun instanceAmbientCallBack(buttonError: () -> Unit) {}
 
     companion object {
-        private const val TIME_OUT = 5L
+        private const val TIME_OUT = 2L
     }
 }

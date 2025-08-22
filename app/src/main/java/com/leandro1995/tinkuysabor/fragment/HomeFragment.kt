@@ -18,6 +18,8 @@ import com.leandro1995.tinkuysabor.extension.registerForActivityLocationResult
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.callback.HomeIntentCallBack
 import com.leandro1995.tinkuysabor.intent.config.HomeIntentConfig
+import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
@@ -26,10 +28,15 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private val locationResult = registerForActivityLocationResult(method = {
-        animateCameraLocation()
+        homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
     })
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        locationUtil = LocationUtil(activity = requireActivity())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,6 +47,18 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         )
         fragmentHomeBinding.homeViewModel = homeViewModel
 
+        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+
+        return fragmentHomeBinding.root
+    }
+
+    override fun initView() {
+        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
+
         viewLifecycleOwner {
             homeViewModel.intentActionMutableStateFlow.collect { homeIntentAction ->
                 HomeIntentConfig(homeIntentAction = homeIntentAction, homeIntentCallBack = this)
@@ -47,42 +66,54 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         }
 
         homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
-
-        return fragmentHomeBinding.root
     }
 
-    override fun initView() {
-        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
-        locationUtil = LocationUtil(activity = requireActivity())
-        homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
-    }
-
-    override fun loadingLocationGone() {
-        fragmentHomeBinding.locationLoadingViewComponent.gone()
+    override fun loadingLocation(loading: Loading) {
+        fragmentHomeBinding.locationLoadingViewComponent.visibleLoading(isVisible = loading.isVisible)
     }
 
     override fun verifyLocation() {
-        fragmentHomeBinding.locationLoadingViewComponent.visible()
-
-        locationUtil.apply {
-            verifyLocation(method = {
-                animateCameraLocation()
-            }, messageError = {
-                locationResult.launch(it)
-            })
-        }
-    }
-
-    override fun onMapReady(p0: GoogleMap) {
-        googleMapUtil = GoogleMapUtil(googleMap = p0)
-        googleMapUtil.resetMap()
+        locationUtil.verifyLocation(method = {
+            homeViewModel.action.invoke(HomeViewModel.START_LOCATION)
+        }, messageError = {
+            locationResult.launch(it)
+        })
     }
 
     @SuppressLint("MissingPermission")
-    private fun animateCameraLocation() {
+    override fun startLocation() {
         locationUtil.starLocation { latitude, longitude ->
-            googleMapUtil.animateCamera(latLng = LatLng(latitude, longitude))
-            homeViewModel.action.invoke(HomeViewModel.LOADING_LOCATION_GONE)
+            homeViewModel.personalLatLng = LatLng(latitude, longitude)
+            homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
         }
+    }
+
+    override fun addMarkerPersonnelTourism(
+        personalLatLng: LatLng, tourismArrayList: ArrayList<Tour>
+    ) {
+        googleMapUtil.apply {
+            animateCamera(latLng = personalLatLng)
+            marker(latLngList = tourismArrayList.map { it.latLng() })
+        }
+    }
+
+    override fun showLoading(loading: Loading) {
+        fragmentHomeBinding.loadingViewComponent.start(loading = loading, method = {
+            homeViewModel.startService(idService = loading.idService)
+        })
+    }
+
+    override fun messageError(idMessageError: Int) {
+        fragmentHomeBinding.loadingViewComponent.messageError(
+            messageError = getString(
+                idMessageError
+            ), buttonError = {
+                homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST)
+            })
+    }
+
+    override fun onDestroyView() {
+        locationUtil.stopLocation()
+        super.onDestroyView()
     }
 }
