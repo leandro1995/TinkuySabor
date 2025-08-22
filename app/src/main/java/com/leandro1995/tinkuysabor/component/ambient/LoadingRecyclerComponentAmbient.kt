@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBinding
 import com.leandro1995.tinkuysabor.component.ambient.config.callback.LoadingRecyclerComponentAmbientCallBack
+import com.leandro1995.tinkuysabor.model.design.Message
 
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
@@ -50,13 +51,16 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
         viewComponentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
     }
 
-    override fun messageError(messageError: String, buttonError: () -> Unit) {
-        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
-        viewComponentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
-        viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
-        viewComponentLoadingRecyclerBinding.errorText.text = messageError
+    override fun messageError(messageError: Message, buttonError: () -> Unit) {
+        if (messageError.isVisible()) {
+            viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+            viewComponentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
+            viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
+            viewComponentLoadingRecyclerBinding.errorText.text =
+                messageError.description(context = context)
 
-        instanceAmbientCallBack(buttonError = buttonError)
+            instanceAmbientCallBack(buttonError = buttonError)
+        }
     }
 
     override fun onClick() {

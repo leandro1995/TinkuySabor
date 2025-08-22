@@ -60,6 +60,11 @@ class TourismListFragment : Fragment(), TourismListIntentActionCallBack {
             })
 
             tourismListLoadingRecyclerViewComponent.setAdapter(arrayList = view.tourArrayList)
+
+            tourismListLoadingRecyclerViewComponent.messageError(
+                messageError = view.message, buttonError = {
+                    this@TourismListFragment.tourismListViewModel.action.invoke(TourismListViewModel.TOURISM_LIST_LOADING)
+                })
         }
     }
 

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
 import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.design.Message
 
 open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
     ViewComponentAmbient<VH>(context = context, attrs = attrs) {
@@ -32,7 +33,7 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
         }
     }
 
-    open fun messageError(messageError: String, buttonError: () -> Unit) {}
+    open fun messageError(messageError: Message, buttonError: () -> Unit) {}
 
     protected open fun visible() {}
 

@@ -33,13 +33,13 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
         viewComponentLoadingBinding.errorLinear.visibility = GONE
     }
 
-    override fun messageError(messageError: String, buttonError: () -> Unit) {
+    /*override fun messageError(messageError: String, buttonError: () -> Unit) {
         viewComponentLoadingBinding.loadingLinear.visibility = GONE
         viewComponentLoadingBinding.errorLinear.visibility = VISIBLE
         viewComponentLoadingBinding.errorText.text = messageError
 
         instanceAmbientCallBack(buttonError = buttonError)
-    }
+    }*/
 
     override fun instanceAmbientCallBack(buttonError: () -> Unit) {
         if (loadingViewComponentCallBack == null) {

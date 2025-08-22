@@ -1,8 +1,10 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
+import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.intent.action.TourismListIntentAction
 import com.leandro1995.tinkuysabor.intent.event.TourismListIntentEvent
 import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
@@ -42,7 +44,7 @@ class TourismListViewModel() : ViewModelAmbient<TourismListIntentAction, Tourism
                         )
                     )
                 }, errorMessage = {
-
+                    value(action = TourismListIntentAction(message = Message(descriptionStringRes = R.string.error_message)))
                 })
             }
         }
