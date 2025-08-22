@@ -44,12 +44,6 @@ class TourismListFragment : Fragment(), TourismListIntentActionCallBack {
             }
         }
 
-        viewLifecycleOwner {
-            tourismListViewModel.intentEventSharedFlow.collect { tourismListIntentEvent ->
-
-            }
-        }
-
         return fragmentTourismListBinding.root
     }
 
