@@ -18,6 +18,10 @@ class LoginIntentEventConfig(
             LoginIntentEvent.GoogleLogin -> {
                 loginIntentEventCallBack?.googleLogin()
             }
+
+            is LoginIntentEvent.GoogleAuthentication -> {
+                loginIntentEventCallBack?.googleAuthentication(googleFCMAuthentication = loginIntentEvent.googleFCMAuthentication)
+            }
         }
     }
 }
