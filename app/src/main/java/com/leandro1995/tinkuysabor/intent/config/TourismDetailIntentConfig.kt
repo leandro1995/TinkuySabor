@@ -16,7 +16,7 @@ class TourismDetailIntentConfig(
     override fun instance() {
         when (tourismDetailIntentAction) {
             TourismDetailIntentAction.InitView -> {
-                tourismDetailIntentCallBack?.initView()
+                //tourismDetailIntentCallBack?.initView()
             }
 
             null -> {}

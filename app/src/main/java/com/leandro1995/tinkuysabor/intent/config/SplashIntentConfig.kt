@@ -16,7 +16,7 @@ class SplashIntentConfig(
     override fun instance() {
         when (splashIntentAction) {
             SplashIntentAction.InitView -> {
-                splashIntentCallBack?.initView()
+                //splashIntentCallBack?.initView()
             }
 
             is SplashIntentAction.ViewActivity -> {

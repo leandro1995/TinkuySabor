@@ -32,4 +32,6 @@ open class ViewModelAmbient<A : Any, E : Any>() : ViewModel() {
     fun emit(event: E) = runBlocking { intentEventMutableSharedFlow.emit(event) }
 
     protected open fun intentAction(action: Int) {}
+
+    protected open suspend fun startService(idService: Int) {}
 }

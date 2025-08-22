@@ -6,7 +6,7 @@ import com.leandro1995.tinkuysabor.intent.callback.ambient.ServiceIntentCallBack
 import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
-interface HomeIntentCallBack : IntentCallBackAmbient, ServiceIntentCallBackAmbient {
+interface HomeIntentCallBack :  ServiceIntentCallBackAmbient {
     fun loadingLocation(loading: Loading)
     fun verifyLocation()
     fun startLocation()

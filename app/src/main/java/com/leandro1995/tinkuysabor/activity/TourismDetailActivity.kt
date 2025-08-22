@@ -42,7 +42,7 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
         tourismDetailViewModel.action.invoke(TourismDetailViewModel.INIT_VIEW)
     }
 
-    override fun initView() {
+    /*override fun initView() {
         tourismDetailViewModel.tour =
             Setting.TOUR_PUT_EXTRA.putExtraParcelable<Tour>(activity = this)
 
@@ -55,7 +55,7 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
         }
 
         mapAsync(fragmentManager = supportFragmentManager, idMap = R.id.map).getMapAsync(this)
-    }
+    }*/
 
     override fun onMapReady(p0: GoogleMap) {
         GoogleMapUtil(googleMap = p0).apply {

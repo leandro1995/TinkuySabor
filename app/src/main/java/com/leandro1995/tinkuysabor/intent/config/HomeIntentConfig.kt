@@ -16,7 +16,7 @@ class HomeIntentConfig(
     override fun instance() {
         when (homeIntentAction) {
             HomeIntentAction.InitView -> {
-                homeIntentCallBack?.initView()
+                //homeIntentCallBack?.initView()
             }
 
             is HomeIntentAction.LoadingLocation -> {

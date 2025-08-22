@@ -24,11 +24,11 @@ import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
+class HomeFragment : Fragment() {
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
-    private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
+    //private val homeViewModel by navGraphViewModels<HomeViewModel>(R.navigation.home_navigation)
     private val locationResult = registerForActivityLocationResult(method = {
-        homeViewModel.action.invoke(HomeViewModel.INIT_VIEW)
+
     })
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
@@ -45,14 +45,13 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
         fragmentHomeBinding = bindingUtil(
             layoutId = R.layout.fragment_home, inflater = inflater, container = container
         )
-        fragmentHomeBinding.homeViewModel = homeViewModel
 
-        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
+        //mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
 
         return fragmentHomeBinding.root
     }
 
-    override fun initView() {
+    /* override fun initView() {
         homeViewModel.action.invoke(HomeViewModel.VERIFY_LOCATION)
     }
 
@@ -115,5 +114,5 @@ class HomeFragment : Fragment(), HomeIntentCallBack, OnMapReadyCallback {
     override fun onDestroyView() {
         locationUtil.stopLocation()
         super.onDestroyView()
-    }
+    }*/
 }

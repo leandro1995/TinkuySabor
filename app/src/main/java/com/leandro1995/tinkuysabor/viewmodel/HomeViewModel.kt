@@ -13,7 +13,7 @@ import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 import com.leandro1995.tinkuysabor.viewmodel.callback.ServiceViewModel
 import kotlinx.coroutines.Dispatchers
 
-class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewModel {
+class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>() {
 
     private val user = User()
     private val tourismArrayList = arrayListOf<Tour>()
@@ -51,7 +51,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewMode
             )
         } else {
             loadingVisible(isVisible = false)
-            loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
+            //loading(loading = Loading(idService = TOURISM_LIST_SERVICE, isVisible = true))
         }
     }
 
@@ -79,7 +79,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewMode
         }
     }
 
-    override fun startService(idService: Int) {
+    /*override fun startService(idService: Int) {
         when (idService) {
             TOURISM_LIST_SERVICE -> {
                 user.tourismList(tourArrayListSuccess = {
@@ -97,9 +97,9 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewMode
                 })
             }
         }
-    }
+    }*/
 
-    override fun loading(loading: Loading) {
+    /*override fun loading(loading: Loading) {
         value(
             action = HomeIntentAction.ServiceIntent(
                 serviceIntentActionConfig = ServiceIntentActionConfig.LoadingShow(
@@ -117,7 +117,7 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>(), ServiceViewMode
                 )
             )
         )
-    }
+    }*/
 
     companion object {
         const val INIT_VIEW = 0

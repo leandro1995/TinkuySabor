@@ -10,11 +10,15 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
     ViewComponentAmbient<VH>(context = context, attrs = attrs) {
 
     fun start(loading: Loading, method: () -> Unit) {
-        if (loading.isVisible) {
-            visible()
-            TimerCoroutine(
-                timeType = TimeType.SECOND, time = TIME_OUT
-            ).timeStart(method = method)
+        if (loading.isStartService()) {
+            if (loading.isVisible) {
+                visible()
+                TimerCoroutine(
+                    timeType = TimeType.SECOND, time = TIME_OUT
+                ).timeStart(method = method)
+            } else {
+                gone()
+            }
         } else {
             gone()
         }

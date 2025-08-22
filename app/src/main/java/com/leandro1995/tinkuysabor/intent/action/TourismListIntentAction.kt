@@ -1,4 +1,5 @@
 package com.leandro1995.tinkuysabor.intent.action
 
-class TourismListIntentAction {
-}
+import com.leandro1995.tinkuysabor.model.design.Loading
+
+class TourismListIntentAction(val loading: Loading = Loading())
