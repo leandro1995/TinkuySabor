@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
+import com.google.android.gms.maps.model.LatLng
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -25,15 +26,14 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
     private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private lateinit var locationUtil: LocationUtil
     private val locationLaunch = registerForActivityLocationResult(method = {
-
+        homeViewModel.action.invoke(HomeViewModel.GPS_LOCATION)
     }, methodError = {
         MessageUtil.message(
             requireActivity(),
             Message(descriptionStringRes = R.string.verify_location_message),
             method = {
                 homeViewModel.action.invoke(HomeViewModel.VERIFY_GPS_LOCATION)
-            }
-        )
+            })
     })
 
     override fun onCreateView(
@@ -65,13 +65,23 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
         }
 
         locationUtil.verifyLocation(isStart = view.isVerifyLocation, method = {
-            
+            homeViewModel.action.invoke(HomeViewModel.GPS_LOCATION)
         }, messageError = {
             locationLaunch.launch(it)
         })
+
+        locationUtil.starLocation(
+            isStart = view.isStartLocation, method = { latitude, longitude ->
+                homeViewModel.personLocation(latLng = LatLng(latitude, longitude))
+            })
     }
 
     override fun initView() {
         homeViewModel.action.invoke(HomeViewModel.VERIFY_GPS_LOCATION)
+    }
+
+    override fun onDestroyView() {
+        locationUtil.stopLocation()
+        super.onDestroyView()
     }
 }

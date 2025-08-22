@@ -43,11 +43,17 @@ class LocationUtil(private val activity: Activity) {
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-    fun starLocation(method: (latitude: Double, longitude: Double) -> Unit) {
-        instanceLocationCallback(method = method)
-        instanceFusedLocationProviderClient()?.requestLocationUpdates(
-            locationRequest(), locationCallback!!, Looper.getMainLooper()
-        )
+    fun starLocation(
+        isStart: Boolean = true, method: (latitude: Double, longitude: Double) -> Unit
+    ) {
+        if (isStart) {
+            instanceLocationCallback(method = method)
+            instanceFusedLocationProviderClient()?.requestLocationUpdates(
+                locationRequest(), locationCallback!!, Looper.getMainLooper()
+            )
+        } else {
+            stopLocation()
+        }
     }
 
     fun stopLocation() {
