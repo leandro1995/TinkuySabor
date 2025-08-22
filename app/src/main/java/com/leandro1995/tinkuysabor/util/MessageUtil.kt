@@ -8,12 +8,13 @@ import com.leandro1995.tinkuysabor.model.design.Message
 class MessageUtil {
 
     companion object {
-        fun message(context: Context, message: Message) {
+        fun message(context: Context, message: Message, method: () -> Unit = {}) {
             MaterialAlertDialogBuilder(context).apply {
                 setTitle(context.getString(R.string.app_name))
                 setMessage(message.description(context = context))
                 setPositiveButton(context.getString(R.string.accept_button)) { dialog, _ ->
                     dialog.dismiss()
+                    method()
                 }
             }.show()
         }
