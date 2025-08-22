@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
 
     private lateinit var activityLoginBinding: ActivityLoginBinding
     private val loginViewModel by viewModels<LoginViewModel>()
-    private val googleFCMLogin = GoogleFCMLogin()
+    private lateinit var googleFCMLogin: GoogleFCMLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
         activityLoginBinding = bindingUtil(layoutId = R.layout.activity_login)
         activityLoginBinding.loginViewModel = loginViewModel
 
-        viewPager2()
+        initView()
 
         lifecycleScopeLaunch {
             loginViewModel.intentEventSharedFlow.collect { loginIntentEvent ->
@@ -36,6 +36,11 @@ class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
                 )
             }
         }
+    }
+
+    private fun initView() {
+        viewPager2()
+        googleFCMLogin = GoogleFCMLogin(application = application)
     }
 
     private fun viewPager2() {
@@ -48,7 +53,7 @@ class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
 
     override fun googleLogin() {
         PermissionUtil.messagingPermission(fragmentActivity = this, method = {
-            googleFCMLogin.login(application = application) { googleIdTokenCredential ->
+            googleFCMLogin.login { googleIdTokenCredential ->
                 loginViewModel.let {
                     it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
                     it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
