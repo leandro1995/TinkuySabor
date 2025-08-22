@@ -9,7 +9,7 @@ class DataBaseFCMCloudFirestore {
     private val firestore = Firebase.firestore
 
     fun tourismList(
-        tourArrayListSuccess: (tourArrayList: ArrayList<Tour>) -> Unit, errorMessage: () -> Unit
+        tourArrayListSuccess: (tourArrayList: ArrayList<Tour>) -> Unit, messageError: () -> Unit
     ) {
         val tourArrayList = arrayListOf<Tour>()
 
@@ -33,7 +33,7 @@ class DataBaseFCMCloudFirestore {
 
             tourArrayListSuccess(tourArrayList)
         }.addOnFailureListener {
-            errorMessage()
+            messageError()
         }
     }
 

@@ -6,6 +6,7 @@ import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.component.ambient.LoadingComponentAmbient
 import com.leandro1995.tinkuysabor.component.loading.config.callback.LoadingViewComponentCallBack
 import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingBinding
+import com.leandro1995.tinkuysabor.model.design.Message
 
 class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
     LoadingComponentAmbient<ViewComponentLoadingBinding>(context = context, attrs = attrs) {
@@ -33,13 +34,15 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
         viewComponentLoadingBinding.errorLinear.visibility = GONE
     }
 
-    /*override fun messageError(messageError: String, buttonError: () -> Unit) {
-        viewComponentLoadingBinding.loadingLinear.visibility = GONE
-        viewComponentLoadingBinding.errorLinear.visibility = VISIBLE
-        viewComponentLoadingBinding.errorText.text = messageError
+    override fun messageError(messageError: Message, buttonError: () -> Unit) {
+        if (messageError.isVisible()) {
+            viewComponentLoadingBinding.loadingLinear.visibility = GONE
+            viewComponentLoadingBinding.errorLinear.visibility = VISIBLE
+            viewComponentLoadingBinding.errorText.text = messageError.description(context = context)
 
-        instanceAmbientCallBack(buttonError = buttonError)
-    }*/
+            instanceAmbientCallBack(buttonError = buttonError)
+        }
+    }
 
     override fun instanceAmbientCallBack(buttonError: () -> Unit) {
         if (loadingViewComponentCallBack == null) {

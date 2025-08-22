@@ -62,6 +62,12 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
     override fun view(view: HomeIntentAction) {
         fragmentHomeBinding.apply {
             locationLoadingViewComponent.visibleLoading(isVisible = view.locationLoading.isVisible)
+            loadingViewComponent.start(loading = view.loading, method = {
+                this@HomeFragment.homeViewModel.startService(idService = view.loading.idService)
+            })
+            loadingViewComponent.messageError(messageError = view.tourMessageError, buttonError = {
+                this@HomeFragment.homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST_LOADING)
+            })
         }
 
         locationUtil.verifyLocation(isStart = view.isVerifyLocation, method = {
@@ -73,6 +79,7 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
         locationUtil.starLocation(
             isStart = view.isStartLocation, method = { latitude, longitude ->
                 homeViewModel.personLocation(latLng = LatLng(latitude, longitude))
+                homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST_LOADING)
             })
     }
 

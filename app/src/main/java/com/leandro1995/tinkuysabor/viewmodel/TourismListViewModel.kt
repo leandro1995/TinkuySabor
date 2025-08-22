@@ -42,7 +42,7 @@ class TourismListViewModel() : ViewModelAmbient<TourismListIntentAction, Any>() 
                             loading = Loading(), tourArrayList = tourArrayList
                         )
                     )
-                }, errorMessage = {
+                }, messageError = {
                     value(action = TourismListIntentAction(message = Message(descriptionStringRes = R.string.error_message)))
                 })
             }

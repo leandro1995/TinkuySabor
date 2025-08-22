@@ -10,10 +10,10 @@ class User(
 ) {
 
     fun tourismList(
-        tourArrayListSuccess: (tourArrayList: ArrayList<Tour>) -> Unit, errorMessage: () -> Unit
+        tourArrayListSuccess: (tourArrayList: ArrayList<Tour>) -> Unit, messageError: () -> Unit
     ) {
         DataBaseFCMCloudFirestore().tourismList(
-            tourArrayListSuccess = tourArrayListSuccess, errorMessage = errorMessage
+            tourArrayListSuccess = tourArrayListSuccess, messageError = messageError
         )
     }
 }
