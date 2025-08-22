@@ -7,24 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.navGraphViewModels
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
+import com.leandro1995.tinkuysabor.extension.mapAsync
 import com.leandro1995.tinkuysabor.extension.registerForActivityLocationResult
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
 import com.leandro1995.tinkuysabor.intent.action.HomeIntentAction
 import com.leandro1995.tinkuysabor.intent.callback.action.HomeIntentActionCallBack
 import com.leandro1995.tinkuysabor.intent.config.action.HomeIntentActionConfig
 import com.leandro1995.tinkuysabor.model.design.Message
+import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.util.MessageUtil
 import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment(), HomeIntentActionCallBack {
+class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
     private lateinit var locationUtil: LocationUtil
+    private lateinit var googleMapUtil: GoogleMapUtil
     private val locationLaunch = registerForActivityLocationResult(method = {
         homeViewModel.action.invoke(HomeViewModel.GPS_LOCATION)
     }, methodError = {
@@ -47,13 +52,7 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
 
         locationUtil = LocationUtil(activity = requireActivity())
 
-        viewLifecycleOwner {
-            homeViewModel.intentActionStateFlow.collect { homeIntentAction ->
-                HomeIntentActionConfig(
-                    homeIntentAction = homeIntentAction, homeIntentActionCallBack = this
-                )
-            }
-        }
+        mapAsync(fragmentManager = childFragmentManager, idMap = R.id.map).getMapAsync(this)
 
         return fragmentHomeBinding.root
     }
@@ -81,10 +80,25 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack {
                 homeViewModel.personLocation(latLng = LatLng(latitude, longitude))
                 homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST_LOADING)
             })
+
+        googleMapUtil.animateCamera(latLng = view.personLocation)
+        googleMapUtil.marker(view.tourArrayList.map { it.latLng() })
     }
 
     override fun initView() {
         homeViewModel.action.invoke(HomeViewModel.VERIFY_GPS_LOCATION)
+    }
+
+    override fun onMapReady(p0: GoogleMap) {
+        googleMapUtil = GoogleMapUtil(googleMap = p0)
+
+        viewLifecycleOwner {
+            homeViewModel.intentActionStateFlow.collect { homeIntentAction ->
+                HomeIntentActionConfig(
+                    homeIntentAction = homeIntentAction, homeIntentActionCallBack = this
+                )
+            }
+        }
     }
 
     override fun onDestroyView() {

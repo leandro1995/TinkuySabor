@@ -63,6 +63,11 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>() {
                 user.tourismList(tourArrayListSuccess = {
                     tourArrayList.clear()
                     tourArrayList.addAll(it)
+                    value(
+                        action = HomeIntentAction(
+                            personLocation = personLocation, tourArrayList = tourArrayList
+                        )
+                    )
                 }, messageError = {
                     value(action = HomeIntentAction(tourMessageError = Message(descriptionStringRes = R.string.error_message)))
                 })
