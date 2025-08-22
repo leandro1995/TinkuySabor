@@ -9,7 +9,7 @@ import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
+class LoginViewModel : ViewModelAmbient<LoginIntentAction, Any>() {
 
     private var idToken = ""
     private val user = User()
