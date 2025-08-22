@@ -20,41 +20,13 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /**
-         * TODO TEMPORAL LUEGO LO ADAPTO CON LO NUEVO QUE SE ESTA DESARROLLANDO
-         */
         installSplashScreen().setKeepOnScreenCondition { true }
 
         timeCoroutine.timeStart {
             startActivity(Intent(this, HomeActivity::class.java))
             finishAffinity()
         }
-
-        /*lifecycleScopeLaunch {
-            splashViewModel.splashIntentAction.collect { splashIntentAction ->
-                SplashIntentConfig(
-                    splashIntentAction = splashIntentAction, splashIntentCallBack = this
-                )
-            }
-        }*/
     }
-
-    /*override fun initView() {
-        splashScreenConfig()
-    }*/
-
-    /*override fun viewActivity(activity: Activity) {
-        startActivity(Intent(this, activity::class.java))
-        finishAffinity()
-    }
-
-    private fun splashScreenConfig() {
-        installSplashScreen().setKeepOnScreenCondition { true }
-
-        timeCoroutine.timeStart {
-            splashViewModel.action.invoke(SplashViewModel.VIEW_ACTIVITY)
-        }
-    }*/
 
     companion object {
         private const val TIME_OUT = 2L
