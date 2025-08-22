@@ -2,13 +2,12 @@ package com.leandro1995.tinkuysabor.viewmodel
 
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
-import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
 import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class LoginViewModel : ViewModelAmbient<LoginIntentAction, LoginIntentEvent>() {
+class LoginViewModel : ViewModelAmbient<Any, LoginIntentEvent>() {
 
     private var idToken = ""
     private val user = User()
@@ -51,7 +50,7 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction, LoginIntentEvent>() {
     }
 
     private fun startHomeActivity() {
-        //value(action = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity()))
+        emit(event = LoginIntentEvent.StartHomeActivity)
     }
 
     private fun initView() {

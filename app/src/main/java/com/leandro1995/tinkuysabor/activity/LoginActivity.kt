@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -77,20 +78,8 @@ class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
         })
     }
 
-    /*override fun googleAuthentication(googleFCMAuthentication: GoogleFCMAuthentication) {
-        googleFCMAuthentication.registerUser(success = {
-            loginViewModel.action.invoke(LoginViewModel.SAVE_PROTO_DATA_STORE)
-        }, error = {
-            MessageUtil.message(
-                context = this, message = Message(
-                    descriptionStringRes = R.string.login_register_firebase_message
-                )
-            )
-        })
-    }*/
-
-    /*override fun startHomeActivity(homeActivity: HomeActivity) {
-        startActivity(Intent(this, homeActivity::class.java))
+    override fun startHomeActivity() {
+        startActivity(Intent(this, HomeActivity::class.java))
         finishAffinity()
-    }*/
+    }
 }

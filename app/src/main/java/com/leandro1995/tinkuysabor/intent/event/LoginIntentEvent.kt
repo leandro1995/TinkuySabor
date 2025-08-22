@@ -1,5 +1,6 @@
 package com.leandro1995.tinkuysabor.intent.event
 
+import com.leandro1995.tinkuysabor.activity.HomeActivity
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 
 sealed class LoginIntentEvent {
@@ -7,4 +8,6 @@ sealed class LoginIntentEvent {
 
     data class GoogleAuthentication(val googleFCMAuthentication: GoogleFCMAuthentication) :
         LoginIntentEvent()
+
+    data object StartHomeActivity : LoginIntentEvent()
 }

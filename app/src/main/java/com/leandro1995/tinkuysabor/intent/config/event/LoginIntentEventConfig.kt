@@ -22,6 +22,10 @@ class LoginIntentEventConfig(
             is LoginIntentEvent.GoogleAuthentication -> {
                 loginIntentEventCallBack?.googleAuthentication(googleFCMAuthentication = loginIntentEvent.googleFCMAuthentication)
             }
+
+            LoginIntentEvent.StartHomeActivity -> {
+                loginIntentEventCallBack?.startHomeActivity()
+            }
         }
     }
 }
