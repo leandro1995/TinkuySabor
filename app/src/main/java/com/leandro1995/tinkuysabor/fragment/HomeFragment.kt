@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.adapter.TourBottomSheetAdapter
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.mapAsync
@@ -73,6 +75,12 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
                 isVisible = view.isTourRouteBottomSheet,
                 typeBottomSheetBehavior = BottomSheetBehavior.STATE_COLLAPSED
             )
+            tourRecyclerView.let { recyclerView ->
+                recyclerView.layoutManager = LinearLayoutManager(requireActivity()).apply {
+                    orientation = LinearLayoutManager.VERTICAL
+                }
+                recyclerView.adapter = TourBottomSheetAdapter(tourArrayList = view.tourArrayList)
+            }
         }
 
         locationUtil.verifyLocation(isStart = view.isVerifyLocation, method = {
