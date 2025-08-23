@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.navGraphViewModels
+import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
@@ -27,7 +27,7 @@ import com.leandro1995.tinkuysabor.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
-    private val homeViewModel by navGraphViewModels<HomeViewModel>(R.id.home_navigation)
+    private val homeViewModel by viewModels<HomeViewModel>()
     private lateinit var locationUtil: LocationUtil
     private lateinit var googleMapUtil: GoogleMapUtil
     private val locationLaunch = registerForActivityLocationResult(method = {
@@ -91,6 +91,7 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap) {
         googleMapUtil = GoogleMapUtil(googleMap = p0)
+        googleMapUtil.resetMap()
 
         viewLifecycleOwner {
             homeViewModel.intentActionStateFlow.collect { homeIntentAction ->
