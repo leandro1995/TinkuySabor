@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
@@ -67,6 +68,11 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
             loadingViewComponent.messageError(messageError = view.tourMessageError, buttonError = {
                 this@HomeFragment.homeViewModel.action.invoke(HomeViewModel.TOURISM_LIST_LOADING)
             })
+            MessageUtil.bottomSheetBehavior(
+                view = bottomSheetFrameLayout,
+                isVisible = view.isTourRouteBottomSheet,
+                typeBottomSheetBehavior = BottomSheetBehavior.STATE_COLLAPSED
+            )
         }
 
         locationUtil.verifyLocation(isStart = view.isVerifyLocation, method = {

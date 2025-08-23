@@ -65,7 +65,9 @@ class HomeViewModel : ViewModelAmbient<HomeIntentAction, Any>() {
                     tourArrayList.addAll(it)
                     value(
                         action = HomeIntentAction(
-                            personLocation = personLocation, tourArrayList = tourArrayList
+                            personLocation = personLocation,
+                            tourArrayList = tourArrayList,
+                            isTourRouteBottomSheet = true
                         )
                     )
                 }, messageError = {

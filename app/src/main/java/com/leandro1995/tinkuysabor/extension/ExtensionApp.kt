@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.os.Parcelable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.IdRes
@@ -77,6 +78,12 @@ fun Fragment.registerForActivityLocationResult(method: () -> Unit, methodError: 
             methodError()
         }
     }
+
+fun View.visibility(isVisible: Boolean) = if (isVisible) {
+    this.visibility = View.VISIBLE
+} else {
+    this.visibility = View.GONE
+}
 
 val Context.userProtoDataStore: DataStore<UserProtoDataStore> by dataStore(
     Setting.DATA_STORE_FILE_NAME, UserProtoDataStoreSerializer()

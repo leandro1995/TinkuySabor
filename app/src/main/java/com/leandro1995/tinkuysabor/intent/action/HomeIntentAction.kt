@@ -12,5 +12,6 @@ class HomeIntentAction(
     val loading: Loading = Loading(),
     val tourMessageError: Message = Message(),
     val personLocation: LatLng = LatLng(0.0, 0.0),
-    val tourArrayList: ArrayList<Tour> = arrayListOf()
+    val tourArrayList: ArrayList<Tour> = arrayListOf(),
+    val isTourRouteBottomSheet: Boolean = false
 )

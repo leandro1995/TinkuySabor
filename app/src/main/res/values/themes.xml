@@ -6,6 +6,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
         <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <item name="bottomSheetDragHandleStyle">@style/Widget.MaterialComponents.BottomSheet.DragHandle</item>
     </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
@@ -102,5 +103,10 @@
     <style name="MaterialAlertDialog.App.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
         <item name="android:fontFamily">@font/regular</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.BottomSheet.DragHandle" parent="Widget.Material3.BottomSheet.DragHandle">
+        <item name="tint">@color/blue_700</item>
+        <item name="android:alpha">0.3</item>
     </style>
 </resources>

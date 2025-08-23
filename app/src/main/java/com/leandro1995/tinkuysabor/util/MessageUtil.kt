@@ -1,8 +1,11 @@
 package com.leandro1995.tinkuysabor.util
 
 import android.content.Context
+import android.view.View
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.extension.visibility
 import com.leandro1995.tinkuysabor.model.design.Message
 
 class MessageUtil {
@@ -17,6 +20,26 @@ class MessageUtil {
                     method()
                 }
             }.show()
+        }
+
+        fun bottomSheetBehavior(
+            view: View, isVisible: Boolean = true, typeBottomSheetBehavior: Int
+        ) {
+            view.visibility(isVisible = isVisible)
+            BottomSheetBehavior.from(view).apply {
+                state = typeBottomSheetBehavior
+                addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+                    override fun onStateChanged(bottomSheet: View, newState: Int) {
+                        if (newState == BottomSheetBehavior.STATE_HIDDEN) {
+                            state = BottomSheetBehavior.STATE_COLLAPSED
+                        }
+                    }
+
+                    override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+                    }
+                })
+            }
         }
     }
 }
