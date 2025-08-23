@@ -11,6 +11,8 @@
     <string name="tourism_description_text">Descripción:</string>
     <string name="phone_text">Número telefónico:</string>
     <string name="opening_hours_text">Horarios de atención:</string>
+    <string name="nearest_tourist_areas_text">Zonas turísticas más cercanas:</string>
+    <string name="nearest_rest_and_eating_areas_text">Zonas para descansar y comer más cercanas:</string>
 
     <!-- Button -->
     <string name="google_text_button">GOOGLE</string>
