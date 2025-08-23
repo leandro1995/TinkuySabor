@@ -3,7 +3,6 @@ package com.leandro1995.tinkuysabor.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.adapter.holder.CarouselHolder
 import com.leandro1995.tinkuysabor.databinding.ItemCarouselBinding
 import com.leandro1995.tinkuysabor.model.design.Carousel

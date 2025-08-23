@@ -9,17 +9,14 @@ import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.ActivityTourismDetailBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
-import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
 import com.leandro1995.tinkuysabor.extension.mapAsync
 import com.leandro1995.tinkuysabor.extension.putExtraParcelable
-import com.leandro1995.tinkuysabor.intent.callback.TourismDetailIntentCallBack
-import com.leandro1995.tinkuysabor.intent.config.TourismDetailIntentConfig
 import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.viewmodel.TourismDetailViewModel
 
-class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, OnMapReadyCallback {
+class TourismDetailActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var activityTourismDetailBinding: ActivityTourismDetailBinding
     private val tourismDetailViewModel by viewModels<TourismDetailViewModel>()
@@ -30,19 +27,6 @@ class TourismDetailActivity : AppCompatActivity(), TourismDetailIntentCallBack, 
         activityTourismDetailBinding = bindingUtil(layoutId = R.layout.activity_tourism_detail)
         activityTourismDetailBinding.tourismDetailViewModel = tourismDetailViewModel
 
-        lifecycleScopeLaunch {
-            tourismDetailViewModel.intentActionMutableStateFlow.collect { tourismDetailIntentAction ->
-                TourismDetailIntentConfig(
-                    tourismDetailIntentAction = tourismDetailIntentAction,
-                    tourismDetailIntentCallBack = this
-                )
-            }
-        }
-
-        tourismDetailViewModel.action.invoke(TourismDetailViewModel.INIT_VIEW)
-    }
-
-    override fun initView() {
         tourismDetailViewModel.tour =
             Setting.TOUR_PUT_EXTRA.putExtraParcelable<Tour>(activity = this)
 

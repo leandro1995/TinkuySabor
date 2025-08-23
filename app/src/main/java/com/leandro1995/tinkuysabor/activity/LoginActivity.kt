@@ -12,17 +12,18 @@ import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.lifecycleScopeLaunch
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
 import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
-import com.leandro1995.tinkuysabor.intent.callback.LoginIntentCallBack
-import com.leandro1995.tinkuysabor.intent.config.LoginIntentConfig
+import com.leandro1995.tinkuysabor.intent.callback.event.LoginIntentEventCallBack
+import com.leandro1995.tinkuysabor.intent.config.event.LoginIntentEventConfig
 import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.util.MessageUtil
 import com.leandro1995.tinkuysabor.util.PermissionUtil
 import com.leandro1995.tinkuysabor.viewmodel.LoginViewModel
 
-class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
+class LoginActivity : AppCompatActivity(), LoginIntentEventCallBack {
 
     private lateinit var activityLoginBinding: ActivityLoginBinding
     private val loginViewModel by viewModels<LoginViewModel>()
+    private lateinit var googleFCMLogin: GoogleFCMLogin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,24 +31,33 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         activityLoginBinding = bindingUtil(layoutId = R.layout.activity_login)
         activityLoginBinding.loginViewModel = loginViewModel
 
+        initView()
+
         lifecycleScopeLaunch {
-            loginViewModel.intentActionMutableStateFlow.collect { loginIntentAction ->
-                LoginIntentConfig(
-                    loginIntentAction = loginIntentAction, loginIntentCallBack = this
+            loginViewModel.intentEventSharedFlow.collect { loginIntentEvent ->
+                LoginIntentEventConfig(
+                    loginIntentEvent = loginIntentEvent, loginIntentEventCallBack = this
                 )
             }
         }
-
-        loginViewModel.action.invoke(LoginViewModel.INIT_VIEW)
     }
 
-    override fun initView() {
+    private fun initView() {
         viewPager2()
+        googleFCMLogin = GoogleFCMLogin(application = application)
     }
 
-    override fun googleLogin(googleFCMLogin: GoogleFCMLogin) {
+    private fun viewPager2() {
+        activityLoginBinding.carouselPager.apply {
+            adapter =
+                CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
+            activityLoginBinding.carouselIndicator.attachTo(this)
+        }
+    }
+
+    override fun googleLogin() {
         PermissionUtil.messagingPermission(fragmentActivity = this, method = {
-            googleFCMLogin.login(application = application) { googleIdTokenCredential ->
+            googleFCMLogin.login { googleIdTokenCredential ->
                 loginViewModel.let {
                     it.saveUserProtoDataStore(googleIdTokenCredential = googleIdTokenCredential)
                     it.action.invoke(LoginViewModel.GOOGLE_AUTHENTICATION)
@@ -68,16 +78,8 @@ class LoginActivity : AppCompatActivity(), LoginIntentCallBack {
         })
     }
 
-    override fun startHomeActivity(homeActivity: HomeActivity) {
-        startActivity(Intent(this, homeActivity::class.java))
+    override fun startHomeActivity() {
+        startActivity(Intent(this, HomeActivity::class.java))
         finishAffinity()
-    }
-
-    private fun viewPager2() {
-        activityLoginBinding.carouselPager.apply {
-            adapter =
-                CarouselAdapter(carouselArrayList = Setting.carouselArrayList(activity = this@LoginActivity))
-            activityLoginBinding.carouselIndicator.attachTo(this)
-        }
     }
 }

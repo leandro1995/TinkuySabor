@@ -1,12 +1,11 @@
 package com.leandro1995.tinkuysabor.intent.action
 
-import com.leandro1995.tinkuysabor.intent.action.config.ServiceIntentActionConfig
+import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.design.Message
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
-sealed class TourismListIntentAction {
-    data class ServiceIntent(val serviceIntentActionConfig: ServiceIntentActionConfig) :
-        TourismListIntentAction()
-
-    data class TourismArrayList(val tourismArrayList: ArrayList<Tour>) : TourismListIntentAction()
-    object InitView : TourismListIntentAction()
-}
+class TourismListIntentAction(
+    val loading: Loading = Loading(),
+    val tourArrayList: ArrayList<Tour> = arrayListOf(),
+    val message: Message = Message()
+)

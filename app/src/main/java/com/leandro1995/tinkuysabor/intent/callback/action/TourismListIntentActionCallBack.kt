@@ -1,0 +1,6 @@
+package com.leandro1995.tinkuysabor.intent.callback.action
+
+import com.leandro1995.tinkuysabor.intent.action.TourismListIntentAction
+import com.leandro1995.tinkuysabor.intent.callback.ambient.IntentCallBackAmbient
+
+interface TourismListIntentActionCallBack : IntentCallBackAmbient<TourismListIntentAction>

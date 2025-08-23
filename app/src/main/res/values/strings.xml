@@ -24,6 +24,7 @@
     <string name="permission_message">Recuerda que estos permisos son importantes para la aplicación.</string>
     <string name="permission_config_message">Recuerda que estos permisos son importantes para la aplicación tiene que activarlos desde la configuración.</string>
     <string name="error_message">Hubo problemas con el servicio.</string>
+    <string name="verify_location_message">Tiene que habilitar el permiso de GPS para detectar su ubicación y generar su ruta turística más cercana.</string>
 
     <!-- View Pager -->
     <string name="carousel_item_1_title_view_pager">🧭 Explora sin límites</string>

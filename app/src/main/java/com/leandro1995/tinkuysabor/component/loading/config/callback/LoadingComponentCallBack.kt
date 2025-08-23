@@ -1,5 +1,5 @@
 package com.leandro1995.tinkuysabor.component.loading.config.callback
 
-interface LoadingViewComponentCallBack {
+interface LoadingComponentCallBack {
     fun errorButon()
 }

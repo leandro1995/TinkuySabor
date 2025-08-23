@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.leandro1995.tinkuysabor.component.loading.LocationLoadingViewComponent
+        <com.leandro1995.tinkuysabor.component.loading.LocationLoadingComponent
             android:id="@+id/location_loading_view_component"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0"
@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.leandro1995.tinkuysabor.component.loading.LoadingViewComponent
+        <com.leandro1995.tinkuysabor.component.loading.LoadingComponent
             android:id="@+id/loading_view_component"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="@dimen/dimen_0"

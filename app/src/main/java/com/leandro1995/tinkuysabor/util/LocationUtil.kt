@@ -21,29 +21,39 @@ class LocationUtil(private val activity: Activity) {
     private var locationCallback: LocationCallback? = null
 
     fun verifyLocation(
-        method: () -> Unit, messageError: (intentSenderRequest: IntentSenderRequest) -> Unit
+        isStart: Boolean = true,
+        method: () -> Unit,
+        messageError: (intentSenderRequest: IntentSenderRequest) -> Unit
     ) {
-        task().addOnSuccessListener {
-            method()
-        }
+        if (isStart) {
+            task().addOnSuccessListener {
+                method()
+            }
 
-        task().addOnFailureListener { exception ->
-            if (exception is ResolvableApiException) {
-                try {
-                    messageError(IntentSenderRequest.Builder(exception.resolution).build())
-                } catch (_: IntentSender.SendIntentException) {
+            task().addOnFailureListener { exception ->
+                if (exception is ResolvableApiException) {
+                    try {
+                        messageError(IntentSenderRequest.Builder(exception.resolution).build())
+                    } catch (_: IntentSender.SendIntentException) {
 
+                    }
                 }
             }
         }
     }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-    fun starLocation(method: (latitude: Double, longitude: Double) -> Unit) {
-        instanceLocationCallback(method = method)
-        instanceFusedLocationProviderClient()?.requestLocationUpdates(
-            locationRequest(), locationCallback!!, Looper.getMainLooper()
-        )
+    fun starLocation(
+        isStart: Boolean = true, method: (latitude: Double, longitude: Double) -> Unit
+    ) {
+        if (isStart) {
+            instanceLocationCallback(method = method)
+            instanceFusedLocationProviderClient()?.requestLocationUpdates(
+                locationRequest(), locationCallback!!, Looper.getMainLooper()
+            )
+        } else {
+            stopLocation()
+        }
     }
 
     fun stopLocation() {

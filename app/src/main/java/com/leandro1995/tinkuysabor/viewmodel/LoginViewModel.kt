@@ -1,15 +1,13 @@
 package com.leandro1995.tinkuysabor.viewmodel
 
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
-import com.leandro1995.tinkuysabor.activity.HomeActivity
 import com.leandro1995.tinkuysabor.fcm.authentication.GoogleFCMAuthentication
-import com.leandro1995.tinkuysabor.fcm.login.GoogleFCMLogin
-import com.leandro1995.tinkuysabor.intent.action.LoginIntentAction
+import com.leandro1995.tinkuysabor.intent.event.LoginIntentEvent
 import com.leandro1995.tinkuysabor.model.entity.User
 import com.leandro1995.tinkuysabor.protodatastore.config.UserProtoDataStoreConfig
 import com.leandro1995.tinkuysabor.viewmodel.ambient.ViewModelAmbient
 
-class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
+class LoginViewModel : ViewModelAmbient<Any, LoginIntentEvent>() {
 
     private var idToken = ""
     private val user = User()
@@ -26,12 +24,12 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
     }
 
     private fun googleLogin() {
-        value(action = LoginIntentAction.GoogleLogin(googleFCMLogin = GoogleFCMLogin()))
+        emit(event = LoginIntentEvent.GoogleLogin)
     }
 
     private fun googleAuthentication() {
-        value(
-            action = LoginIntentAction.GoogleAuthentication(
+        emit(
+            event = LoginIntentEvent.GoogleAuthentication(
                 googleFCMAuthentication = GoogleFCMAuthentication(
                     googleToken = idToken
                 )
@@ -52,19 +50,11 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
     }
 
     private fun startHomeActivity() {
-        value(action = LoginIntentAction.StartHomeActivity(homeActivity = HomeActivity()))
-    }
-
-    private fun initView() {
-        value(action = LoginIntentAction.InitView)
+        emit(event = LoginIntentEvent.StartHomeActivity)
     }
 
     override fun intentAction(action: Int) {
         when (action) {
-            INIT_VIEW -> {
-                initView()
-            }
-
             GOOGLE_LOGIN -> {
                 googleLogin()
             }
@@ -84,7 +74,6 @@ class LoginViewModel : ViewModelAmbient<LoginIntentAction>() {
     }
 
     companion object {
-        const val INIT_VIEW = 0
         const val GOOGLE_LOGIN = 1
         const val GOOGLE_AUTHENTICATION = 2
         const val SAVE_PROTO_DATA_STORE = 3

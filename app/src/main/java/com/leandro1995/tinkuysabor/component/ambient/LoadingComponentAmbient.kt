@@ -5,16 +5,21 @@ import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.background.config.TimeType
 import com.leandro1995.tinkuysabor.background.coroutine.TimerCoroutine
 import com.leandro1995.tinkuysabor.model.design.Loading
+import com.leandro1995.tinkuysabor.model.design.Message
 
 open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
-    ViewComponentAmbient<VH>(context = context, attrs = attrs) {
+    ComponentAmbient<VH>(context = context, attrs = attrs) {
 
-    fun start(loading: Loading, method: () -> Unit) {
-        if (loading.isVisible) {
-            visible()
-            TimerCoroutine(
-                timeType = TimeType.SECOND, time = TIME_OUT
-            ).timeStart(method = method)
+    fun start(loading: Loading, method: suspend () -> Unit) {
+        if (loading.isStartService()) {
+            if (loading.isVisible) {
+                visible()
+                TimerCoroutine(
+                    timeType = TimeType.SECOND, time = TIME_OUT
+                ).timeStart(method = method)
+            } else {
+                gone()
+            }
         } else {
             gone()
         }
@@ -28,7 +33,7 @@ open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
         }
     }
 
-    open fun messageError(messageError: String, buttonError: () -> Unit) {}
+    open fun messageError(messageError: Message, buttonError: () -> Unit) {}
 
     protected open fun visible() {}
 

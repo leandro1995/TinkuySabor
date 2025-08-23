@@ -12,12 +12,12 @@ import com.leandro1995.tinkuysabor.activity.LoginActivity
 import com.leandro1995.tinkuysabor.databinding.FragmentProfileBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.viewLifecycleOwner
-import com.leandro1995.tinkuysabor.intent.callback.ProfileIntentCallBack
-import com.leandro1995.tinkuysabor.intent.config.ProfileIntentConfig
+import com.leandro1995.tinkuysabor.intent.config.event.ProfileIntentEventConfig
+import com.leandro1995.tinkuysabor.intent.callback.event.ProfileIntentEventCallBack
 import com.leandro1995.tinkuysabor.model.design.Toolbar
 import com.leandro1995.tinkuysabor.viewmodel.ProfileViewModel
 
-class ProfileFragment : Fragment(), ProfileIntentCallBack {
+class ProfileFragment : Fragment(), ProfileIntentEventCallBack {
 
     private val profileViewModel by viewModels<ProfileViewModel>()
 
@@ -32,30 +32,24 @@ class ProfileFragment : Fragment(), ProfileIntentCallBack {
         )
         fragmentProfileBinding.profileViewModel = profileViewModel
 
+        Toolbar(
+            materialToolbar = fragmentProfileBinding.includeAppBar.toolbar,
+            title = getString(R.string.profile_text_title)
+        ).create()
+
         viewLifecycleOwner {
-            profileViewModel.intentActionMutableStateFlow.collect { profileIntentAction ->
-                ProfileIntentConfig(
-                    profileIntentAction = profileIntentAction, profileIntentCallBack = this
+            profileViewModel.intentEventSharedFlow.collect { profileIntentEvent ->
+                ProfileIntentEventConfig(
+                    profileIntentEvent = profileIntentEvent, profileIntentEventCallBack = this
                 )
             }
         }
 
-        profileViewModel.action.invoke(ProfileViewModel.INIT_VIEW)
-
         return fragmentProfileBinding.root
     }
 
-    override fun initView() {
-        fragmentProfileBinding.apply {
-            Toolbar(
-                materialToolbar = includeAppBar.toolbar,
-                title = getString(R.string.profile_text_title)
-            ).create()
-        }
-    }
-
-    override fun startLoginActivity(loginActivity: LoginActivity) {
-        startActivity(Intent(requireActivity(), loginActivity::class.java))
+    override fun startLoginActivity() {
+        startActivity(Intent(requireActivity(), LoginActivity::class.java))
         requireActivity().finishAffinity()
     }
 }
