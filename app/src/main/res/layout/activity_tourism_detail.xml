@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.TourismDetailActivity">
 
@@ -42,9 +43,9 @@
                 android:orientation="vertical">
 
                 <com.facebook.drawee.view.SimpleDraweeView
-                    fresco:image="@{tourismDetailViewModel.tour.photo}"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen_250" />
+                    android:layout_height="@dimen/dimen_250"
+                    fresco:image="@{tourismDetailViewModel.tour.photo}" />
 
                 <TextView
                     style="@style/Body_4"

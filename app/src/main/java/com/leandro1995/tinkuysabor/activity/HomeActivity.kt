@@ -9,9 +9,8 @@ import com.leandro1995.tinkuysabor.databinding.ActivityHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 
 class HomeActivity : AppCompatActivity() {
-
+    
     private lateinit var activityHomeBinding: ActivityHomeBinding
-    private var itemSelect = R.id.navigation_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
