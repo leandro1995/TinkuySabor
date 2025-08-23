@@ -4,18 +4,18 @@ import android.content.Context
 import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.component.ambient.LoadingComponentAmbient
-import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingLocationBinding
+import com.leandro1995.tinkuysabor.databinding.ComponentLoadingLocationBinding
 
-class LocationLoadingViewComponent(context: Context, attrs: AttributeSet?) :
-    LoadingComponentAmbient<ViewComponentLoadingLocationBinding>(context = context, attrs = attrs) {
+class LocationLoadingComponent(context: Context, attrs: AttributeSet?) :
+    LoadingComponentAmbient<ComponentLoadingLocationBinding>(context = context, attrs = attrs) {
 
-    private lateinit var viewComponentLoadingLocationBinding: ViewComponentLoadingLocationBinding
+    private lateinit var viewComponentLoadingLocationBinding: ComponentLoadingLocationBinding
 
     init {
-        initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading_location))
+        initView(dataBinding = dataBinding(layoutId = R.layout.component_loading_location))
     }
 
-    override fun initView(dataBinding: ViewComponentLoadingLocationBinding) {
+    override fun initView(dataBinding: ComponentLoadingLocationBinding) {
         viewComponentLoadingLocationBinding = dataBinding
         gone()
     }

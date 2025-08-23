@@ -4,21 +4,21 @@ import android.content.Context
 import android.util.AttributeSet
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.component.ambient.LoadingComponentAmbient
-import com.leandro1995.tinkuysabor.component.loading.config.callback.LoadingViewComponentCallBack
-import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingBinding
+import com.leandro1995.tinkuysabor.component.loading.config.callback.LoadingComponentCallBack
+import com.leandro1995.tinkuysabor.databinding.ComponentLoadingBinding
 import com.leandro1995.tinkuysabor.model.design.Message
 
-class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
-    LoadingComponentAmbient<ViewComponentLoadingBinding>(context = context, attrs = attrs) {
+class LoadingComponent(context: Context, attrs: AttributeSet?) :
+    LoadingComponentAmbient<ComponentLoadingBinding>(context = context, attrs = attrs) {
 
-    private lateinit var viewComponentLoadingBinding: ViewComponentLoadingBinding
-    private var loadingViewComponentCallBack: LoadingViewComponentCallBack? = null
+    private lateinit var viewComponentLoadingBinding: ComponentLoadingBinding
+    private var loadingComponentCallBack: LoadingComponentCallBack? = null
 
     init {
-        initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading))
+        initView(dataBinding = dataBinding(layoutId = R.layout.component_loading))
     }
 
-    override fun initView(dataBinding: ViewComponentLoadingBinding) {
+    override fun initView(dataBinding: ComponentLoadingBinding) {
         viewComponentLoadingBinding = dataBinding
         onClick()
         gone()
@@ -45,8 +45,8 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
     }
 
     override fun instanceAmbientCallBack(buttonError: () -> Unit) {
-        if (loadingViewComponentCallBack == null) {
-            loadingViewComponentCallBack = object : LoadingViewComponentCallBack {
+        if (loadingComponentCallBack == null) {
+            loadingComponentCallBack = object : LoadingComponentCallBack {
                 override fun errorButon() {
                     buttonError()
                 }
@@ -56,7 +56,7 @@ class LoadingViewComponent(context: Context, attrs: AttributeSet?) :
 
     override fun onClick() {
         viewComponentLoadingBinding.errorButton.setOnClickListener {
-            loadingViewComponentCallBack?.errorButon()
+            loadingComponentCallBack?.errorButon()
         }
     }
 }

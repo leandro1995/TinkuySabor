@@ -13,7 +13,7 @@ import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.component.ambient.LoadingRecyclerComponentAmbient
 import com.leandro1995.tinkuysabor.component.model.Tourism
 
-class TourismListLoadingRecyclerViewComponent(context: Context, attrs: AttributeSet?) :
+class TourismListLoadingRecyclerComponent(context: Context, attrs: AttributeSet?) :
     LoadingRecyclerComponentAmbient(context = context, attrs = attrs) {
     private lateinit var tourismArrayList: ArrayList<Tourism>
     private lateinit var tourismAdapter: TourismAdapter

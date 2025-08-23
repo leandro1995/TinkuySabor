@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 
-open class ViewComponentAmbient<VH> @JvmOverloads constructor(
+open class ComponentAmbient<VH> @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
 

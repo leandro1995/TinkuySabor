@@ -5,24 +5,24 @@ import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.R
-import com.leandro1995.tinkuysabor.databinding.ViewComponentLoadingRecyclerBinding
 import com.leandro1995.tinkuysabor.component.ambient.config.callback.LoadingRecyclerComponentAmbientCallBack
+import com.leandro1995.tinkuysabor.databinding.ComponentLoadingRecyclerBinding
 import com.leandro1995.tinkuysabor.model.design.Message
 
 open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet?) :
-    LoadingComponentAmbient<ViewComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
+    LoadingComponentAmbient<ComponentLoadingRecyclerBinding>(context = context, attrs = attrs) {
 
-    private lateinit var viewComponentLoadingRecyclerBinding: ViewComponentLoadingRecyclerBinding
+    private lateinit var componentLoadingRecyclerBinding: ComponentLoadingRecyclerBinding
     private var loadingRecyclerComponentAmbientCallBack: LoadingRecyclerComponentAmbientCallBack? =
         null
 
     init {
-        initView(dataBinding = dataBinding(layoutId = R.layout.view_component_loading_recycler))
+        initView(dataBinding = dataBinding(layoutId = R.layout.component_loading_recycler))
     }
 
-    override fun initView(dataBinding: ViewComponentLoadingRecyclerBinding) {
-        viewComponentLoadingRecyclerBinding = dataBinding
-        initViewRecycler(recyclerView = viewComponentLoadingRecyclerBinding.recyclerView)
+    override fun initView(dataBinding: ComponentLoadingRecyclerBinding) {
+        componentLoadingRecyclerBinding = dataBinding
+        initViewRecycler(recyclerView = componentLoadingRecyclerBinding.recyclerView)
         onClick()
         gone()
     }
@@ -40,23 +40,23 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
     open fun <T> setAdapter(arrayList: ArrayList<T>) {}
 
     override fun visible() {
-        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = VISIBLE
-        viewComponentLoadingRecyclerBinding.errorLinear.visibility = GONE
-        viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
+        componentLoadingRecyclerBinding.loadingLinear.visibility = VISIBLE
+        componentLoadingRecyclerBinding.errorLinear.visibility = GONE
+        componentLoadingRecyclerBinding.recyclerView.visibility = GONE
     }
 
     override fun gone() {
-        viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
-        viewComponentLoadingRecyclerBinding.errorLinear.visibility = GONE
-        viewComponentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
+        componentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+        componentLoadingRecyclerBinding.errorLinear.visibility = GONE
+        componentLoadingRecyclerBinding.recyclerView.visibility = VISIBLE
     }
 
     override fun messageError(messageError: Message, buttonError: () -> Unit) {
         if (messageError.isVisible()) {
-            viewComponentLoadingRecyclerBinding.loadingLinear.visibility = GONE
-            viewComponentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
-            viewComponentLoadingRecyclerBinding.recyclerView.visibility = GONE
-            viewComponentLoadingRecyclerBinding.errorText.text =
+            componentLoadingRecyclerBinding.loadingLinear.visibility = GONE
+            componentLoadingRecyclerBinding.errorLinear.visibility = VISIBLE
+            componentLoadingRecyclerBinding.recyclerView.visibility = GONE
+            componentLoadingRecyclerBinding.errorText.text =
                 messageError.description(context = context)
 
             instanceAmbientCallBack(buttonError = buttonError)
@@ -64,7 +64,7 @@ open class LoadingRecyclerComponentAmbient(context: Context, attrs: AttributeSet
     }
 
     override fun onClick() {
-        viewComponentLoadingRecyclerBinding.errorButton.setOnClickListener {
+        componentLoadingRecyclerBinding.errorButton.setOnClickListener {
             loadingRecyclerComponentAmbientCallBack?.errorButon()
         }
     }

@@ -8,7 +8,7 @@ import com.leandro1995.tinkuysabor.model.design.Loading
 import com.leandro1995.tinkuysabor.model.design.Message
 
 open class LoadingComponentAmbient<VH>(context: Context, attrs: AttributeSet?) :
-    ViewComponentAmbient<VH>(context = context, attrs = attrs) {
+    ComponentAmbient<VH>(context = context, attrs = attrs) {
 
     fun start(loading: Loading, method: suspend () -> Unit) {
         if (loading.isStartService()) {
