@@ -3,12 +3,16 @@ package com.leandro1995.tinkuysabor.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.leandro1995.tinkuysabor.adapter.config.callback.TourBottomSheetAdapterCallBack
 import com.leandro1995.tinkuysabor.adapter.holder.TourBottomSheetHolder
+import com.leandro1995.tinkuysabor.adapter.holder.config.callback.TourBottomSheetHolderCallBack
 import com.leandro1995.tinkuysabor.databinding.ItemTourBottomSheetBinding
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
 class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
-    RecyclerView.Adapter<TourBottomSheetHolder>() {
+    RecyclerView.Adapter<TourBottomSheetHolder>(), TourBottomSheetHolderCallBack {
+
+    var tourBottomSheetAdapterCallBack: TourBottomSheetAdapterCallBack? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -18,7 +22,7 @@ class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
-            )
+            ), tourBottomSheetHolderCallBack = this
         )
     }
 
@@ -33,5 +37,9 @@ class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
 
     override fun getItemCount(): Int {
         return tourArrayList.size
+    }
+
+    override fun animateCamera(position: Int) {
+        tourBottomSheetAdapterCallBack?.animateCamera(latLng = tourArrayList[position].latLng())
     }
 }

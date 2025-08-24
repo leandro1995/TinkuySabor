@@ -14,6 +14,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.leandro1995.tinkuysabor.R
 import com.leandro1995.tinkuysabor.adapter.TourBottomSheetAdapter
+import com.leandro1995.tinkuysabor.adapter.config.callback.TourBottomSheetAdapterCallBack
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.mapAsync
@@ -79,7 +80,14 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
                 recyclerView.layoutManager = LinearLayoutManager(requireActivity()).apply {
                     orientation = LinearLayoutManager.VERTICAL
                 }
-                recyclerView.adapter = TourBottomSheetAdapter(tourArrayList = view.tourArrayList)
+                recyclerView.adapter =
+                    TourBottomSheetAdapter(tourArrayList = view.tourArrayList).apply {
+                        tourBottomSheetAdapterCallBack = object : TourBottomSheetAdapterCallBack {
+                            override fun animateCamera(latLng: LatLng) {
+                                googleMapUtil.animateCamera(latLng = latLng, isAddMarker = false)
+                            }
+                        }
+                    }
             }
         }
 

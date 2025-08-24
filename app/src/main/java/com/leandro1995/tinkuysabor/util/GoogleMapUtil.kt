@@ -8,8 +8,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class GoogleMapUtil(private val googleMap: GoogleMap) {
 
-    fun animateCamera(latLng: LatLng, zoom: Float = 18f) {
-        marker(latLng = latLng)
+    fun animateCamera(latLng: LatLng, zoom: Float = 18f, isAddMarker: Boolean = true) {
+        if (isAddMarker) {
+            marker(latLng = latLng)
+        }
         googleMap.animateCamera(
             CameraUpdateFactory.newCameraPosition(
                 CameraPosition.Builder().target(latLng).zoom(zoom).build()
