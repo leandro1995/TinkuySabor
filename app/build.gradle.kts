@@ -79,6 +79,7 @@ dependencies {
     implementation(libs.github.fresco)
     implementation(libs.github.permissionx)
     implementation(libs.github.lottie)
+    implementation(libs.github.retrofit)
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
     implementation(libs.googleid)
