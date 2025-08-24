@@ -1,6 +1,7 @@
 package com.leandro1995.tinkuysabor.fragment
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,10 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.leandro1995.tinkuysabor.R
+import com.leandro1995.tinkuysabor.activity.TourismDetailActivity
 import com.leandro1995.tinkuysabor.adapter.TourBottomSheetAdapter
 import com.leandro1995.tinkuysabor.adapter.config.callback.TourBottomSheetAdapterCallBack
+import com.leandro1995.tinkuysabor.config.Setting
 import com.leandro1995.tinkuysabor.databinding.FragmentHomeBinding
 import com.leandro1995.tinkuysabor.extension.bindingUtil
 import com.leandro1995.tinkuysabor.extension.mapAsync
@@ -24,6 +27,7 @@ import com.leandro1995.tinkuysabor.intent.action.HomeIntentAction
 import com.leandro1995.tinkuysabor.intent.callback.action.HomeIntentActionCallBack
 import com.leandro1995.tinkuysabor.intent.config.action.HomeIntentActionConfig
 import com.leandro1995.tinkuysabor.model.design.Message
+import com.leandro1995.tinkuysabor.model.entity.Tour
 import com.leandro1995.tinkuysabor.util.GoogleMapUtil
 import com.leandro1995.tinkuysabor.util.LocationUtil
 import com.leandro1995.tinkuysabor.util.MessageUtil
@@ -85,6 +89,15 @@ class HomeFragment : Fragment(), HomeIntentActionCallBack, OnMapReadyCallback {
                         tourBottomSheetAdapterCallBack = object : TourBottomSheetAdapterCallBack {
                             override fun animateCamera(latLng: LatLng) {
                                 googleMapUtil.animateCamera(latLng = latLng, isAddMarker = false)
+                            }
+
+                            override fun tourDetail(tour: Tour) {
+                                startActivity(
+                                    Intent(
+                                        requireActivity(), TourismDetailActivity::class.java
+                                    ).apply {
+                                        putExtra(Setting.TOUR_PUT_EXTRA, tour)
+                                    })
                             }
                         }
                     }

@@ -13,5 +13,9 @@ class TourBottomSheetHolder(
         itemTourBottomSheetBinding.tourSimpleDraweeView.setOnClickListener {
             tourBottomSheetHolderCallBack?.animateCamera(position = bindingAdapterPosition)
         }
+
+        itemTourBottomSheetBinding.tourismDetailImageButton.setOnClickListener {
+            tourBottomSheetHolderCallBack?.tourDetail(position = bindingAdapterPosition)
+        }
     }
 }

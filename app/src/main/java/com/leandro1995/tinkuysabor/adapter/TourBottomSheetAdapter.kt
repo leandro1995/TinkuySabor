@@ -42,4 +42,8 @@ class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
     override fun animateCamera(position: Int) {
         tourBottomSheetAdapterCallBack?.animateCamera(latLng = tourArrayList[position].latLng())
     }
+
+    override fun tourDetail(position: Int) {
+        tourBottomSheetAdapterCallBack?.tourDetail(tour = tourArrayList[position])
+    }
 }
