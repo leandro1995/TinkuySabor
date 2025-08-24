@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.leandro1995.tinkuysabor.adapter.holder.TourBottomSheetHolder
-import com.leandro1995.tinkuysabor.databinding.ItemTourismBottomSheetBinding
+import com.leandro1995.tinkuysabor.databinding.ItemTourBottomSheetBinding
 import com.leandro1995.tinkuysabor.model.entity.Tour
 
 class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
@@ -14,7 +14,7 @@ class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
         parent: ViewGroup, viewType: Int
     ): TourBottomSheetHolder {
         return TourBottomSheetHolder(
-            itemTourismBottomSheetBinding = ItemTourismBottomSheetBinding.inflate(
+            itemTourBottomSheetBinding = ItemTourBottomSheetBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false
@@ -25,7 +25,10 @@ class TourBottomSheetAdapter(private val tourArrayList: ArrayList<Tour>) :
     override fun onBindViewHolder(
         holder: TourBottomSheetHolder, position: Int
     ) {
-
+        holder.itemTourBottomSheetBinding.apply {
+            tourSimpleDraweeView.setImageURI(tourArrayList[position].photo)
+            tourTitleText.text = tourArrayList[position].title
+        }
     }
 
     override fun getItemCount(): Int {

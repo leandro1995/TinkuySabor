@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_150">
+
+        <LinearLayout
+            android:layout_width="@dimen/dimen_0"
+            android:layout_height="@dimen/dimen_0"
+            android:layout_marginStart="@dimen/dimen_0"
+            android:layout_marginTop="@dimen/dimen_0"
+            android:layout_marginEnd="@dimen/dimen_0"
+            android:layout_marginBottom="@dimen/dimen_0"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DisableBaselineAlignment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white">
+
+                <View
+                    android:layout_width="@dimen/dimen_2"
+                    android:layout_height="@dimen/dimen_0"
+                    android:background="@color/blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="@dimen/dimen_30"
+                    android:layout_height="@dimen/dimen_30"
+                    android:layout_marginStart="@dimen/dimen_0"
+                    android:layout_marginTop="@dimen/dimen_0"
+                    android:layout_marginEnd="@dimen/dimen_0"
+                    android:layout_marginBottom="@dimen/dimen_0"
+                    android:background="@drawable/circle_tour_bottom_sheet"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        fresco:srcCompat="@drawable/ic_location"
+                        tools:ignore="ContentDescription" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/dimen_0"
+                android:layout_height="match_parent"
+                android:layout_weight="7">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/tour_simple_drawee_View"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="@dimen/dimen_0"
+                    android:layout_marginStart="@dimen/dimen_0"
+                    android:layout_marginTop="@dimen/dimen_0"
+                    android:layout_marginEnd="@dimen/dimen_0"
+                    android:layout_marginBottom="@dimen/dimen_0"
+                    app:layout_constraintBottom_toTopOf="@+id/view_separator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="@dimen/dimen_0"
+                    android:layout_marginStart="@dimen/dimen_0"
+                    android:layout_marginTop="@dimen/dimen_0"
+                    android:layout_marginEnd="@dimen/dimen_0"
+                    android:layout_marginBottom="@dimen/dimen_0"
+                    android:background="@color/black_50_opacity"
+                    android:gravity="bottom|center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/dimen_16"
+                    app:layout_constraintBottom_toBottomOf="@+id/tour_simple_drawee_View"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tour_title_text"
+                        style="@style/Body_4"
+                        android:layout_width="@dimen/dimen_0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_16"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:textColor="@color/white"
+                        tools:ignore="InefficientWeight" />
+
+                    <ImageButton
+                        android:id="@+id/tourism_detail_image_button"
+                        style="@style/Button.Circle"
+                        android:layout_marginEnd="@dimen/dimen_16"
+                        android:scaleType="fitXY"
+                        fresco:srcCompat="@drawable/ic_arrow_button"
+                        tools:ignore="ContentDescription,RtlHardcoded" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_separator"
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="@dimen/dimen_2"
+                    android:layout_marginStart="@dimen/dimen_0"
+                    android:layout_marginEnd="@dimen/dimen_0"
+                    android:layout_marginBottom="@dimen/dimen_0"
+                    android:background="@color/blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
